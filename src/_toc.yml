@@ -10,7 +10,7 @@ parts:
   - file: linters
 - caption: Local Automation
   chapters:
-  - file: precommit
+  - file: pre-commit-framework
 - caption: Repository Automation
   chapters:
   - file: gh-actions

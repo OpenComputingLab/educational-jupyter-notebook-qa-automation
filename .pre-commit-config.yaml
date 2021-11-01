@@ -5,6 +5,6 @@ repos:
     -   id: codespell
         name: codespell
         description: Checks for common misspellings in text files.
-        entry: codespell
+        entry: codespell --skip="*.js,*.html,*.css, *.svg" --ignore-words=.codespell-ignore.txt
         language: python
         types: [text]

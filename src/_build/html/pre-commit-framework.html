@@ -181,7 +181,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/precommit.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/pre-commit-framework.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -206,6 +206,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -216,7 +229,38 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="pre-commit">
 <h1>Pre-Commit<a class="headerlink" href="#pre-commit" title="Permalink to this headline">¶</a></h1>
-<p>The <em>pre-commit</em> framework is an automation framework that will automatically run quality tools against fils that are committed to a local <code class="docutils literal notranslate"><span class="pre">git</span></code> repository.</p>
+<p><em>Git pre-commit hooks</em> are client side events that are raised and handled by simple scripts whenever a commit is made to a <code class="docutils literal notranslate"><span class="pre">git</span></code> repository.</p>
+<p>Simple pre-commit scripts were originally based around executable shell scripts placed in a hidden <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file inside a <code class="docutils literal notranslate"><span class="pre">git</span></code> repository. These scripts would be invoked whenever a commit was made into the local repository</p>
+<p>Writing pre-commit scripts can be a complicated affair, but the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> Python package provides a much simpler and more powerful framework for writing and installing your own automation scripts.</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>One of the problems associated with running quality assurance tools over a set of files is that it’s easy to <em>not get round to it</em>.</p>
+<p>In a live editing environment, if the editing tool provides “live” error checking, such as code linting or inline spell-checking, you are often more likely to pick up on issues at the time they are created. However, when errors do make it through to the saved version of a file, as they inevitably will, they can often build up over time. When a quality process is invoked, there may be a significant backlog of issues. What’s worse is that with multiple errors or issues in a document, whether it’s a text document or a code file, fixing one may have consequential side effects on others, or on the rest of the document.</p>
+<p>If files are being managed under a version control system such as <code class="docutils literal notranslate"><span class="pre">git</span></code>, files are often committed to the repository on a regular basis. In some workflows, each substantive change may be committed as a separate check-in or commit with a comment describing the nature of the change. In other workflows, large numbers of undistinguished and independent changes may be committed at the same time. The latter approach may be less than useful when trying to track down a very specific change, but it comes without the overhead of trying to comment on each particular change, each with its own change note, at the time the change is made.</p>
+<p>In workflows producing text documents, it may be unclear as to what makes a sensible commit chunk. In such a case, commits may be made at natural breaks in the workflow, such as at the end of a particular section of the document, or at the end a particular work session, such as at the end of the day.</p>
+<p>Check-ins may also reflect the completion of a particular task, such as completing the editing a particular section, or running a spell-checker over a complete document.</p>
+<p>## Pre-commit Tasks</p>
+<p>Pre-commit workflows are established by running a <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">install</span></code> command to configure the <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file. The pre-commit tasks themselves are defined via a <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> configuration file. This file specifies what tasks should be performed on the set of files that are submitted as part of the commit process.</p>
+<p><em>The first time a commit is made using a particular action, there may be some delay as the code implementing the action is downloaded from the specified action repository and then cached locally.</em></p>
+<p>The following example of a <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> file shows how to define a <code class="docutils literal notranslate"><span class="pre">codespell</span></code> pre-commit action that will spell check all committed files.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">repos</span><span class="p">:</span>
+<span class="p p-Indicator">-</span>   <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/codespell-project/codespell</span>
+    <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v2.1.0</span>  <span class="c1"># CURRENT_TAG/COMMIT_HASH</span>
+    <span class="nt">hooks</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span>   <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">codespell</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">codespell</span>
+        <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Checks for common misspellings in text files.</span>
+        <span class="nt">entry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">codespell --skip=&quot;*.js,*.html,*.css, *.svg&quot; --ignore-words=.codespell-ignore.txt</span>
+        <span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+        <span class="nt">types</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">text</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Note that for this action, the commit is prevented if the spell-check fails.</p>
+<p><img alt="" src="_images/codespelling-action.png" /></p>
+<p>The output report shows which files contained detected spelling errors, and what those errors were. It is then up to the user to fix those errors before trying to commit the file again.</p>
+<p><em>This idea of blocking a commit until the error is addressed is reminiscent of the <em>jidoka</em> idea in the Toyota Production System / lean manufacturing process.</em></p>
+<p><em>The user experience using the GitHub application and the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> commit hook is horrible, and <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731">virtually unusable</a>, compared to the original, and now deprecated, <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--pre-commit</span></code> workflow. In that original case, evoked using a simple <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--from</span> <span class="pre">ipynb</span> <span class="pre">--to</span> <span class="pre">.md//markdown</span> <span class="pre">--pre-commit</span></code> line in a <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file, paired notebook files would be automatically synched if either one as committed. Using the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework, trying to commit files in the Github application. I get the feeling this a [<code class="docutils literal notranslate"><span class="pre">wont-fix</span></code>]<a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065()">https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065()</a> because the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework folk think everyone should be typing <code class="docutils literal notranslate"><span class="pre">git</span></code> commands on the command line whenever they use <code class="docutils literal notranslate"><span class="pre">git</span></code>… So I just hope that the old <code class="docutils literal notranslate"><span class="pre">--pre-commit</span></code> jupytext flag continues to work because the approved pre-commit route doesn’t work in any useable sense at all for me.</em></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
