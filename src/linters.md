@@ -13,13 +13,14 @@ In a live editing environment, the warning might appear as a warning flag with a
 ## Linting Notebook Code With `nbqa`
 
 Code in notebook code cells can be linted using various tools including `pydocstyle` (for check docstrings), `pylint` and `flake8`.
+
 ### Linting docstrings With `pydocstyle`
 
 Linting of docstring syntax (Python function documentation strings) is based on the [*PEP 257 Docstring Conventions*](https://www.python.org/dev/peps/pep-0257/).
 
 ```text
 
-nbqa pydocstyle --nbqa-diff FILENAME.ipynb 
+nbqa pydocstyle --nbqa-diff FILENAME.ipynb
 FILENAME.ipynb:cell_1:0 at module level:
         D100: Missing docstring in public module
 FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
@@ -85,7 +86,7 @@ Formatters such as `mdformat` can be used to automatically format markdown docum
 If a more specific linting function is required, then a package such as [`markdownlint`](https://github.com/markdownlint/markdownlint) can be used to generate an issues report over one or more markdown files according a generous selection of [markdown linting rules](https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md):
 
 ```text
-mdl .md/FILENAME.myst 
+mdl .md/FILENAME.myst
 
 .md/FILENAME.myst:53: MD009 Trailing spaces
 .md/FILENAME.myst:58: MD009 Trailing spaces
@@ -93,6 +94,18 @@ mdl .md/FILENAME.myst
 .md/FILENAME.myst:49: MD023 Headers must start at the beginning of the line
 .md/FILENAME.myst:52: MD046 Code block style
 ```
+
+The `markdownlint` functionality is also available via the [`DavidAnson.vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) VS Code extension. This provides live, inline alerts of markdown linting errors, as show in the screenshot below.
+
+![](images/vscode-md-tooltip-error.png)
+
+We can also invoke the markdown linter via a `git` pre-commit hook (for more on this, see the *Pre-Commit Framework* section).
+
+![](images/markdownlint-fail.png)
+
+Using this in association with the VS Code view, we can refer to some of the hughlighted problematic lines and see that the errors were also raised in the editor view:
+
+![](images/pre-commit-framework_md-error.png)
 
 ## Spell Checking Notebooks
 

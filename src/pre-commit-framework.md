@@ -18,11 +18,13 @@ In workflows producing text documents, it may be unclear as to what makes a sens
 
 Check-ins may also reflect the completion of a particular task, such as completing the editing a particular section, or running a spell-checker over a complete document.
 
-## Pre-commit Tasks
+## Pre-commit Tasks
 
-Pre-commit workflows are established by running a `pre-commit install` command to configure the `.git/hooks/pre-commit` file. The pre-commit tasks themselves are defined via a `.pre-commit-config.yaml` configuration file. This file specifies what tasks should be performed on the set of files that are submitted as part of the commit process. 
+Pre-commit workflows are established by running a `pre-commit install` command to configure the `.git/hooks/pre-commit` file. The pre-commit tasks themselves are defined via a `.pre-commit-config.yaml` configuration file. This file specifies what tasks should be performed on the set of files that are submitted as part of the commit process.
 
 *The first time a commit is made using a particular action, there may be some delay as the code implementing the action is downloaded from the specified action repository and then cached locally.*
+
+### Example `codespell` pre-commit Action
 
 The following example of a `.pre-commit-config.yaml` file shows how to define a `codespell` pre-commit action that will spell check all committed files.
 
@@ -45,8 +47,6 @@ Note that for this action, the commit is prevented if the spell-check fails.
 
  The output report shows which files contained detected spelling errors, and what those errors were. It is then up to the user to fix those errors before trying to commit the file again.
 
- *This idea of blocking a commit until the error is addressed is reminiscent of the *jidoka* idea in the Toyota Production System / lean manufacturing process.*
+ *This idea of blocking a commit until the error is addressed is reminiscent of the __jidoka__ idea in the Toyota Production System / lean manufacturing process.*
 
-
-
-*The user experience using the GitHub application and the `jupytext` commit hook is horrible, and [virtually unusable](https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731), compared to the original, and now deprecated, `jupytext --pre-commit` workflow. In that original case, evoked using a simple `jupytext --from ipynb --to .md//markdown --pre-commit` line in a `.git/hooks/pre-commit` file, paired notebook files would be automatically synched if either one as committed. Using the `pre-commit` framework, trying to commit files in the Github application. I get the feeling this a [`wont-fix`]https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065() because the `pre-commit` framework folk think everyone should be typing `git` commands on the command line whenever they use `git`... So I just hope that the old `--pre-commit` jupytext flag continues to work because the approved pre-commit route doesn't work in any useable sense at all for me.*
+*The user experience using the GitHub application and the `jupytext` commit hook is horrible, and [virtually unusable](https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731), compared to the original, and now deprecated, `jupytext --pre-commit` workflow. In that original case, evoked using a simple `jupytext --from ipynb --to .md//markdown --pre-commit` line in a `.git/hooks/pre-commit` file, paired notebook files would be automatically synched if either one as committed. Using the `pre-commit` framework, trying to commit files in the Github application. I get the feeling this a [`wont-fix`](https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065) because the `pre-commit` framework folk think everyone should be typing `git` commands on the command line whenever they use `git`... So I just hope that the old `--pre-commit` jupytext flag continues to work because the approved pre-commit route doesn't work in any useable sense at all for me.*
