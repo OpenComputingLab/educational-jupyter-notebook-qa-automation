@@ -1,0 +1,21 @@
+---
+jupytext:
+  formats: ipynb,.md//md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Hook Demo
+
+Notebook to test behaviour of various hooks.
+
+```{code-cell} ipython3
+
+```
