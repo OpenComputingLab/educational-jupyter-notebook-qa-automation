@@ -51,7 +51,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pre-Commit" href="precommit.html" />
+    <link rel="next" title="Pre-Commit" href="pre-commit-framework.html" />
     <link rel="prev" title="Formatters" href="formatters.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -124,7 +124,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="precommit.html">
+  <a class="reference internal" href="pre-commit-framework.html">
    Pre-Commit
   </a>
  </li>
@@ -317,7 +317,7 @@
 <div class="section" id="linting-docstrings-with-pydocstyle">
 <h3>Linting docstrings With <code class="docutils literal notranslate"><span class="pre">pydocstyle</span></code><a class="headerlink" href="#linting-docstrings-with-pydocstyle" title="Permalink to this headline">¶</a></h3>
 <p>Linting of docstring syntax (Python function documentation strings) is based on the <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/"><em>PEP 257 Docstring Conventions</em></a>.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa pydocstyle --nbqa-diff FILENAME.ipynb 
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa pydocstyle --nbqa-diff FILENAME.ipynb
 FILENAME.ipynb:cell_1:0 at module level:
         D100: Missing docstring in public module
 FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
@@ -377,7 +377,7 @@ FILENAME.ipynb:cell_1:16:5: F841 local variable &#39;more_code&#39; is assigned 
 <h2>Linting Markdown Using <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code><a class="headerlink" href="#linting-markdown-using-markdownlint" title="Permalink to this headline">¶</a></h2>
 <p>Formatters such as <code class="docutils literal notranslate"><span class="pre">mdformat</span></code> can be used to automatically format markdown documents in an opinionated way. Issues can then be identified in the form of differences between the formatted version of a markdown file and its original version.</p>
 <p>If a more specific linting function is required, then a package such as <a class="reference external" href="https://github.com/markdownlint/markdownlint"><code class="docutils literal notranslate"><span class="pre">markdownlint</span></code></a> can be used to generate an issues report over one or more markdown files according a generous selection of <a class="reference external" href="https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md">markdown linting rules</a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mdl .md/FILENAME.myst 
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mdl .md/FILENAME.myst
 
 .md/FILENAME.myst:53: MD009 Trailing spaces
 .md/FILENAME.myst:58: MD009 Trailing spaces
@@ -386,6 +386,12 @@ FILENAME.ipynb:cell_1:16:5: F841 local variable &#39;more_code&#39; is assigned 
 .md/FILENAME.myst:52: MD046 Code block style
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code> functionality is also available via the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint"><code class="docutils literal notranslate"><span class="pre">DavidAnson.vscode-markdownlint</span></code></a> VS Code extension. This provides live, inline alerts of markdown linting errors, as show in the screenshot below.</p>
+<p><img alt="" src="_images/vscode-md-tooltip-error.png" /></p>
+<p>We can also invoke the markdown linter via a <code class="docutils literal notranslate"><span class="pre">git</span></code> pre-commit hook (for more on this, see the <em>Pre-Commit Framework</em> section).</p>
+<p><img alt="" src="_images/markdownlint-fail.png" /></p>
+<p>Using this in association with the VS Code view, we can refer to some of the hughlighted problematic lines and see that the errors were also raised in the editor view:</p>
+<p><img alt="" src="_images/pre-commit-framework_md-error.png" /></p>
 </div>
 <div class="section" id="spell-checking-notebooks">
 <h2>Spell Checking Notebooks<a class="headerlink" href="#spell-checking-notebooks" title="Permalink to this headline">¶</a></h2>
@@ -460,7 +466,7 @@ pyspelling -c ipyspell.yml -S <span class="s2">&quot;./*.ipynb&quot;</span> -n P
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="precommit.html" title="next page">
+        <a class="right-next" href="pre-commit-framework.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
                 <p class="prevnext-title">Pre-Commit</p>

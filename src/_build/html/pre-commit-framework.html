@@ -216,6 +216,43 @@
    Motivation
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-commit-tasks">
+   Pre-commit Tasks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-codespell-pre-commit-action">
+     Example
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       codespell
+      </span>
+     </code>
+     pre-commit Action
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-nbqa-black-example">
+     Example
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbqa
+      </span>
+      <span class="pre">
+       black
+      </span>
+     </code>
+     Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-examples">
+     Other Examples
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -239,9 +276,13 @@
 <p>If files are being managed under a version control system such as <code class="docutils literal notranslate"><span class="pre">git</span></code>, files are often committed to the repository on a regular basis. In some workflows, each substantive change may be committed as a separate check-in or commit with a comment describing the nature of the change. In other workflows, large numbers of undistinguished and independent changes may be committed at the same time. The latter approach may be less than useful when trying to track down a very specific change, but it comes without the overhead of trying to comment on each particular change, each with its own change note, at the time the change is made.</p>
 <p>In workflows producing text documents, it may be unclear as to what makes a sensible commit chunk. In such a case, commits may be made at natural breaks in the workflow, such as at the end of a particular section of the document, or at the end a particular work session, such as at the end of the day.</p>
 <p>Check-ins may also reflect the completion of a particular task, such as completing the editing a particular section, or running a spell-checker over a complete document.</p>
-<p>## Pre-commit Tasks</p>
+</div>
+<div class="section" id="pre-commit-tasks">
+<h2>Pre-commit Tasks<a class="headerlink" href="#pre-commit-tasks" title="Permalink to this headline">¶</a></h2>
 <p>Pre-commit workflows are established by running a <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">install</span></code> command to configure the <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file. The pre-commit tasks themselves are defined via a <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> configuration file. This file specifies what tasks should be performed on the set of files that are submitted as part of the commit process.</p>
 <p><em>The first time a commit is made using a particular action, there may be some delay as the code implementing the action is downloaded from the specified action repository and then cached locally.</em></p>
+<div class="section" id="example-codespell-pre-commit-action">
+<h3>Example <code class="docutils literal notranslate"><span class="pre">codespell</span></code> pre-commit Action<a class="headerlink" href="#example-codespell-pre-commit-action" title="Permalink to this headline">¶</a></h3>
 <p>The following example of a <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> file shows how to define a <code class="docutils literal notranslate"><span class="pre">codespell</span></code> pre-commit action that will spell check all committed files.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">repos</span><span class="p">:</span>
 <span class="p p-Indicator">-</span>   <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/codespell-project/codespell</span>
@@ -258,8 +299,34 @@
 <p>Note that for this action, the commit is prevented if the spell-check fails.</p>
 <p><img alt="" src="_images/codespelling-action.png" /></p>
 <p>The output report shows which files contained detected spelling errors, and what those errors were. It is then up to the user to fix those errors before trying to commit the file again.</p>
-<p><em>This idea of blocking a commit until the error is addressed is reminiscent of the <em>jidoka</em> idea in the Toyota Production System / lean manufacturing process.</em></p>
-<p><em>The user experience using the GitHub application and the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> commit hook is horrible, and <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731">virtually unusable</a>, compared to the original, and now deprecated, <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--pre-commit</span></code> workflow. In that original case, evoked using a simple <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--from</span> <span class="pre">ipynb</span> <span class="pre">--to</span> <span class="pre">.md//markdown</span> <span class="pre">--pre-commit</span></code> line in a <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file, paired notebook files would be automatically synched if either one as committed. Using the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework, trying to commit files in the Github application. I get the feeling this a [<code class="docutils literal notranslate"><span class="pre">wont-fix</span></code>]<a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065()">https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065()</a> because the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework folk think everyone should be typing <code class="docutils literal notranslate"><span class="pre">git</span></code> commands on the command line whenever they use <code class="docutils literal notranslate"><span class="pre">git</span></code>… So I just hope that the old <code class="docutils literal notranslate"><span class="pre">--pre-commit</span></code> jupytext flag continues to work because the approved pre-commit route doesn’t work in any useable sense at all for me.</em></p>
+<p><em>This idea of blocking a commit until the error is addressed is reminiscent of the <strong>jidoka</strong> idea in the Toyota Production System / lean manufacturing process.</em></p>
+</div>
+<div class="section" id="example-nbqa-black-example">
+<h3>Example <code class="docutils literal notranslate"><span class="pre">nbqa</span> <span class="pre">black</span></code> Example<a class="headerlink" href="#example-nbqa-black-example" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> repository provides <a class="reference external" href="https://github.com/nbQA-dev/nbQA/blob/master/.pre-commit-hooks.yaml">many examples</a> of how to configure <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> to apply various <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> actions over checked in notebooks.</p>
+<p>For example, the following configuration example shows how to use <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> to apply the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter to notebook code cells:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>   <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/nbQA-dev/nbQA</span>
+    <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.1.1</span>
+    <span class="nt">hooks</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span>   <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nbqa-black</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nbqa-black</span>
+        <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;Run</span><span class="nv"> </span><span class="s">&#39;black&#39;</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Jupyter</span><span class="nv"> </span><span class="s">Notebook&quot;</span>
+        <span class="nt">entry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nbqa black</span>
+        <span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+        <span class="nt">require_serial</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+        <span class="nt">types</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">jupyter</span><span class="p p-Indicator">]</span>
+        <span class="nt">additional_dependencies</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">black</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Here’s an example of the report that is generated by trying to commit a notebook file that contains at least one code cell that <code class="docutils literal notranslate"><span class="pre">black</span></code> has seen fit to correct:</p>
+<p><img alt="" src="_images/nbqa-black-precommit.png" /></p>
+<p>The commit is halted as the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter runs over the file that we initially committed. The file is updated as a result of the failed commit action and if we now try to commit it again, it will pass.</p>
+<p>Note that under this workflow, we take it on trust that the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter has updated the code cell(s) (on our behalf) in a way that we approve of, but aren’t necessarily able to bear witness to.</p>
+</div>
+<div class="section" id="other-examples">
+<h3>Other Examples<a class="headerlink" href="#other-examples" title="Permalink to this headline">¶</a></h3>
+<p><em>The user experience using the GitHub application and the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> commit hook is horrible, and <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731">virtually unusable</a>, compared to the original, and now deprecated, <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--pre-commit</span></code> workflow. In that original case, evoked using a simple <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--from</span> <span class="pre">ipynb</span> <span class="pre">--to</span> <span class="pre">.md//markdown</span> <span class="pre">--pre-commit</span></code> line in a <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file, paired notebook files would be automatically synched if either one as committed. Using the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework, trying to commit files in the Github application. I get the feeling this a <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065"><code class="docutils literal notranslate"><span class="pre">wont-fix</span></code></a> because the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework folk think everyone should be typing <code class="docutils literal notranslate"><span class="pre">git</span></code> commands on the command line whenever they use <code class="docutils literal notranslate"><span class="pre">git</span></code>… So I just hope that the old <code class="docutils literal notranslate"><span class="pre">--pre-commit</span></code> jupytext flag continues to work because the approved pre-commit route doesn’t work in any useable sense at all for me.</em></p>
+</div>
 </div>
 </div>
 
