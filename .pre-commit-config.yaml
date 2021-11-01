@@ -8,3 +8,13 @@ repos:
         entry: codespell --skip="*.js,*.html,*.css, *.svg" --ignore-words=.codespell-ignore.txt
         language: python
         types: [text]
+
+-   repo: https://github.com/markdownlint/markdownlint
+    rev: v0.11.0
+    hooks:
+    -   id: markdownlint
+        name: Markdownlint
+        description: Run markdownlint on your Markdown files
+        entry: mdl
+        language: ruby
+        files: \.(md|mdown|markdown|myst)$
