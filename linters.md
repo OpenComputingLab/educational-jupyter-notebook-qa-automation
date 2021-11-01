@@ -1,0 +1,3 @@
+# Linters
+
+*Linters* are...

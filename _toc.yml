@@ -1,0 +1,16 @@
+format: jb-book
+root: intro
+parts:
+- caption: Background
+  chapters:
+  - file: intro-notebooks
+- caption: Quality Support Tooling
+  chapters:
+  - file: formatters
+  - file: linters
+- caption: Local Automation
+  chapters:
+  - file: precommit
+- caption: Repository Automation
+  chapters:
+  - file: gh-actions
