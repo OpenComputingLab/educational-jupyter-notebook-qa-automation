@@ -1,4 +1,4 @@
-# Jupyter Notebook Socument Formats
+# Jupyter Notebook Document Formats
 
 The [Jupyter notebook file format](https://nbformat.readthedocs.io/en/latest/format_description.html) document format, `.ipynb`, is a text based Javascript Object Notation (JSON) document schema that describes:
 

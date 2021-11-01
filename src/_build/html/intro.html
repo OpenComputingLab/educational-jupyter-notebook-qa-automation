@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; Using Automation in Quality Assured Jupyter Notebook Publishing Processes</title>
+    <title>Introduction &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Jupyter Notebook Socument Formats" href="intro-notebooks.html" />
+    <link rel="next" title="Jupyter Notebook Document Formats" href="intro-notebooks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -72,7 +72,7 @@
       
       
       
-      <h1 class="site-logo" id="site-title">Using Automation in Quality Assured Jupyter Notebook Publishing Processes</h1>
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -95,13 +95,13 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro-notebooks.html">
-   Jupyter Notebook Socument Formats
+   Jupyter Notebook Document Formats
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Quality Support Tooling
+  Quality Support Tools
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -205,6 +205,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intended-audience">
+   Intended Audience
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -213,11 +226,21 @@
         
               <div>
                 
-  <div class="section" id="introduction">
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>In many software development projects, automation tools are used to support code development quality processes.</p>
-<p>For example, “formatting” tools are available that will enforce style rules in the layout of programming code and “linting” tools will perform static analysis of code to check it for syntactic correctness and identify simple errors.</p>
-<p>Tools are also available for performing quality checks on more general texts, including formatters that can be applied to the underlying raw text or spell checkers that perform a “linting” role on the text content.</p>
+<p>One class of tools are “formatting” tools that can be used to enforce style rules in the layout of programming code. These tools do not change the behaviour of the code, just the way that it appears on-screen. Another class of tools are “linting” tools that will perform static analysis of code to check it for syntactic correctness and identify simple errors.</p>
+<p>Tools are also available for performing quality checks on more general texts, including formatters that can be applied to the underlying raw text or spell checkers that perform a “linting” role on the text content. Inline spell-checking tools that can be found in many word processors, and that highlight typographical errors as the user types, might be thought of as a “live” linting tool. Many text editors, such as the VS Code editor, provide support for a wide range on “inline” support tools, including spell checkers and document formatters, through application extensions.</p>
+<p>As well as “inline” or “live” support, many of the tools can be applied via automation scripts to check the quality of documents as they pass through a pipeline. In this document, we will review various tools that are available to support quality processes in the publication of educational content authored in a reproducible generative document workflow. Such workflows include workflows based around the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> based Executable Books/Jupyter publishing workflow, the Rmd/<code class="docutils literal notranslate"><span class="pre">knitr</span></code> workflow or the Quarto / <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> publishing workflow.</p>
+<div class="section" id="intended-audience">
+<h2>Intended Audience<a class="headerlink" href="#intended-audience" title="Permalink to this headline">¶</a></h2>
+<p>The intended audience for this document includes:</p>
+<ul class="simple">
+<li><p><em>authors</em>, looking for tools to support the authoring process;</p></li>
+<li><p><em>editors</em>, looking for tools to support the editing process;</p></li>
+<li><p><em>publishers</em>, looking for tools to support quality processes within automated document publication pipelines.</p></li>
+</ul>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -261,7 +284,7 @@
         <a class="right-next" href="intro-notebooks.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Jupyter Notebook Socument Formats</p>
+                <p class="prevnext-title">Jupyter Notebook Document Formats</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

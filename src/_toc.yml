@@ -4,7 +4,7 @@ parts:
 - caption: Background
   chapters:
   - file: intro-notebooks
-- caption: Quality Support Tooling
+- caption: Quality Support Tools
   chapters:
   - file: formatters
   - file: linters

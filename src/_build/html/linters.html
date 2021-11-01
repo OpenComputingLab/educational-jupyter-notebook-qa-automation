@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linters &#8212; Using Automation in Quality Assured Jupyter Notebook Publishing Processes</title>
+    <title>Linters &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -73,7 +73,7 @@
       
       
       
-      <h1 class="site-logo" id="site-title">Using Automation in Quality Assured Jupyter Notebook Publishing Processes</h1>
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -96,13 +96,13 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro-notebooks.html">
-   Jupyter Notebook Socument Formats
+   Jupyter Notebook Document Formats
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Quality Support Tooling
+  Quality Support Tools
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -206,6 +206,96 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linting-notebook-code-with-nbqa">
+   Linting Notebook Code With
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nbqa
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linting-docstrings-with-pydocstyle">
+     Linting docstrings With
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pydocstyle
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-code-analysis-using-pylint">
+     Static Code Analysis Using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pylint
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-code-analysis-using-flake8">
+     Static Code Analysis Using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       flake8
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linting-markdown-using-markdownlint">
+   Linting Markdown Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     markdownlint
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spell-checking-notebooks">
+   Spell Checking Notebooks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#codespell">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       codespell
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyspelling">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pyspelling
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-duplicate-words">
+     Finding Duplicate Words
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -214,9 +304,121 @@
         
               <div>
                 
-  <div class="section" id="linters">
+  <div class="tex2jax_ignore mathjax_ignore section" id="linters">
 <h1>Linters<a class="headerlink" href="#linters" title="Permalink to this headline">¶</a></h1>
-<p><em>Linters</em> are quality tools that can check code or text for “correctness”. For example, a code linter might perform a stati analysis of programming code to check that the code syntax is correct. Other, more advance linters, may also try to identufy simple bugs or contravention of coding guidelines in a code fragment. In text documents, tools such as spell-checkers might be though of as providing a “linting” style service.</p>
+<p><em>Linters</em> are quality tools that can check code or text for “correctness”. For example, a code linter might perform a static analysis of programming code to check that the code syntax is correct. Other, more advanced linters, may also try to identify simple bugs or contravention of coding guidelines in a code fragment. In text documents, tools such as spell-checkers might be thought of as providing a “linting” style service.</p>
+<p>Linters will typically make recommendations about suggested changes, with an option for the user then to accept the change. Some tools may be configurable to automatically apply changes, although there is an element of risk here as the changes may change the intended sense of a piece of text or the intended behaviour of a piece of code.</p>
+<p>There may also be an element of choice in the way the linter reports suggested changes to the user. For example, a separate report may be generated that lists the files within which issues were found, along with the line numbers of locations of the identified errors, and a statement of the error and potential correction.</p>
+<p>In other cases, the warning may be inserted into the original document at the point at which the error occurs. For example, in a Jupyter notebook, a linting error might reasonably be added as a warning style output from a code cell that contains the error.</p>
+<p>In a live editing environment, the warning might appear as a warning flag with a pop-up that describes the error.</p>
+<div class="section" id="linting-notebook-code-with-nbqa">
+<h2>Linting Notebook Code With <code class="docutils literal notranslate"><span class="pre">nbqa</span></code><a class="headerlink" href="#linting-notebook-code-with-nbqa" title="Permalink to this headline">¶</a></h2>
+<p>Code in notebook code cells can be linted using various tools including <code class="docutils literal notranslate"><span class="pre">pydocstyle</span></code> (for check docstrings), <code class="docutils literal notranslate"><span class="pre">pylint</span></code> and <code class="docutils literal notranslate"><span class="pre">flake8</span></code>.</p>
+<div class="section" id="linting-docstrings-with-pydocstyle">
+<h3>Linting docstrings With <code class="docutils literal notranslate"><span class="pre">pydocstyle</span></code><a class="headerlink" href="#linting-docstrings-with-pydocstyle" title="Permalink to this headline">¶</a></h3>
+<p>Linting of docstring syntax (Python function documentation strings) is based on the <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/"><em>PEP 257 Docstring Conventions</em></a>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa pydocstyle --nbqa-diff FILENAME.ipynb 
+FILENAME.ipynb:cell_1:0 at module level:
+        D100: Missing docstring in public module
+FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
+        D400: First line should end with a period (not &#39;g&#39;)
+FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
+        D401: First line should be in imperative mood; try rephrasing (found &#39;simple&#39;)
+FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
+        D403: First word of the first line should be properly capitalized (&#39;Simple&#39;, not &#39;simple&#39;)
+</pre></div>
+</div>
+<p>Currently, a <code class="docutils literal notranslate"><span class="pre">D100</span></code> error will always be returned against a 0 indexed cell. Creating a <code class="docutils literal notranslate"><span class="pre">.pydocstyle</span></code> settings file provides a means of ignoring this error.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[pydocstyle]
+ignore = D100
+</pre></div>
+</div>
+</div>
+<div class="section" id="static-code-analysis-using-pylint">
+<h3>Static Code Analysis Using <code class="docutils literal notranslate"><span class="pre">pylint</span></code><a class="headerlink" href="#static-code-analysis-using-pylint" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">pylint</span></code> package will perform static code analysis against all code cells and return error reports identifying errors and the cells in which they occur.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa pylint --disable=C0114,C0103 FILENAME.ipynb
+
+************* Module FILENAME
+FILENAME.ipynb:cell_1:4:0: E0611: No name &#39;pi&#39; in module &#39;math&#39; (no-name-in-module)
+FILENAME.ipynb:cell_1:11:4: W0612: Unused variable &#39;more_code&#39; (unused-variable)
+FILENAME.ipynb:cell_1:1:0: W0611: Unused pandas imported as pd (unused-import)
+FILENAME.ipynb:cell_1:2:0: W0611: Unused import time (unused-import)
+FILENAME.ipynb:cell_1:4:0: W0611: Unused pi imported from math (unused-import)
+FILENAME.ipynb:cell_1:2:0: C0411: standard import &quot;import time&quot; should be placed before &quot;import pandas as pd&quot; (wrong-import-order)
+FILENAME.ipynb:cell_1:4:0: C0411: standard import &quot;from math import pi&quot; should be placed before &quot;import pandas as pd&quot; (wrong-import-order)
+</pre></div>
+</div>
+</div>
+<div class="section" id="static-code-analysis-using-flake8">
+<h3>Static Code Analysis Using <code class="docutils literal notranslate"><span class="pre">flake8</span></code><a class="headerlink" href="#static-code-analysis-using-flake8" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">flake8</span></code> package is a widely extended tool for running all manner of code linting tests. When plugins are installed, they are automatically enabled when <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is run from the command line, either natively, or via <code class="docutils literal notranslate"><span class="pre">nbqa</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa flake8 --extend-ignore=D100 FILENAME.ipynb
+
+FILENAME.ipynb:cell_1:1:1: F401 &#39;pandas as pd&#39; imported but unused
+FILENAME.ipynb:cell_1:2:1: F401 &#39;time&#39; imported but unused
+FILENAME.ipynb:cell_1:4:1: F401 &#39;math.pi&#39; imported but unused
+FILENAME.ipynb:cell_1:8:1: D400 First line should end with a period
+FILENAME.ipynb:cell_1:8:1: D401 First line should be in imperative mood; try rephrasing
+FILENAME.ipynb:cell_1:8:1: D403 First word of the first line should be properly capitalized
+FILENAME.ipynb:cell_1:16:5: F841 local variable &#39;more_code&#39; is assigned to but never used
+</pre></div>
+</div>
+<p>Useful extensions include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JBKahn/flake8-print"><code class="docutils literal notranslate"><span class="pre">flake8-print</span></code></a>: check for <code class="docutils literal notranslate"><span class="pre">print</span></code> statements;</p></li>
+<li><p><a class="reference external" href="https://github.com/adamchainz/flake8-comprehensions"><code class="docutils literal notranslate"><span class="pre">flake8-comprehensions</span></code></a>: help simplify, and identify unnecessary, list / set / dict comprehensions;</p></li>
+<li><p><a class="reference external" href="https://github.com/PyCQA/flake8-bugbear"><code class="docutils literal notranslate"><span class="pre">flake8-bugbear</span></code></a>: attempt to identify simple bugs.</p></li>
+</ul>
+<p>The <a class="reference external" href="https://github.com/johnfraney/flake8-markdown"><code class="docutils literal notranslate"><span class="pre">flake8-markdown</span></code></a> package can be used to apply <code class="docutils literal notranslate"><span class="pre">flake8</span></code> linting to code inside fenced code blocks in markdown documents. One way of applying this form of linting is to convert a notebook to a markdown format using Jupytext and then run <code class="docutils literal notranslate"><span class="pre">flake8</span></code> over the markdown file using a command of the form <code class="docutils literal notranslate"><span class="pre">flake8-markdown</span> <span class="pre">FILENAME.md</span></code>.</p>
+</div>
+</div>
+<div class="section" id="linting-markdown-using-markdownlint">
+<h2>Linting Markdown Using <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code><a class="headerlink" href="#linting-markdown-using-markdownlint" title="Permalink to this headline">¶</a></h2>
+<p>Formatters such as <code class="docutils literal notranslate"><span class="pre">mdformat</span></code> can be used to automatically format markdown documents in an opinionated way. Issues can then be identified in the form of differences between the formatted version of a markdown file and its original version.</p>
+<p>If a more specific linting function is required, then a package such as <a class="reference external" href="https://github.com/markdownlint/markdownlint"><code class="docutils literal notranslate"><span class="pre">markdownlint</span></code></a> can be used to generate an issues report over one or more markdown files according a generous selection of <a class="reference external" href="https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md">markdown linting rules</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mdl .md/FILENAME.myst 
+
+.md/FILENAME.myst:53: MD009 Trailing spaces
+.md/FILENAME.myst:58: MD009 Trailing spaces
+.md/FILENAME.myst:45: MD012 Multiple consecutive blank lines
+.md/FILENAME.myst:49: MD023 Headers must start at the beginning of the line
+.md/FILENAME.myst:52: MD046 Code block style
+</pre></div>
+</div>
+</div>
+<div class="section" id="spell-checking-notebooks">
+<h2>Spell Checking Notebooks<a class="headerlink" href="#spell-checking-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>Although there are currently no <em>specific</em> tools for spell-checking notebooks, there are various off-the-shelf tools that we can use to identify typographical errors in notebooks.</p>
+<div class="section" id="codespell">
+<h3><code class="docutils literal notranslate"><span class="pre">codespell</span></code><a class="headerlink" href="#codespell" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://github.com/codespell-project/codespell"><code class="docutils literal notranslate"><span class="pre">codespell</span></code></a> package provides a simple tool for checking texts against dictionary terms as well as other common typographical errors found in programming code. (The original / default dictionary can be found <a class="reference external" href="https://raw.githubusercontent.com/codespell-project/codespell/master/codespell_lib/data/dictionary.txt">here</a>.)</p>
+<p>An updated dictionary can be easily created and used as the basis of the spellcheck. A simple “ignored words” text file can also be used to ignore particular words (<code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">FILENAME.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">--ignore-words=FILENAME.txt</span></code>).</p>
+<p>A typo can report can be created over multiple files with the output rendered to a simple report document:</p>
+<p><code class="docutils literal notranslate"><span class="pre">codespell</span> <span class="pre">.*//*.ipynb</span> <span class="pre">&gt;</span> <span class="pre">codespell.txt</span></code></p>
+<p>Running <code class="docutils literal notranslate"><span class="pre">codespell</span></code> with the <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--write-changes</span></code> flag will apply recommended changes in-place.</p>
+<p>In principle, a very simple dictionary could be defined with specific target words and replacements identified, and then used to update a set of notebook files using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> flag. Rewrite terms should be in the form <code class="docutils literal notranslate"><span class="pre">calulated-&gt;calculated</span></code>, one per line. The name of the file containing this dictionary can be passed in via the <code class="docutils literal notranslate"><span class="pre">-D</span></code> flag (for example, <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">MYDICTIONARY.txt</span></code>).</p>
+</div>
+<div class="section" id="pyspelling">
+<h3><code class="docutils literal notranslate"><span class="pre">pyspelling</span></code><a class="headerlink" href="#pyspelling" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://facelessuser.github.io/pyspelling/"><code class="docutils literal notranslate"><span class="pre">pyspelling</span></code></a> package is an extensible package for checking for typographical errors using the <em>Aspell</em> or <em>Hunspell</em> Linux applications across a range of file types. A <a class="reference external" href="https://github.com/ouseful-PR/pyspelling">fork</a> of the package adds a simplification to allow for independent checking of markdown and Python code cells in notebooks.</p>
+<p>Spellchecking in Python files uses a <a class="reference external" href="https://facelessuser.github.io/pyspelling/filters/python/">Python filter</a> that checks words in comments, docstrings and strings.</p>
+<p>A <a class="reference external" href="https://facelessuser.github.io/pyspelling/filters/markdown/">Markdown filter</a> will spellcheck Markdown texts. A range of additional <a class="reference external" href="https://python-markdown.github.io/extensions/#officially-supported-extensions">extension filters supported by <code class="docutils literal notranslate"><span class="pre">python-markdown</span></code></a> can be used to refine the Markdown pipeline.</p>
+<p>Reports for Markdown and Python cells can be generated separately by specifying the appropriate (forked) <code class="docutils literal notranslate"><span class="pre">pyspelling</span></code> filter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyspelling -c ipyspell.yml -S <span class="s2">&quot;./*.ipynb&quot;</span> -n Markdown  &gt; typos_md.txt
+
+pyspelling -c ipyspell.yml -S <span class="s2">&quot;./*.ipynb&quot;</span> -n Python  &gt; typos_py.txt
+</pre></div>
+</div>
+<p><em>TO DO: in generating reports, it might also be useful to be able to see the typo in a short concordance context (<a class="reference external" href="https://blog.ouseful.info/2015/12/13/n-gram-phrase-based-concordances-in-nltk/">example</a>).</em></p>
+</div>
+<div class="section" id="finding-duplicate-words">
+<h3>Finding Duplicate Words<a class="headerlink" href="#finding-duplicate-words" title="Permalink to this headline">¶</a></h3>
+<p>Duplicate words in a document can be identified using a simple regular expression. For example, from a Linux command line:</p>
+<p><code class="docutils literal notranslate"><span class="pre">egrep</span> <span class="pre">-o</span>&#160; <span class="pre">&quot;\b(\w+)\s+\1\b&quot;</span> <span class="pre">*/.md/*.md</span></code></p>
+<p><em>TO DO: tools to support finding duplicate sentences in either a single document, or across documents (<a class="reference external" href="https://blog.ouseful.info/2015/12/13/finding-common-phrases-or-sentences-across-different-documents/">example</a>).</em></p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formatters &#8212; Using Automation in Quality Assured Jupyter Notebook Publishing Processes</title>
+    <title>Formatters &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linters" href="linters.html" />
-    <link rel="prev" title="Jupyter Notebook Socument Formats" href="intro-notebooks.html" />
+    <link rel="prev" title="Jupyter Notebook Document Formats" href="intro-notebooks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -73,7 +73,7 @@
       
       
       
-      <h1 class="site-logo" id="site-title">Using Automation in Quality Assured Jupyter Notebook Publishing Processes</h1>
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -96,13 +96,13 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro-notebooks.html">
-   Jupyter Notebook Socument Formats
+   Jupyter Notebook Document Formats
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Quality Support Tooling
+  Quality Support Tools
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -206,6 +206,34 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formatting-notebook-code-cells-using-nbqa">
+   Formatting Notebook Code Cells Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nbqa
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formatting-markdown-using-mdformat">
+   Formatting Markdown Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     mdformat
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -214,10 +242,66 @@
         
               <div>
                 
-  <div class="section" id="formatters">
+  <div class="tex2jax_ignore mathjax_ignore section" id="formatters">
 <h1>Formatters<a class="headerlink" href="#formatters" title="Permalink to this headline">¶</a></h1>
 <p><em>Formatters</em> are tools that format content source code so that it has a consistent visual style and layout.</p>
 <p>Formatters are typically used to enforce style conventions on computer code, but formatters are also available for markdown documents as well as other markup languages such as HTML and XML.</p>
+<p>In many cases, formatters will automatically make changes to source documents in place since the “content” of the document is not changed, only its layout. That said, formatting tools may also support a “preview” or “difference” mode, where a preview of the suggested changes is generated, or a difference view is generated of the original document and the revised document with suggested layout changes.</p>
+<div class="section" id="formatting-notebook-code-cells-using-nbqa">
+<h2>Formatting Notebook Code Cells Using <code class="docutils literal notranslate"><span class="pre">nbqa</span></code><a class="headerlink" href="#formatting-notebook-code-cells-using-nbqa" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://nbqa.readthedocs.io/en/latest"><code class="docutils literal notranslate"><span class="pre">nbqa</span></code></a> tool provides a simple command-line wrapper around several code formatting and linting tools, including the <a class="reference external" href="https://black.readthedocs.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">black</span></code></a>, <a class="reference external" href="https://github.com/google/yapf"><code class="docutils literal notranslate"><span class="pre">yapf</span></code></a> and <a class="reference external" href="https://github.com/hhatto/autopep8"><code class="docutils literal notranslate"><span class="pre">autopep8</span></code></a> code formatters.</p>
+<p>Notebooks can be updated directly, or a preview generated of the differences that would arise if updates were automatically applied.</p>
+<p>For example, the following screenshot shows a difference preview of the contents of a particular code cell generated by running the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter with the <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">nbqa</span> <span class="pre">black</span> <span class="pre">--nbqa-diff</span> <span class="pre">FILENAME.ipynb</span></code></p>
+<p><img alt="" src="_images/nbval_black.png" /></p>
+<p>Running the command <em>without</em> the <code class="docutils literal notranslate"><span class="pre">--nbqa-diff</span></code> flag will cause the code cell in the notebook to be updated automatically.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>reformatted FILENAME.ipynb
+All done! ✨ 🍰 ✨
+1 file reformatted.
+</pre></div>
+</div>
+<p>If there are no changes suggested and made, then a <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">file</span> <span class="pre">left</span> <span class="pre">unchanged.</span></code> report is returned.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> only runs against <em>code</em> cells, so any code in fenced markdown code blocks will be ignored.</p>
+</div>
+<div class="section" id="formatting-markdown-using-mdformat">
+<h2>Formatting Markdown Using <code class="docutils literal notranslate"><span class="pre">mdformat</span></code><a class="headerlink" href="#formatting-markdown-using-mdformat" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://mdformat.readthedocs.io/en/latest"><code class="docutils literal notranslate"><span class="pre">mdformat</span></code></a> package can be used to format markdown content either from the command line, or via a Python code API.</p>
+<p>To format the markdown content in a Jupyter notebook, two solutions are possible:</p>
+<ul class="simple">
+<li><p>convert the notebook <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> document to a markdown format such as MyST using the <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">jupytext</span></code></a> package, format the document using <code class="docutils literal notranslate"><span class="pre">mdformat</span></code> and then convert the updated document back to <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>;</p></li>
+<li><p>create a package that will: open a notebook; iterate through the markdown cells; check the contents of each one and update it as required; save the updated file. <em>TO DO</em></p></li>
+</ul>
+<p>Here’s an example workflow using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pair an ipynb notebook with a MyST markdown document</span>
+<span class="c1"># The paired MyST documents are in a hidden directory</span>
+<span class="c1"># Note the code cell outputs are not synched </span>
+<span class="c1"># to the markdown/MySt paired document.</span>
+jupytext --set-formats ipynb,.md//myst FILENAME.ipynb
+
+<span class="c1"># Format the markdown document</span>
+mdformat .md/formatter-test.myst
+
+<span class="c1"># Synch the markdown document updates back to the notebook</span>
+<span class="c1"># This may be required if, for example, it is important</span>
+<span class="c1"># that code cell outputs are retained.</span>
+jupytext --sync formatter-test.ipynb 
+
+<span class="c1"># Remove the pairing</span>
+jupytext --update-metadata <span class="s1">&#39;{&quot;jupytext&quot;: null}&#39;</span> FILENAME.ipynb
+</pre></div>
+</div>
+<p>Using the <a class="reference external" href="https://github.com/hukkin/mdformat-black"><code class="docutils literal notranslate"><span class="pre">mdformat-black</span></code></a> extension installed, <code class="docutils literal notranslate"><span class="pre">mdformat</span></code> will format <code class="docutils literal notranslate"><span class="pre">python</span></code> fenced code blocks in markdown cells (but <em>not</em> code cells).</p>
+<p><img alt="" src="_images/mdformat.png" /></p>
+<p>By default, line breaks are not tidied up. This allows authors to use <a class="reference external" href="https://mdformat.readthedocs.io/en/latest/users/style.html#paragraph-word-wrapping"><em>semantic line breaks</em></a>. However, if line length formatting is required, for example to restrict the maximum number of characters allowed per line, an <code class="docutils literal notranslate"><span class="pre">mdformat</span></code> configuration option can be used to override this default (<code class="docutils literal notranslate"><span class="pre">&quot;keep&quot;</span></code>) behaviour:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1">#.mdformat.toml</span>
+
+<span class="c1"># Enforce a line length</span>
+<span class="n">wrap</span> <span class="o">=</span> <span class="s">&quot;no&quot;</span> <span class="c1"># possible values: {&quot;keep&quot;, &quot;no&quot;, INTEGER}</span>
+</pre></div>
+</div>
+<p>Setting the <code class="docutils literal notranslate"><span class="pre">wrap</span></code> parameter to an integer (e.g. setting <code class="docutils literal notranslate"><span class="pre">wrap</span> <span class="pre">=</span> <span class="pre">40</span></code>) sets the maximum markdown line length:</p>
+<p><img alt="" src="_images/mdformat2.png" /></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -254,7 +338,7 @@
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Jupyter Notebook Socument Formats</p>
+                <p class="prevnext-title">Jupyter Notebook Document Formats</p>
             </div>
         </a>
     </div>
