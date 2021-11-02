@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="GitHub Actions" href="gh-actions.html" />
-    <link rel="prev" title="Live Editing Support" href="live-editing-support.html" />
+    <link rel="prev" title="Editor Automation" href="editor-automation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -136,8 +136,8 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="live-editing-support.html">
-   Live Editing Support
+  <a class="reference internal" href="editor-automation.html">
+   Editor Automation
   </a>
  </li>
 </ul>
@@ -270,11 +270,6 @@
      Example
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-examples">
-     Other Examples
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -346,10 +341,14 @@
 <p><img alt="" src="_images/nbqa-black-precommit.png" /></p>
 <p>The commit is halted as the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter runs over the file that we initially committed. The file is updated as a result of the failed commit action and if we now try to commit it again, it will pass.</p>
 <p>Note that under this workflow, we take it on trust that the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter has updated the code cell(s) (on our behalf) in a way that we approve of, but aren’t necessarily able to bear witness to.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The user experience using the GitHub application and the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> commit hook is horrible, and <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731">virtually unusable</a>, compared to the original, and now deprecated, <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--pre-commit</span></code> workflow.</p>
+<p>In that original case, evoked using a simple <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--from</span> <span class="pre">ipynb</span> <span class="pre">--to</span> <span class="pre">.md//markdown</span> <span class="pre">--pre-commit</span></code> line in a <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file, paired notebook files would be automatically synched if either one as committed.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework, trying to commit files in the Github application seems to be to be a painful, confusing and unreliable experience. (I may be doing something wrong, of course…)</p>
+<p>I get the feeling this a <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065"><code class="docutils literal notranslate"><span class="pre">wont-fix</span></code></a> because the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework folk think everyone should be typing <code class="docutils literal notranslate"><span class="pre">git</span></code> commands on the command line whenever they use <code class="docutils literal notranslate"><span class="pre">git</span></code>…</p>
+<p>So I just hope that the old <code class="docutils literal notranslate"><span class="pre">--pre-commit</span></code> jupytext flag continues to work because the approved pre-commit route doesn’t work in any useable sense at all for me.</p>
 </div>
-<div class="section" id="other-examples">
-<h3>Other Examples<a class="headerlink" href="#other-examples" title="Permalink to this headline">¶</a></h3>
-<p><em>The user experience using the GitHub application and the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> commit hook is horrible, and <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731">virtually unusable</a>, compared to the original, and now deprecated, <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--pre-commit</span></code> workflow. In that original case, evoked using a simple <code class="docutils literal notranslate"><span class="pre">jupytext</span> <span class="pre">--from</span> <span class="pre">ipynb</span> <span class="pre">--to</span> <span class="pre">.md//markdown</span> <span class="pre">--pre-commit</span></code> line in a <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-commit</span></code> file, paired notebook files would be automatically synched if either one as committed. Using the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework, trying to commit files in the Github application. I get the feeling this a <a class="reference external" href="https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065"><code class="docutils literal notranslate"><span class="pre">wont-fix</span></code></a> because the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework folk think everyone should be typing <code class="docutils literal notranslate"><span class="pre">git</span></code> commands on the command line whenever they use <code class="docutils literal notranslate"><span class="pre">git</span></code>… So I just hope that the old <code class="docutils literal notranslate"><span class="pre">--pre-commit</span></code> jupytext flag continues to work because the approved pre-commit route doesn’t work in any useable sense at all for me.</em></p>
 </div>
 </div>
 </div>
@@ -384,11 +383,11 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="live-editing-support.html" title="previous page">
+        <a class="left-prev" href="editor-automation.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Live Editing Support</p>
+                <p class="prevnext-title">Editor Automation</p>
             </div>
         </a>
     </div>

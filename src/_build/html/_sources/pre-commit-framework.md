@@ -77,6 +77,14 @@ The commit is halted as the `black` formatter runs over the file that we initial
 
 Note that under this workflow, we take it on trust that the `black` formatter has updated the code cell(s) (on our behalf) in a way that we approve of, but aren't necessarily able to bear witness to.
 
-### Other Examples
+```{danger}
+The user experience using the GitHub application and the `jupytext` commit hook is horrible, and [virtually unusable](https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731), compared to the original, and now deprecated, `jupytext --pre-commit` workflow.
 
-*The user experience using the GitHub application and the `jupytext` commit hook is horrible, and [virtually unusable](https://github.com/mwouts/jupytext/issues/831#issuecomment-890318731), compared to the original, and now deprecated, `jupytext --pre-commit` workflow. In that original case, evoked using a simple `jupytext --from ipynb --to .md//markdown --pre-commit` line in a `.git/hooks/pre-commit` file, paired notebook files would be automatically synched if either one as committed. Using the `pre-commit` framework, trying to commit files in the Github application. I get the feeling this a [`wont-fix`](https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065) because the `pre-commit` framework folk think everyone should be typing `git` commands on the command line whenever they use `git`... So I just hope that the old `--pre-commit` jupytext flag continues to work because the approved pre-commit route doesn't work in any useable sense at all for me.*
+In that original case, evoked using a simple `jupytext --from ipynb --to .md//markdown --pre-commit` line in a `.git/hooks/pre-commit` file, paired notebook files would be automatically synched if either one as committed.
+
+Using the `pre-commit` framework, trying to commit files in the Github application seems to be to be a painful, confusing and unreliable experience. (I may be doing something wrong, of course...)
+
+I get the feeling this a [`wont-fix`](https://github.com/mwouts/jupytext/issues/831#issuecomment-899353065) because the `pre-commit` framework folk think everyone should be typing `git` commands on the command line whenever they use `git`...
+
+So I just hope that the old `--pre-commit` jupytext flag continues to work because the approved pre-commit route doesn't work in any useable sense at all for me.
+```
