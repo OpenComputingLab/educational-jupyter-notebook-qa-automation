@@ -24,6 +24,24 @@ Pre-commit workflows are established by running a `pre-commit install` command t
 
 *The first time a commit is made using a particular action, there may be some delay as the code implementing the action is downloaded from the specified action repository and then cached locally.*
 
+### Example `markdownlint` pre-commit Action
+
+We can use a simple GithHub Action to check a Markdown file, as identified using a set of declared file suffixes, using `markdownlint`.
+
+```yaml
+-   repo: https://github.com/markdownlint/markdownlint
+    rev: v0.11.0
+    hooks:
+    -   id: markdownlint
+        name: Markdownlint
+        description: Run markdownlint on your Markdown files
+        entry: mdl -r ~MD013
+        language: ruby
+        files: \.(md|mdown|markdown|myst)$
+```
+
+Specific lint error codes can be ignored by passing them prefixed with a `~` character via the `mdl` command-line command `-r` switch.
+
 ### Example `codespell` pre-commit Action
 
 The following example of a `.pre-commit-config.yaml` file shows how to define a `codespell` pre-commit action that will spell check all committed files.
