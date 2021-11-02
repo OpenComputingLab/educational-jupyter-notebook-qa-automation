@@ -8,6 +8,11 @@ parts:
   chapters:
   - file: formatters
   - file: linters
+  - file: nb-code-execution
+  - file: nb-quality-tools
+- caption: Editor Based Automation
+  chapters:
+  - file: live-editing-support
 - caption: Local Automation
   chapters:
   - file: pre-commit-framework

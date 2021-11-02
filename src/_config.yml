@@ -9,3 +9,6 @@ execute:
 parse:
   myst_dmath_double_inline: true
 
+sphinx:
+  extra_extensions:
+    - sphinxcontrib.mermaid

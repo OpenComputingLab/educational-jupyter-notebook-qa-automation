@@ -49,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script >mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Formatters" href="formatters.html" />
@@ -116,6 +118,28 @@
    Linters
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-code-execution.html">
+   Notebook Code Execution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-quality-tools.html">
+   Notebook Quality Tools
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Editor Based Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="live-editing-support.html">
+   Live Editing Support
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -124,7 +148,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="precommit.html">
+  <a class="reference internal" href="pre-commit-framework.html">
    Pre-Commit
   </a>
  </li>
@@ -206,6 +230,24 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#converting-between-notebook-text-formats-using-jupytext">
+   Converting Between Notebook Text Formats Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     jupytext
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -221,6 +263,35 @@
 <li><p>input cells (markdown, code)</p></li>
 <li><p>code output cells returning none or more of <em>stream</em>, <em>display-data</em> or <em>error</em> style outputs.</p></li>
 </ul>
+<p>Cells may carry arbitrary metadata, as well as tag metadata. Cell tags may be used to modify the rendering of notebook in appropriately extended notebook editors. Tags may also be used to modify the rendering or behaviour of cell content as published using publishing frameworks such as Jupyter Book.</p>
+<p>Notebooks may be authored in dedicated notebook editors, such as Jupyter Classic Notebook, RetroLab or JupyterLab notebooks, or in other editing environments. For example, the PyCharm IDE supports notebook editing, and the VS Code Jupyter extension allows <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> format notebooks to be edited in a VS Code environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference external" href="https://opencomputinglab.github.io/OpenJALE/"><em>Open Jupyter Authoring and Learning Environment,(OpenJALE)</em></a> for more discussion of Jupyter notebook authoring environments.</p>
+</div>
+<p>Notebooks may also be represented using various simpler text formats inspired by markdown or simple code file formats. These formats may have an important role to play in an automation pipeline where pipeline steps are applied to simple text files, rather than notebooks.</p>
+<p>Being able to convert between the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook format simple text representations, and back again, means that pipelines can be constructed where notebooks are converted to a text format, one or more automated processing steps are applied to the text representation, and then the processed text file is converted back to the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook format.</p>
+<div class="mermaid">
+            flowchart LR
+    .ipynb --jupytext--&gt; .md--&gt; id1{{process Markdown}}--jupytext--&gt; ipynb2[.ipynb]
+        </div><div class="section" id="converting-between-notebook-text-formats-using-jupytext">
+<h2>Converting Between Notebook Text Formats Using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code><a class="headerlink" href="#converting-between-notebook-text-formats-using-jupytext" title="Permalink to this headline">¶</a></h2>
+<p>As well as representing notebooks using the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> Jupyter notebook file format, notebook <em>input</em> content (which is to say, the content of markdown and code cells) and <em>cell metadata</em>, <strong>but <em>not</em> code cell outputs</strong>, can also be represented by a wide range of simpler markdown and Python (.py) source file inspired text formats.</p>
+<p>For example, supported extended markdown flavours include <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#jupytext-markdown">Jupytext markdown</a>, <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown">MyST</a>, <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#r-markdown">R Markdown (Rmd)</a> and <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#quarto">Quarto</a>.</p>
+<p>Supported extended code file representations include the <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#the-light-format"><code class="docutils literal notranslate"><span class="pre">light</span></code> format</a> and the <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#the-percent-format"><code class="docutils literal notranslate"><span class="pre">percent</span></code> format</a>.</p>
+<p>The <a class="reference external" href="https://jupytext.readthedocs.io/en/latest"><code class="docutils literal notranslate"><span class="pre">jupytext</span></code></a> package provides a range of tools for supporting two-way conversion between all these formats and to and from the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> format. In addition, Jupytext allows the “pairing” of different formats, allowing a MyST markdown file, for example, to be paired with an <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook. Either file can be edited within a Jupyter Classic notebook, RetroLab or JupyterLab notebook environment and its paired equivalent will also be updated. The advantages of this pairing approach includes:</p>
+<ul class="simple">
+<li><p>the ability to generate simple “input” source text files unencumbered by cell output;</p></li>
+<li><p>the ability to preserve cell output in the paired <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> document.</p></li>
+</ul>
+<p>Jupytext paired document synchronisation is applied automatically when via Jupytext server extensions installed into the Classic Notebook and JupyterLab environments (whenever the document is saved, all paired versions are updated).</p>
+<p>In addition, a command-line utility can be used to manually synchronise paired documents, or convert between document formats without pairing.</p>
+<p>Local automation is supported in the form of a <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hook using a Jupytext command with a <code class="docutils literal notranslate"><span class="pre">--pre-commit</span></code> switch.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> framework hook is also available also this appears to be largely unusable when working using a <code class="docutils literal notranslate"><span class="pre">git</span></code> workflow mediated by the GitHub Desktop App.</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

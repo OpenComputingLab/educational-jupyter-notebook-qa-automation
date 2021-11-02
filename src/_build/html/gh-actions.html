@@ -49,9 +49,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script >mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Pre-Commit" href="precommit.html" />
+    <link rel="prev" title="Pre-Commit" href="pre-commit-framework.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -115,6 +117,28 @@
    Linters
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-code-execution.html">
+   Notebook Code Execution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-quality-tools.html">
+   Notebook Quality Tools
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Editor Based Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="live-editing-support.html">
+   Live Editing Support
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -123,7 +147,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="precommit.html">
+  <a class="reference internal" href="pre-commit-framework.html">
    Pre-Commit
   </a>
  </li>
@@ -215,7 +239,8 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="github-actions">
 <h1>GitHub Actions<a class="headerlink" href="#github-actions" title="Permalink to this headline">¶</a></h1>
-<p><em>GitHub Actions</em> are automation scripts that can be configured to run in response to triggered events in online GitHub repositories.</p>
+<p><a class="reference external" href="https://docs.github.com/en/actions"><em>GitHub Actions</em></a> are automation scripts that can be configured to run in response to triggered events in online GitHub repositories.</p>
+<p>A wide range of triggering events are available, including manual triggering, push and pull requests, releases, issue related events, and schedule based <code class="docutils literal notranslate"><span class="pre">cron</span></code> triggers.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -248,7 +273,7 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="precommit.html" title="previous page">
+        <a class="left-prev" href="pre-commit-framework.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>

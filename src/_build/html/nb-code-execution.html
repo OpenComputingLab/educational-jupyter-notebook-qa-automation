@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
+    <title>Notebook Code Execution &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -42,10 +42,19 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script >mermaid.initialize({startOnLoad:true});</script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notebook Quality Tools" href="nb-quality-tools.html" />
+    <link rel="prev" title="Linters" href="linters.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -98,7 +107,7 @@
   Quality Support Tools
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="formatters.html">
    Formatters
@@ -109,8 +118,8 @@
    Linters
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="nb-code-execution.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Notebook Code Execution
   </a>
  </li>
@@ -188,6 +197,23 @@
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/nb-code-execution.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
             <!-- Full screen (wrap in <a> to have style consistency -->
@@ -204,6 +230,25 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-nbval-notebook-code-testing-framework">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nbval
+    </span>
+   </code>
+   Notebook Code Testing Framework
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -212,13 +257,36 @@
         
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="tex2jax_ignore mathjax_ignore section" id="notebook-code-execution">
+<h1>Notebook Code Execution<a class="headerlink" href="#notebook-code-execution" title="Permalink to this headline">¶</a></h1>
+<p>In certain publication workflows, there may be a need to ensure that code execution integrity in notebooks is preserved as and when a code execution environment is updated.</p>
+<p>For example, the code execution environment might have operating system package updates, or Python package updates even if the notebooks are not the driving force behind the updates. In such cases, it is important to be able to test the notebooks to ensure that the package updates have not broken the notebooks, or started to raise warnings within them (such as deprecation warnings, for example).</p>
+<div class="section" id="the-nbval-notebook-code-testing-framework">
+<h2>The <code class="docutils literal notranslate"><span class="pre">nbval</span></code> Notebook Code Testing Framework<a class="headerlink" href="#the-nbval-notebook-code-testing-framework" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://nbval.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">nbval</span></code></a> Python package provides an extension to the widely used <a class="reference external" href="https://docs.pytest.org/"><code class="docutils literal notranslate"><span class="pre">pytest</span></code></a> framework TO DO</p>
+<p>TO DO fragments eg <a class="reference external" href="https://blog.ouseful.info/2021/10/26/automated-testing-of-jupyter-notebooks/">Automated Testing of Educational Jupyter Notebook Distributions Using Github Actions</a>,  <a class="reference external" href="https://blog.ouseful.info/2021/10/27/more-automation-sketches-creating-student-notebook-releases/">More Automation Sketches – Creating Student Notebook Releases</a> and <a class="reference external" href="https://blog.ouseful.info/2021/10/28/another-automation-step-spell-checking-jupyter-notebooks/">Another Automation Step: Spell-Checking Jupyter Notebooks</a></p>
+</div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -229,6 +297,24 @@
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="linters.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linters</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="nb-quality-tools.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Notebook Quality Tools</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
 </div>
         
