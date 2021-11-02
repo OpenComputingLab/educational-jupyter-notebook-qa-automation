@@ -12,7 +12,7 @@ parts:
   - file: nb-quality-tools
 - caption: Editor Based Automation
   chapters:
-  - file: live-editing-support
+  - file: editor-automation
 - caption: Local Automation
   chapters:
   - file: pre-commit-framework

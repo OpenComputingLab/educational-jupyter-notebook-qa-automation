@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Editing Support &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
+    <title>Editor Automation &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -137,7 +137,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Live Editing Support
+   Editor Automation
   </a>
  </li>
 </ul>
@@ -205,7 +205,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/live-editing-support.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/editor-automation.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -230,6 +230,34 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spellchecking-markdown-text">
+   Spellchecking Markdown Text
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formatting-code">
+   Formatting Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linting-markdown-and-code">
+   Linting Markdown and Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generated-diagram-previews">
+   Generated Diagram Previews
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -238,11 +266,52 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="live-editing-support">
-<h1>Live Editing Support<a class="headerlink" href="#live-editing-support" title="Permalink to this headline">¶</a></h1>
-<p>TO DO</p>
-<p>Notes on how we can get live support “automation” in Jupyter notebook and VS Code environments using extensions, eg spell-checkers, <a class="reference external" href="https://blog.ouseful.info/2021/11/02/previewing-sphinx-and-jupyter-book-rendered-mermaid-and-wavedrom-diagrams-in-vs-code/">previewing generated outputs</a></p>
-<p>TO DO also need to set up earlier the idea that we can get support at different parts of the workflow, for example, in the editor, (informally, on the command line), when making local commits using pre-commit hooks, when checking into a repo using Github Actions etc.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="editor-automation">
+<h1>Editor Automation<a class="headerlink" href="#editor-automation" title="Permalink to this headline">¶</a></h1>
+<p>Although this may not typically be classed as “automation”, it is worth considering how editor tools or extensions can be used to provided “live” automation support doing notebook production or maintenance activity. Live support is available for spellchecking and linting Markdown text, formatting and linting code, and previewing generated content, for example.</p>
+<div class="section" id="spellchecking-markdown-text">
+<h2>Spellchecking Markdown Text<a class="headerlink" href="#spellchecking-markdown-text" title="Permalink to this headline">¶</a></h2>
+<p>In the classic notebook environment, the <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html">spellchecker extension</a> provides live highlighting of spelling errors identified using the <a class="reference external" href="https://github.com/cfinke/Typo.js"><code class="docutils literal notranslate"><span class="pre">typo.js</span></code></a> package.</p>
+<p><img alt="" src="_images/nb_extension_spelling.png" /></p>
+<p>A complementary <a class="reference external" href="https://github.com/jupyterlab-contrib/spellchecker">JupyterLab spellchecker</a> that also makes use of <code class="docutils literal notranslate"><span class="pre">typo.js</span></code> is also available.</p>
+<p>In a VS Code environment, spelling errors can be highlighted as you type using extensions such as <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex"><code class="docutils literal notranslate"><span class="pre">valentjn.vscode-ltex</span></code></a> grammar/spell checking extension.</p>
+<p><img alt="" src="_images/vscode-spellcheck.png" /></p>
+</div>
+<div class="section" id="formatting-code">
+<h2>Formatting Code<a class="headerlink" href="#formatting-code" title="Permalink to this headline">¶</a></h2>
+<p>Code formatting is available in classic notebooks via the <a class="reference external" href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tree/master/src/jupyter_contrib_nbextensions/nbextensions/code_prettify"><code class="docutils literal notranslate"><span class="pre">code_prettify</span></code></a> extension which provides toolbar buttons for updating the style of a selected code cell, or all code cells in a notebook, using <code class="docutils literal notranslate"><span class="pre">yapf</span></code> or <code class="docutils literal notranslate"><span class="pre">autopep8</span></code>.</p>
+<p><img alt="" src="_images/code-prettify-demo-py.gif" /></p>
+<p>The same extension can be extended to support <code class="docutils literal notranslate"><span class="pre">black</span></code> formatting.</p>
+<p>For a corresponding JupyterLab extension, see <a class="reference external" href="https://github.com/ryantam626/jupyterlab_code_formatter"><code class="docutils literal notranslate"><span class="pre">ryantam626/jupyterlab_code_formatter</span></code></a>.</p>
+<p>In the VS Code editor, the Python extension <a class="reference external" href="https://code.visualstudio.com/docs/python/editing#_formatting">supports code formatting</a> using <code class="docutils literal notranslate"><span class="pre">autopep8</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code> or <code class="docutils literal notranslate"><span class="pre">yapf</span></code>.</p>
+</div>
+<div class="section" id="linting-markdown-and-code">
+<h2>Linting Markdown and Code<a class="headerlink" href="#linting-markdown-and-code" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/mattijn/pycodestyle_magic"><code class="docutils literal notranslate"><span class="pre">mattijn/pycodestyle_magic</span></code></a> classic notebook extension can be configured to apply <code class="docutils literal notranslate"><span class="pre">flake8</span></code> style linting to the contents of code cells when they are run.</p>
+<p><img alt="" src="_images/pycodestyle-nb.png" /></p>
+<p>Contraventions of style rules are highlighted as code cell stream output. The linting is enabled in a notebook using IPython line magic.</p>
+<p>In the VS Code editor, the Python extension <a class="reference external" href="https://code.visualstudio.com/docs/python/linting">natively supports linting</a> using <code class="docutils literal notranslate"><span class="pre">pylint</span></code>.</p>
+<p>The VS Code editor also supports the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint"><code class="docutils literal notranslate"><span class="pre">DavidAnson.vscode-markdownlint</span></code> extension</a> which highlights rule contraventions with the editor.</p>
+<p><img alt="" src="_images/vscode-md-tooltip-error.png" /></p>
+</div>
+<div class="section" id="generated-diagram-previews">
+<h2>Generated Diagram Previews<a class="headerlink" href="#generated-diagram-previews" title="Permalink to this headline">¶</a></h2>
+<p>In publishing workflows based around Sphinx, such as Jupyter Book, several extensions are available that can generate diagrams from a simple Markdown friendly script.</p>
+<p>For example, the <a class="reference external" href="https://github.com/mgaitan/sphinxcontrib-mermaid"><code class="docutils literal notranslate"><span class="pre">mgaitan/sphinxcontrib-mermaid</span></code></a> and the <a class="reference external" href="https://github.com/bavovanachte/sphinx-wavedrom"><code class="docutils literal notranslate"><span class="pre">bavovanachte/sphinx-wavedrom</span></code></a> contributed Sphinx extensions are capable of rendering <a class="reference external" href="https://mermaid-js.github.io/mermaid/#/">Mermaid</a> and <a class="reference external" href="https://wavedrom.com/tutorial.html">wavedrom</a> scripted diagrams respectively from scripts wrapped in MyST styled code fenced blocks.</p>
+<p><img alt="" src="_images/mermaid_fence.png" /></p>
+<p>With a slight change to the syntax when labeling the code fenced block, the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced"><code class="docutils literal notranslate"><span class="pre">shd101wyy.markdown-preview-enhanced</span></code></a> can preview the rendered diagram in the VS Code Markdown preview window.</p>
+<p><img alt="" src="_images/diagram_preview_vscode.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An <a class="reference external" href="https://github.com/shd101wyy/markdown-preview-enhanced/issues/1626">issue</a> has been raised to see whether the MyST style label could be supported by the extension.</p>
+</div>
+<p>It is also possible to <a class="reference external" href="https://blog.ouseful.info/2021/09/30/a-simple-pattern-for-embedding-third-party-javascript-generated-graphics-in-jupyter-notebools/">create some simple block cell magics</a> that can be used render diagrams from appropriate diagram script in a classic Jupyter notebook.</p>
+<p><img alt="" src="_images/mermaid_cell_magic.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While a transformation script does not currently exist to support this, it should be eay enough to create a trasnformer that will map between magicked diagram generating code cells and appropriately labeled code fenced blocks to allow for generating and previewing diagrams in a Jupyer notebook user interface and then rendering via a Sphinx publication workflow, or editing and previewing the diagrams via a Markdown source file in VS Code and then generating a corresponding notebook file that utlises block cell magics.</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

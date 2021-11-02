@@ -135,8 +135,8 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="live-editing-support.html">
-   Live Editing Support
+  <a class="reference internal" href="editor-automation.html">
+   Editor Automation
   </a>
  </li>
 </ul>
@@ -235,6 +235,16 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automation-pathways">
+   Automation Pathways
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scope">
+   Scope
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#intended-audience">
    Intended Audience
   </a>
@@ -255,13 +265,31 @@
 <p>In many software development projects, automation tools are used to support code development quality processes.</p>
 <p>One class of tools are “formatting” tools that can be used to enforce style rules in the layout of programming code. These tools do not change the behaviour of the code, just the way that it appears on-screen. Another class of tools are “linting” tools that will perform static analysis of code to check it for syntactic correctness and identify simple errors.</p>
 <p>Tools are also available for performing quality checks on more general texts, including formatters that can be applied to the underlying raw text or spell checkers that perform a “linting” role on the text content. Inline spell-checking tools that can be found in many word processors, and that highlight typographical errors as the user types, might be thought of as a “live” linting tool. Many text editors, such as the VS Code editor, provide support for a wide range on “inline” support tools, including spell checkers and document formatters, through application extensions.</p>
-<p>As well as “inline” or “live” support, many of the tools can be applied via automation scripts to check the quality of documents as they pass through a pipeline. In this document, we will review various tools that are available to support quality processes in the publication of educational content authored in a reproducible generative document workflow. Such workflows include workflows based around the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> based <a class="reference external" href="https://jupyterbook.org/intro.html">Executable Books/Jupyter publishing workflow</a>, the <a class="reference external" href="https://bookdown.org/yihui/bookdown/">Rmd / <code class="docutils literal notranslate"><span class="pre">bookdown</span></code> / <code class="docutils literal notranslate"><span class="pre">knitr</span></code> workflow</a> or the <a class="reference external" href="https://quarto.org/">Quarto / <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> publishing workflow</a>.</p>
+<p>This document describes a range of tools that can be used as part of two sorts of quality process:</p>
+<ul class="simple">
+<li><p><em>document transformers</em>, whereby documents are transformed from one state to another, for example through the application of a formatter that changes the visual appearance of a piece of text without changing its content or a transformer that transforms documents of one type to another;</p></li>
+<li><p><em>document reporters</em>, in which a function generates a report based on the static analysis of one or more documents; examples include spellcheckers and linters.</p></li>
+</ul>
+<div class="section" id="automation-pathways">
+<h2>Automation Pathways<a class="headerlink" href="#automation-pathways" title="Permalink to this headline">¶</a></h2>
+<p>Three main flavours of automation are identified, along with a manual command-line process where individuals can manually run commands against one or more target files:</p>
+<ul class="simple">
+<li><p><em>editor based automation</em>, whereby editor extensions are used to provide interactive, inline help, such as identifying spelling mistakes as you type;</p></li>
+<li><p><em><code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks</em>: in a <code class="docutils literal notranslate"><span class="pre">git</span></code> workflow on the client side, <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> automation can be used to modify and update checked in files (for example, running them throuhg a formatter) or generate reports (for example, spelling error reports). In addition, <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> actions may be blocking, and prevent a commit, for example if one or more files contains spelling errors;</p></li>
+<li><p><em>GitHub actions</em>: when using an online <code class="docutils literal notranslate"><span class="pre">git</span></code> repository such as GitHub, automation in the form of GitHub Actions (or other CI tools) can be used to process files in response to a wide variety of events, including pushes, pull requests and releases. Actions may be used to update files, for example by applying a formatter, or generate blocking (action failing) or non-blocking reports, such as spell-checking or linter reports.</p></li>
+</ul>
+</div>
+<div class="section" id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h2>
+<p>The scope of this document is primarily limited to considering quality process steps, rather than automation associated with generating publishing pipeline output artefacts (for example, Jupyter Book publishing pipelines, of <code class="docutils literal notranslate"><span class="pre">knitr</span></code>/<code class="docutils literal notranslate"><span class="pre">bookdown</span></code> publishing pipelines). Publishing pipeline automation will be reviewed in a separate document.</p>
+</div>
 <div class="section" id="intended-audience">
 <h2>Intended Audience<a class="headerlink" href="#intended-audience" title="Permalink to this headline">¶</a></h2>
 <p>The intended audience for this document includes:</p>
 <ul class="simple">
 <li><p><em>authors</em>, looking for tools to support the authoring process;</p></li>
 <li><p><em>editors</em>, looking for tools to support the editing process;</p></li>
+<li><p><em>developers</em>, looking for tools or code fragments that can be used to support the deployment of an automated quality process;</p></li>
 <li><p><em>publishers</em>, looking for tools to support quality processes within automated document publication pipelines.</p></li>
 </ul>
 </div>
