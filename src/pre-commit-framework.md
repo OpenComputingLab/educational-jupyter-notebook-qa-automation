@@ -47,7 +47,9 @@ Note that for this action, the commit is prevented if the spell-check fails.
 
  The output report shows which files contained detected spelling errors, and what those errors were. It is then up to the user to fix those errors before trying to commit the file again.
 
- *This idea of blocking a commit until the error is addressed is reminiscent of the __jidoka__ idea in the Toyota Production System / lean manufacturing process.*
+ ```{note}
+ This idea of blocking a commit until the error is addressed is reminiscent of the __jidoka__ idea in the Toyota Production System / lean manufacturing process.
+ ```
 
 ### Example `nbqa black` Example
 
