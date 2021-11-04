@@ -136,8 +136,8 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="live-editing-support.html">
-   Live Editing Support
+  <a class="reference internal" href="editor-automation.html">
+   Editor Automation
   </a>
  </li>
 </ul>
@@ -424,8 +424,10 @@ FILENAME.ipynb:cell_1:16:5: F841 local variable &#39;more_code&#39; is assigned 
 <h3><code class="docutils literal notranslate"><span class="pre">codespell</span></code><a class="headerlink" href="#codespell" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference external" href="https://github.com/codespell-project/codespell"><code class="docutils literal notranslate"><span class="pre">codespell</span></code></a> package provides a simple tool for checking texts against dictionary terms as well as other common typographical errors found in programming code. (The original / default dictionary can be found <a class="reference external" href="https://raw.githubusercontent.com/codespell-project/codespell/master/codespell_lib/data/dictionary.txt">here</a>.)</p>
 <p>An updated dictionary can be easily created and used as the basis of the spellcheck. A simple “ignored words” text file can also be used to ignore particular words (<code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">FILENAME.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">--ignore-words=FILENAME.txt</span></code>).</p>
+<p>Files can be explicitly excluded from testing using the <code class="docutils literal notranslate"><span class="pre">-x</span></code> command line switch.</p>
 <p>A typo can report can be created over multiple files with the output rendered to a simple report document:</p>
 <p><code class="docutils literal notranslate"><span class="pre">codespell</span> <span class="pre">.*//*.ipynb</span> <span class="pre">&gt;</span> <span class="pre">codespell.txt</span></code></p>
+<p><img alt="" src="_images/codespell.png" /></p>
 <p>Running <code class="docutils literal notranslate"><span class="pre">codespell</span></code> with the <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--write-changes</span></code> flag will apply recommended changes in-place.</p>
 <p>In principle, a very simple dictionary could be defined with specific target words and replacements identified, and then used to update a set of notebook files using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> flag. Rewrite terms should be in the form <code class="docutils literal notranslate"><span class="pre">calulated-&gt;calculated</span></code>, one per line. The name of the file containing this dictionary can be passed in via the <code class="docutils literal notranslate"><span class="pre">-D</span></code> flag (for example, <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">MYDICTIONARY.txt</span></code>).</p>
 </div>

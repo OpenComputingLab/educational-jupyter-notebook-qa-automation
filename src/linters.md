@@ -117,9 +117,13 @@ The [`codespell`](https://github.com/codespell-project/codespell) package provid
 
 An updated dictionary can be easily created and used as the basis of the spellcheck. A simple "ignored words" text file can also be used to ignore particular words (`-I FILENAME.txt` or `--ignore-words=FILENAME.txt`).
 
+Files can be explicitly excluded from testing using the `-x` command line switch.
+
 A typo can report can be created over multiple files with the output rendered to a simple report document:
 
 `codespell .*//*.ipynb > codespell.txt`
+
+![](images/codespell.png)
 
 Running `codespell` with the `-w` or `--write-changes` flag will apply recommended changes in-place.
 

@@ -6,10 +6,13 @@ One class of tools are "formatting" tools that can be used to enforce style rule
 
 Tools are also available for performing quality checks on more general texts, including formatters that can be applied to the underlying raw text or spell checkers that perform a "linting" role on the text content. Inline spell-checking tools that can be found in many word processors, and that highlight typographical errors as the user types, might be thought of as a "live" linting tool. Many text editors, such as the VS Code editor, provide support for a wide range on "inline" support tools, including spell checkers and document formatters, through application extensions.
 
-This document describes a range of tools that can be used as part of two sorts of quality process:
+As well as static analysis, checks can also be run to test for correct code execution. Using a reference notebook with run cells, a second version of the notebook can be run and its cell outputs compared with the reference notebook outputs. In this way, any negative side effects regarding the execution of legacy notebooks arising from updating the code execution environment can be detected.
+
+This document describes a range of tools that can be used to support quality processes:
 
 - *document transformers*, whereby documents are transformed from one state to another, for example through the application of a formatter that changes the visual appearance of a piece of text without changing its content or a transformer that transforms documents of one type to another;
-- *document reporters*, in which a function generates a report based on the static analysis of one or more documents; examples include spellcheckers and linters.
+- *document reporters*, in which a function generates a report based on the static analysis of one or more documents; examples include spellcheckers and linters;
+- *code evaluation checks*, where code cells are executed and checked against reference values or output tests.
 
 ## Automation Pathways
 
