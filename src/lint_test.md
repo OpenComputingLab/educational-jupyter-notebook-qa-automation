@@ -5,7 +5,7 @@
 
 Example code:
 
-```python
+```yaml
 print("nested code
 ```
 `````
