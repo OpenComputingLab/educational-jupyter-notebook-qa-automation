@@ -10,5 +10,6 @@ parse:
   myst_dmath_double_inline: true
 
 sphinx:
+  html_copy_source: false
   extra_extensions:
     - sphinxcontrib.mermaid

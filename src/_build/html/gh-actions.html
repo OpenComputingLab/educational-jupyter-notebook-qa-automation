@@ -569,6 +569,9 @@
 <p>An editor making amends directly to a markdown text document that is intended to be paired with <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook file may well make such changes in an arbitrary text editing environment. Since such an editor is likely to be operating outside the context of a Jupyter server process running the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> server extension, it is quite likely that the text and <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> versions will be out of synch. <em>(The use of GitHub pre-commit actions could help keep files in synch at the commit level for editors working under local git version control.)</em></p>
 <p>We can define an action that will attempt to synchronise changed markdown files if they form part of a push or pull request. Specifically, if a markdown file is added or deleted, <em>and</em> if it contains <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> pairing metadata, we can ensure that any other paired documents are synchronised. (If a changed markdown document is <em>not</em> recognised by <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> as a paired document, it will not be synchronised.)</p>
 <p>Using the <a class="reference external" href="https://github.com/stefanzweifel/git-auto-commit-action"><code class="docutils literal notranslate"><span class="pre">stefanzweifel/git-auto-commit-action</span></code></a>, we can then automatically commit any paired notebook files that that are updated as a result of the synchronisation.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: jupytext synch and auto-commit</p>
+<p><em>Push action to synchronise changed Mardown files using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> and commit updated notebooks.</em></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupytext-changes</span>
 
 <span class="nt">on</span><span class="p">:</span>
@@ -624,6 +627,7 @@
         <span class="c1"># This would be more useful if the git hash were referenced?</span>
         <span class="nt">commit_message</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Jupytext synch - modified, paired .md files</span>
 </pre></div>
+</div>
 </div>
 <p>Note that as it currently stands, the action <em>will not</em> update notebook output cells, which means that if the content of any code cells in the markdown document are modified, the notebook cell outputs may no longer represent a true output from the modified code cells.</p>
 <p>It would be possible to run the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> action with an <code class="docutils literal notranslate"><span class="pre">--execute</span></code> switch, although the step would need to be run in an environmental context configured to supporting the execution of the notebook(s).</p>

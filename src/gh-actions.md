@@ -320,10 +320,10 @@ We can define an action that will attempt to synchronise changed markdown files 
 
 Using the [`stefanzweifel/git-auto-commit-action`](https://github.com/stefanzweifel/git-auto-commit-action), we can then automatically commit any paired notebook files that that are updated as a result of the synchronisation.
 
-`````{admonition} Click the button to reveal!
+`````{admonition} Show GitHub Action: jupytext synch and auto-commit
 :class: dropdown
 
-Simple action:
+*Push action to synchronise changed Mardown files using `jupytext` and commit updated notebooks.*
 
 ```yaml
 
@@ -381,10 +381,8 @@ jobs:
       with:
         # This would be more useful if the git hash were referenced?
         commit_message: Jupytext synch - modified, paired .md files
-
-`````
-
 ```
+`````
 
 Note that as it currently stands, the action *will not* update notebook output cells, which means that if the content of any code cells in the markdown document are modified, the notebook cell outputs may no longer represent a true output from the modified code cells.
 
