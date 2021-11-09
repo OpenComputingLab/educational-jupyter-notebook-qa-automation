@@ -304,6 +304,9 @@
 <p>Let’s start with a simple example of a <a class="reference external" href="https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/">manually triggered action</a>.</p>
 <p>Such an action might be used to trigger a spell checker, for example, that is run over all files, or a specified collection of files, in a repository</p>
 <p>In the following example, the action can be started from the <em>Actions</em> page of a GitHub repository by a user with appropriate permissions on the repository.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: manual spell check</p>
+<p><em>Manual action to spellcheck all files using <code class="docutils literal notranslate"><span class="pre">pyspelling</span></code>.</em></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">spelling-full-test</span>
 
 <span class="c1"># First we define the Action trigger</span>
@@ -367,6 +370,7 @@
          <span class="no">typos.txt</span>
 </pre></div>
 </div>
+</div>
 <p>We can follow the progress of the GitHub Action as the various jobs and steps are run:</p>
 <p><img alt="" src="_images/ga-running.png" /></p>
 <p>The Action report status page maintains a log of outputs generated as the action runs. We can use this to review the output report:</p>
@@ -379,6 +383,9 @@
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">nbval</span></code> package to check the cell outputs of one or more notebooks against an already run reference copy of each tested notebook. <em>This allows us to check that environment updates have not jeopardised the intended notebook execution, for example.</em></p>
 <p>Typically, the notebooks might be designed to work within a particular environment. We could use requirements style files to specify a list of packages that need to be installed, or we can set up the action to against a particular containerised environment.</p>
 <p>The following GitHub Action definition script shows how we can test the execution of a set of notebooks against a pre-built Docker container, such as a container created to support a particular student module.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: test notebooks with nbval</p>
+<p><em>Manual action to test notebooks in a containerised environment using <code class="docutils literal notranslate"><span class="pre">nbval</span></code>.</em></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nbval-example</span>
 
 <span class="nt">on</span><span class="p">:</span>
@@ -425,6 +432,7 @@
       <span class="nt">continue-on-error</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
+</div>
 <p>The action report shows each step has completed, as well as how long each step took to complete. We can see in this case that the installation test notebook cells all passed correctly.</p>
 <p><img alt="" src="_images/gh-example-container-action.png" /></p>
 <p>If we have a test that fails, but have qualified a step with <code class="docutils literal notranslate"><span class="pre">continue-on-error:</span> <span class="pre">true</span></code>, we can review the failed tests without breaking the flow of the action:</p>
@@ -439,11 +447,16 @@
 <div class="section" id="triggering-actions-based-on-the-presence-of-particular-modified-file-types">
 <h2>Triggering Actions Based on the Presence of Particular Modified File Types<a class="headerlink" href="#triggering-actions-based-on-the-presence-of-particular-modified-file-types" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/dorny/paths-filter"><code class="docutils literal notranslate"><span class="pre">dorny/paths-filter</span></code></a> GitHub Action <em>“enables conditional execution of workflow steps and jobs, based on the files modified by pull request, on a feature branch, or by the recently pushed commits.”</em>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: push or pull request involving specified files</p>
+<p><em>Push or pull request action with additional filter to check file types.</em></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nbval-partial-test</span>
 
-<span class="c1"># Trigger the action from a push event</span>
+<span class="c1"># Trigger the action from a push or pull request</span>
 <span class="nt">on</span><span class="p">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">pull</span>
+  <span class="nt">push</span><span class="p">:</span>
+  <span class="nt">pull_request</span><span class="p">:</span>
+    <span class="nt">types</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">opened</span><span class="p p-Indicator">,</span> <span class="nv">edited</span><span class="p p-Indicator">]</span>
 
 <span class="nt">jobs</span><span class="p">:</span>
   <span class="c1"># Check that files of a particular type have changed</span>
@@ -471,11 +484,15 @@
     <span class="l l-Scalar l-Scalar-Plain">echo &quot;At least one .ipynb doc on src/ path was changed&quot;</span>
 </pre></div>
 </div>
+</div>
 <p>We can also use the action in association with other jobs, creating the guard in one job and then referencing it in another.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: specified file filter across jobs</p>
+<p><em>Push action with additional file filter checked across multiple jobs.</em></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">notebook-checking</span>
 
 <span class="nt">on</span><span class="p">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">pull</span>
+  <span class="l l-Scalar l-Scalar-Plain">push</span>
 
 <span class="nt">jobs</span><span class="p">:</span>
   <span class="nt">changes</span><span class="p">:</span>
@@ -503,9 +520,13 @@
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="running-commands-against-changed-files">
 <h2>Running Commands Against Changed Files<a class="headerlink" href="#running-commands-against-changed-files" title="Permalink to this headline">¶</a></h2>
 <p>As well as allowing us to create a guard that checks whether files of a particular type have been modified, the <a class="reference external" href="https://github.com/dorny/paths-filter"><code class="docutils literal notranslate"><span class="pre">dorny/paths-filter</span></code></a> action can also pass the names of changed files, allowing us to act on them directly:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: run step over modified files</p>
+<p><em>Push action that captures modified filenames, with optional filter, and then runs actions over modified files.</em></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">process-changes-md</span>
 
 <span class="nt">on</span><span class="p">:</span>
@@ -562,6 +583,7 @@
         <span class="no">done</span>
       <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="synchronising-markdown-and-notebook-files-using-jupytext">
