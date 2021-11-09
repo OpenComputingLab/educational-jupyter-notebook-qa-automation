@@ -6,6 +6,17 @@
 Example code:
 
 ```yaml
-print("nested code
+
+name: jupytext-changes
+
+on:
+  push
+
+jobs:
+  sync-jupytext:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Checkout
 ```
 `````
