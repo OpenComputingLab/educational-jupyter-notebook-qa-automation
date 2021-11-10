@@ -424,4 +424,11 @@ It would be possible to run the `jupytext` action with an `--execute` switch, al
 
 As well as processing notebooks and text documents, we can use GitHub Actions to automate quality checks against OU-XML source documents.
 
-The process actually makes use of a crude document conversion from OU-XML to MyST flavoured extended markdown.
+The process makes use of a crude, informal document conversion utility provided by the [`innovationOUtside/open-ouxml-tools`](https://github.com/innovationOUtside/open-ouxml-tools) package that attempts to convert OU-XML documents to MyST flavoured extended markdown that can be converted to notebooks using `jupytext`.
+
+*Currently, there is no return conversion path __from__ MyST Markdown __to__ OU-XML.*
+
+```{warning}
+*A proposal for an official bidirectional OU-XML2Markdown `pandoc` converter was submitted to the OU Test and Learn workstream but abandoned due to an inability to treat the proposal as a JFDI activity.*
+```
+

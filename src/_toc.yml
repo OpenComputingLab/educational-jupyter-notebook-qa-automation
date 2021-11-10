@@ -8,6 +8,7 @@ parts:
   chapters:
   - file: formatters
   - file: linters
+  - file: link-checkers
   - file: nb-code-execution
   - file: nb-quality-tools
 - caption: Editor Based Automation
@@ -19,3 +20,10 @@ parts:
 - caption: Repository Automation
   chapters:
   - file: gh-actions
+- caption: git and GitHub Workflows
+  chapters:
+  - file: gh-workflows
+- caption: Publishing Automation
+  chapters:
+  - file: publishing
+

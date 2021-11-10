@@ -13,3 +13,6 @@ sphinx:
   html_copy_source: false
   extra_extensions:
     - sphinxcontrib.mermaid
+    - sphinxcontrib.plantuml
+    - sphinxcontrib.blockdiag
+    - sphinxcontrib.tikz
