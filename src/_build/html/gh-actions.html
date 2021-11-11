@@ -300,6 +300,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-releases">
+   Creating Releases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-github-actions-to-process-ou-xml-documents">
    Using GitHub Actions to Process OU-XML Documents
   </a>
@@ -688,6 +693,161 @@
 </div>
 <p>Note that as it currently stands, the action <em>will not</em> update notebook output cells, which means that if the content of any code cells in the markdown document are modified, the notebook cell outputs may no longer represent a true output from the modified code cells.</p>
 <p>It would be possible to run the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> action with an <code class="docutils literal notranslate"><span class="pre">--execute</span></code> switch, although the step would need to be run in an environmental context configured to supporting the execution of the notebook(s).</p>
+</div>
+<div class="section" id="creating-releases">
+<h2>Creating Releases<a class="headerlink" href="#creating-releases" title="Permalink to this headline">¶</a></h2>
+<p>When a <em>release</em> is created, the state of the repository at a particular point in time is tagged as a release and referenced via the releases page. This provides a convenient way of publishing snapshots of the repository contents at a very specific version of the files.</p>
+<p>In addition, releases can also be annotated with downloadable file bundles that can be accessed from the release note on the releases page.</p>
+<p>When creating bundles of files for release to students, the release mechanism, and the ability to publish downloadable file bundles via the release note on a GitHub repository’s release page, provides a convenient way of publishing such an artefact.</p>
+<p>The following action provides an example of how to generate a release, triggered by a push tagged with a <code class="docutils literal notranslate"><span class="pre">release-</span></code> prefixed tag. The <code class="docutils literal notranslate"><span class="pre">tm351zip</span></code> command (from the <a class="reference external" href="https://github.com/innovationOUtside/nb_workflow_tools"><code class="docutils literal notranslate"><span class="pre">innovationOUtside/nb_workflow_tools</span></code></a> Python package) is used to create the downloadable zip file containing a set of specified notebooks with their output cells cleared. <em>We could insteaalternatively create a downloadable bundle where the notebook cells are all freshly run using the <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">runWithErrors</span></code> switch.</em></p>
+<p>Having created the zi pfile, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.</p>
+<p>The release itself is published using the third-party <a class="reference external" href="https://github.com/softprops/action-gh-release"><code class="docutils literal notranslate"><span class="pre">softprops/action-gh-release</span></code></a> GitHub Action.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: release tagged push to trigger release with testing</p>
+<p><em>Manual action or push action with release tag that triggers a release action.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">example-release</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="nt">push</span><span class="p">:</span>
+    <span class="c1"># Sequence of patterns matched against refs/tags</span>
+    <span class="nt">tags</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;release-*&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">workflow_dispatch</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">release-demo</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="nt">env</span><span class="p">:</span>
+      <span class="c1"># Grab a copy of the auto generated release note</span>
+
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@master</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Package files</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no"># Package all files we want in the release</span>
+        <span class="no"># We also ensure notebook outputs are cleared</span>
+        <span class="no">tm351zip -r clearOutput -a notebooks/*.ipynb release.zip</span>
+
+        <span class="no"># Add a listing of the zip file to the release note</span>
+        <span class="no">echo &quot;Released files:&quot; &gt; release-files.txt</span>
+        <span class="no">tm351zipview release.zip &gt;&gt; release-files.txt</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create Release</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">create_release</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">softprops/action-gh-release@v1</span>
+      <span class="c1"># The commit must be tagged for a release to happen</span>
+      <span class="c1"># Tags can be added via Github Desktop app</span>
+      <span class="c1"># https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags#creating-a-tag</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">tag_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.ref }}</span>
+        <span class="nt">release_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Release ${{ github.ref }}</span>
+        <span class="c1"># Use the release note file that includes the zipped file listing</span>
+        <span class="c1"># as the body of the release post announcement</span>
+        <span class="nt">body_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">release-files.txt</span>
+        <span class="nt">files</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">release.zip</span>
+</pre></div>
+</div>
+</div>
+<p>The bundled files can then be downloaded from the releases page (<em>file listing not included in the following release note</em>:</p>
+<p><img alt="" src="_images/release-files.png" /></p>
+<p>As well as simply generating a release, we could also run tests <em>prior</em> to the release to check that we are not releasing a broken set of notebooks, as demonstrated in the following action.</p>
+<p>The action is triggered using a GitHub release form. The form body is used to specify the paths to files (comma separated, no spaces) that should be included in the release (originally referenced in the action as <code class="docutils literal notranslate"><span class="pre">github.event.release.body</span></code>).</p>
+<p><img alt="" src="_images/release-action-form.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action needs improving: currently, we create a release using the release form, and then <em>another</em> release is generated containing the bundled files. Ideally, the tests and the file bundling should be part of the the original release creation process in the form of a “pre-release” action?</p>
+</div>
+<p>Notebooks along the specified path are tested and then zipped for release. A release note itemising the contents of the zip file is then generated and issued as part of the release.</p>
+<p><img alt="" src="_images/release-notes.png" /></p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: release tagged push to trigger release with testing</p>
+<p><em>Release action, push action release tag, or manual action that triggers a release after successful tests and a pre-release notebook preparation process.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">example-test-release</span>
+
+<span class="nt">on</span><span class="p">:</span>
+ <span class="nt">name</span><span class="p">:</span> <span class="nt">example-test-release</span><span class="p">:</span>
+  <span class="nt">release</span><span class="p">:</span>
+    <span class="nt">types</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">created</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">test-release-demo</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="c1"># Specify the environment we are going to test out notebooks against</span>
+    <span class="nt">container</span><span class="p">:</span>
+      <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ouvocl/vce-tm351-monolith</span>
+    <span class="nt">env</span><span class="p">:</span>
+      <span class="nt">RELEASE_PATHS</span><span class="p">:</span> <span class="s">&quot;${{</span><span class="nv"> </span><span class="s">github.event.release.body</span><span class="nv"> </span><span class="s">}}&quot;</span>
+      <span class="nt">RELEASE_NAME</span><span class="p">:</span> <span class="s">&quot;${{</span><span class="nv"> </span><span class="s">github.event.release.name</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@master</span>
+
+    <span class="c1"># Install test dependencies</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install nbval (TH edition) and workflow tools</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">python3 -m pip install --upgrade https://github.com//ouseful-PR/nbval/archive/table-test.zip</span>
+        <span class="no">python3 -m pip install https://github.com/innovationOUtside/nb_workflow_tools/archive/master.zip</span>
+
+    <span class="c1"># Ensure test environment services are running</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Restart postgres</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">sudo service postgresql restart</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Start mongo</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">sudo mongod --fork --logpath /dev/stdout --dbpath ${MONGO_DB_PATH}</span>
+
+    <span class="c1"># Run tests over files to be released</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Test files in release path</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">IFS=&quot;,&quot; read -a file_paths &lt;&lt;&lt; &quot;${{ github.event.release.body }}&quot;</span>
+        <span class="no">ls</span>
+        <span class="no"># Test all directories</span>
+        <span class="no">for file_path in &quot;${file_paths[@]}&quot;; do</span>
+          <span class="no">pwd</span>
+          <span class="no">py.test  --nbval &quot;$file_path&quot; || continue</span>
+        <span class="no">done</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+      <span class="c1"># Uncomment the following to ignore errors and continue running the Action</span>
+      <span class="c1">#continue-on-error: true</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create zipped files</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">IFS=&quot;,&quot; read -a file_paths &lt;&lt;&lt; &quot;${{ github.event.release.body }}&quot;</span>
+        <span class="no">for file_path in &quot;${file_paths[@]}&quot;; do</span>
+          <span class="no">tm351zip -r clearOutput -a &quot;$file_path&quot; release.zip</span>
+        <span class="no">done</span>
+        <span class="no">echo &quot;Release paths:&quot; &gt; release-files.txt</span>
+        <span class="no">echo &quot;${RELEASE_PATHS}&quot; &gt; release-files.txt</span>
+        <span class="no">tm351zipview release.zip &gt;&gt; release-files.txt</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create Release</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">create_release</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">softprops/action-gh-release@v1</span>
+      <span class="c1"># The commit must be tagged for a release to happen</span>
+      <span class="c1"># Tags can be added via Github Desktop app</span>
+      <span class="c1"># https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags#creating-a-tag</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">tag_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.ref }}-files</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.event.release.name }} files</span>
+        <span class="c1">#body: &quot;Release files/directories: ${RELEASE_NOTE}&quot;</span>
+        <span class="nt">body_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">release-files.txt</span>
+        <span class="nt">files</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">release.zip</span>
+</pre></div>
+</div>
+</div>
+<p>Inspection of the action log shows the directories under inspection for the tests and file bundling:</p>
+<p><img alt="" src="_images/release-action-steps.png" /></p>
+<p>We can also inspect the test outputs (not shown) and a report identifying directories as they are added to the zip file:</p>
+<p><img alt="" src="_images/release-action-steps2.png" /></p>
+<p>The release note displays a listing of the files inside the zip file.</p>
+<p><img alt="" src="_images/release-notes.png" /></p>
 </div>
 <div class="section" id="using-github-actions-to-process-ou-xml-documents">
 <h2>Using GitHub Actions to Process OU-XML Documents<a class="headerlink" href="#using-github-actions-to-process-ou-xml-documents" title="Permalink to this headline">¶</a></h2>

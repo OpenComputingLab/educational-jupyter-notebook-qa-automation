@@ -420,6 +420,185 @@ Note that as it currently stands, the action *will not* update notebook output c
 
 It would be possible to run the `jupytext` action with an `--execute` switch, although the step would need to be run in an environmental context configured to supporting the execution of the notebook(s).
 
+## Creating Releases
+
+When a *release* is created, the state of the repository at a particular point in time is tagged as a release and referenced via the releases page. This provides a convenient way of publishing snapshots of the repository contents at a very specific version of the files.
+
+In addition, releases can also be annotated with downloadable file bundles that can be accessed from the release note on the releases page.
+
+When creating bundles of files for release to students, the release mechanism, and the ability to publish downloadable file bundles via the release note on a GitHub repository's release page, provides a convenient way of publishing such an artefact.
+
+The following action provides an example of how to generate a release, triggered by a push tagged with a `release-` prefixed tag. The `tm351zip` command (from the [`innovationOUtside/nb_workflow_tools`](https://github.com/innovationOUtside/nb_workflow_tools) Python package) is used to create the downloadable zip file containing a set of specified notebooks with their output cells cleared. *We could insteaalternatively create a downloadable bundle where the notebook cells are all freshly run using the `-r runWithErrors` switch.*
+
+Having created the zi pfile, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.
+
+The release itself is published using the third-party [`softprops/action-gh-release`](https://github.com/softprops/action-gh-release) GitHub Action.
+
+`````{admonition} Show GitHub Action: release tagged push to trigger release with testing
+:class: dropdown
+
+*Manual action or push action with release tag that triggers a release action.*
+
+```yaml
+name: example-release
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'release-*'
+  workflow_dispatch
+
+jobs:
+  release-demo:
+    runs-on: ubuntu-latest
+
+    env:
+      # Grab a copy of the auto generated release note
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Package files
+      run: |
+        # Package all files we want in the release
+        # We also ensure notebook outputs are cleared
+        tm351zip -r clearOutput -a notebooks/*.ipynb release.zip
+
+        # Add a listing of the zip file to the release note
+        echo "Released files:" > release-files.txt
+        tm351zipview release.zip >> release-files.txt
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      # The commit must be tagged for a release to happen
+      # Tags can be added via Github Desktop app
+      # https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags#creating-a-tag
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        # Use the release note file that includes the zipped file listing
+        # as the body of the release post announcement
+        body_path: release-files.txt
+        files: |
+          release.zip
+```
+`````
+
+The bundled files can then be downloaded from the releases page (*file listing not included in the following release note*:
+
+![](images/release-files.png)
+
+As well as simply generating a release, we could also run tests *prior* to the release to check that we are not releasing a broken set of notebooks, as demonstrated in the following action.
+
+The action is triggered using a GitHub release form. The form body is used to specify the paths to files (comma separated, no spaces) that should be included in the release (originally referenced in the action as `github.event.release.body`).
+
+![](images/release-action-form.png)
+
+```{note}
+This action needs improving: currently, we create a release using the release form, and then *another* release is generated containing the bundled files. Ideally, the tests and the file bundling should be part of the the original release creation process in the form of a "pre-release" action?
+```
+
+Notebooks along the specified path are tested and then zipped for release. A release note itemising the contents of the zip file is then generated and issued as part of the release.
+
+![](images/release-notes.png)
+
+`````{admonition} Show GitHub Action: release tagged push to trigger release with testing
+:class: dropdown
+
+*Release action, push action release tag, or manual action that triggers a release after successful tests and a pre-release notebook preparation process.*
+
+```yaml
+name: example-test-release
+
+on:
+ name: example-test-release:
+  release:
+    types:
+      - created
+
+jobs:
+  test-release-demo:
+    runs-on: ubuntu-latest
+
+    # Specify the environment we are going to test out notebooks against
+    container:
+      image: ouvocl/vce-tm351-monolith
+    env:
+      RELEASE_PATHS: "${{ github.event.release.body }}"
+      RELEASE_NAME: "${{ github.event.release.name }}"
+
+    steps:
+    - uses: actions/checkout@master
+
+    # Install test dependencies
+    - name: Install nbval (TH edition) and workflow tools
+      run: |
+        python3 -m pip install --upgrade https://github.com//ouseful-PR/nbval/archive/table-test.zip
+        python3 -m pip install https://github.com/innovationOUtside/nb_workflow_tools/archive/master.zip
+
+    # Ensure test environment services are running
+    - name: Restart postgres
+      run: |
+        sudo service postgresql restart
+    - name: Start mongo
+      run: |
+        sudo mongod --fork --logpath /dev/stdout --dbpath ${MONGO_DB_PATH}
+
+    # Run tests over files to be released
+    - name: Test files in release path
+      run: |
+        IFS="," read -a file_paths <<< "${{ github.event.release.body }}"
+        ls
+        # Test all directories
+        for file_path in "${file_paths[@]}"; do
+          pwd
+          py.test  --nbval "$file_path" || continue
+        done
+      shell: bash
+      # Uncomment the following to ignore errors and continue running the Action
+      #continue-on-error: true
+
+    - name: Create zipped files
+      run: |
+        IFS="," read -a file_paths <<< "${{ github.event.release.body }}"
+        for file_path in "${file_paths[@]}"; do
+          tm351zip -r clearOutput -a "$file_path" release.zip
+        done
+        echo "Release paths:" > release-files.txt
+        echo "${RELEASE_PATHS}" > release-files.txt
+        tm351zipview release.zip >> release-files.txt
+      shell: bash
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      # The commit must be tagged for a release to happen
+      # Tags can be added via Github Desktop app
+      # https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags#creating-a-tag
+      with:
+        tag_name: ${{ github.ref }}-files
+        name: ${{ github.event.release.name }} files
+        #body: "Release files/directories: ${RELEASE_NOTE}"
+        body_path: release-files.txt
+        files: |
+          release.zip
+```
+`````
+
+Inspection of the action log shows the directories under inspection for the tests and file bundling:
+
+![](images/release-action-steps.png)
+
+We can also inspect the test outputs (not shown) and a report identifying directories as they are added to the zip file:
+
+![](images/release-action-steps2.png)
+
+The release note displays a listing of the files inside the zip file.
+
+![](images/release-notes.png)
+
 ## Using GitHub Actions to Process OU-XML Documents
 
 As well as processing notebooks and text documents, we can use GitHub Actions to automate quality checks against OU-XML source documents.
