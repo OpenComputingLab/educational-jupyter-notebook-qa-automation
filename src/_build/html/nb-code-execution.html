@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Notebook Quality Tools" href="nb-quality-tools.html" />
-    <link rel="prev" title="Linters" href="linters.html" />
+    <link rel="prev" title="Link Checkers" href="link-checkers.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -118,6 +118,11 @@
    Linters
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="link-checkers.html">
+   Link Checkers
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Notebook Code Execution
@@ -162,6 +167,35 @@
  <li class="toctree-l1">
   <a class="reference internal" href="gh-actions.html">
    GitHub Actions
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  git and GitHub Workflows
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-workflows.html">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+   and GitHub Based Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Publishing Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="publishing.html">
+   Publishing Automation Workflows
   </a>
  </li>
 </ul>
@@ -282,7 +316,7 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">folium-map</span></code>: specify that the cell is a folium map output. The cell output is then ignored as per <code class="docutils literal notranslate"><span class="pre">nbval-ignore-output</span></code>;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nbval-variable-output</span></code>: some cells return randomised or changeable output that cannot be easily sanitised using a regular expression. The output of cells tagged with <code class="docutils literal notranslate"><span class="pre">nbval-variable-output</span></code> are ignored as per <code class="docutils literal notranslate"><span class="pre">nbval-ignore-output</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code>: where cells contain printed output that changes in content but not structure (eg the same number of lines are printed on each run), the <code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code> will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code>: where cells contain printed output that changes in content but not structure (for example, the same number of lines are printed on each run), the <code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code> will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nbval-test-df</span></code> tag: if a cell returns a <em>pandas</em> dataframe, check that the test dataframe has a similar structure to the reference dataframe, even if the content differs. Structural tests currently include: shape test (same number of rows and columns; common column names test);</p></li>
 </ul>
 <p><img alt="" src="_images/nbval_df_mismatch.png" /></p>
@@ -305,7 +339,7 @@ replace: TIME-STAMP
 <p>The <code class="docutils literal notranslate"><span class="pre">nbval</span></code> notebook code checker can be run against one or more notebooks from the command line: <code class="docutils literal notranslate"><span class="pre">py.test</span> <span class="pre">--nbval</span> <span class="pre">$FILEPATH</span></code></p>
 <p>The initial report provides a streamed summary of cell test passes/fails at notebook level:</p>
 <p><img alt="" src="_images/nbval_summary.png" /></p>
-<p>Errors are then reported in more detail on a per cell basis. For example, erroring cells will ntively raise an <code class="docutils literal notranslate"><span class="pre">nbval</span></code> test error (although a cell tag can be used to ignire these).</p>
+<p>Errors are then reported in more detail on a per cell basis. For example, erroring cells will natively raise an <code class="docutils literal notranslate"><span class="pre">nbval</span></code> test error (although a cell tag can be used to ignore these).</p>
 <p><img alt="" src="_images/nbval_error_known.png" /></p>
 <p>Errors we are more likely to want to catch are cell output mismatch errors that are “legitimate” and that either need fixing, or that may require the original reference notebook to be rerun.</p>
 <p><img alt="" src="_images/nbval_mismatch.png" /></p>
@@ -359,11 +393,11 @@ replace: TIME-STAMP
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="linters.html" title="previous page">
+        <a class="left-prev" href="link-checkers.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Linters</p>
+                <p class="prevnext-title">Link Checkers</p>
             </div>
         </a>
     </div>

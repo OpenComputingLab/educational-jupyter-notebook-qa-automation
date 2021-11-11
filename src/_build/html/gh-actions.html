@@ -417,6 +417,7 @@
 <p><img alt="" src="_images/pyspell-action-report.png" /></p>
 <p>Since this particular also generated and uploaded an Action artefact – a zip file containing the spelling report - we can access that asset and download a copy of the report to work with offline.</p>
 <p><img alt="" src="_images/pyspelling-action-artefacts.png" /></p>
+<p>For additional spell-checking actions, see for example: <a class="reference external" href="https://github.com/rojopolis/spellcheck-github-actions"><code class="docutils literal notranslate"><span class="pre">rojopolis/spellcheck-github-actions</span></code></a> (a <code class="docutils literal notranslate"><span class="pre">pyspelling</span></code> based spell-checking action).</p>
 </div>
 <div class="section" id="checking-notebook-execution-against-a-particular-containerised-environment">
 <h2>Checking Notebook Execution Against a Particular Containerised Environment<a class="headerlink" href="#checking-notebook-execution-against-a-particular-containerised-environment" title="Permalink to this headline">¶</a></h2>
@@ -700,7 +701,7 @@
 <p>In addition, releases can also be annotated with downloadable file bundles that can be accessed from the release note on the releases page.</p>
 <p>When creating bundles of files for release to students, the release mechanism, and the ability to publish downloadable file bundles via the release note on a GitHub repository’s release page, provides a convenient way of publishing such an artefact.</p>
 <p>The following action provides an example of how to generate a release, triggered by a push tagged with a <code class="docutils literal notranslate"><span class="pre">release-</span></code> prefixed tag. The <code class="docutils literal notranslate"><span class="pre">tm351zip</span></code> command (from the <a class="reference external" href="https://github.com/innovationOUtside/nb_workflow_tools"><code class="docutils literal notranslate"><span class="pre">innovationOUtside/nb_workflow_tools</span></code></a> Python package) is used to create the downloadable zip file containing a set of specified notebooks with their output cells cleared. <em>We could alternatively create a downloadable bundle where the notebook cells are all freshly run using the <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">runWithErrors</span></code> switch.</em></p>
-<p>Having created the zi pfile, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.</p>
+<p>Having created the zip file, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.</p>
 <p>The release itself is published using the third-party <a class="reference external" href="https://github.com/softprops/action-gh-release"><code class="docutils literal notranslate"><span class="pre">softprops/action-gh-release</span></code></a> GitHub Action.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Show GitHub Action: release tagged push to trigger release with testing</p>

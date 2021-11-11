@@ -119,6 +119,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="link-checkers.html">
+   Link Checkers
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="nb-code-execution.html">
    Notebook Code Execution
   </a>
@@ -162,6 +167,35 @@
  <li class="toctree-l1">
   <a class="reference internal" href="gh-actions.html">
    GitHub Actions
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  git and GitHub Workflows
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-workflows.html">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+   and GitHub Based Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Publishing Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="publishing.html">
+   Publishing Automation Workflows
   </a>
  </li>
 </ul>
@@ -276,8 +310,8 @@
     .ipynb --jupytext--&gt; .md--&gt; id1{{process Markdown}}--jupytext--&gt; ipynb2[.ipynb]
         </div><div class="section" id="converting-between-notebook-text-formats-using-jupytext">
 <h2>Converting Between Notebook Text Formats Using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code><a class="headerlink" href="#converting-between-notebook-text-formats-using-jupytext" title="Permalink to this headline">¶</a></h2>
-<p>As well as representing notebooks using the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> Jupyter notebook file format, notebook <em>input</em> content (which is to say, the content of markdown and code cells) and <em>cell metadata</em>, <strong>but <em>not</em> code cell outputs</strong>, can also be represented by a wide range of simpler markdown and Python (.py) source file inspired text formats.</p>
-<p>For example, supported extended markdown flavours include <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#jupytext-markdown">Jupytext markdown</a>, <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown">MyST</a>, <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#r-markdown">R Markdown (Rmd)</a> and <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#quarto">Quarto</a>.</p>
+<p>As well as representing notebooks using the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> Jupyter notebook file format, notebook <em>input</em> content (which is to say, the content of markdown and code cells) and <em>cell metadata</em>, <strong>but <em>not</em> code cell outputs</strong>, can also be represented by a wide range of simpler markdown and Python (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) source file inspired text formats.</p>
+<p>For example, supported extended markdown flavours include <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#jupytext-markdown">Jupytext markdown</a>, <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown">MyST</a>, <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#r-markdown">R Markdown (<code class="docutils literal notranslate"><span class="pre">Rmd</span></code>)</a> and <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#quarto">Quarto</a>.</p>
 <p>Supported extended code file representations include the <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#the-light-format"><code class="docutils literal notranslate"><span class="pre">light</span></code> format</a> and the <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/formats.html#the-percent-format"><code class="docutils literal notranslate"><span class="pre">percent</span></code> format</a>.</p>
 <p>The <a class="reference external" href="https://jupytext.readthedocs.io/en/latest"><code class="docutils literal notranslate"><span class="pre">jupytext</span></code></a> package provides a range of tools for supporting two-way conversion between all these formats and to and from the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> format. In addition, Jupytext allows the “pairing” of different formats, allowing a MyST markdown file, for example, to be paired with an <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook. Either file can be edited within a Jupyter Classic notebook, RetroLab or JupyterLab notebook environment and its paired equivalent will also be updated. The advantages of this pairing approach includes:</p>
 <ul class="simple">
