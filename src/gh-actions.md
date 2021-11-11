@@ -428,7 +428,7 @@ In addition, releases can also be annotated with downloadable file bundles that 
 
 When creating bundles of files for release to students, the release mechanism, and the ability to publish downloadable file bundles via the release note on a GitHub repository's release page, provides a convenient way of publishing such an artefact.
 
-The following action provides an example of how to generate a release, triggered by a push tagged with a `release-` prefixed tag. The `tm351zip` command (from the [`innovationOUtside/nb_workflow_tools`](https://github.com/innovationOUtside/nb_workflow_tools) Python package) is used to create the downloadable zip file containing a set of specified notebooks with their output cells cleared. *We could insteaalternatively create a downloadable bundle where the notebook cells are all freshly run using the `-r runWithErrors` switch.*
+The following action provides an example of how to generate a release, triggered by a push tagged with a `release-` prefixed tag. The `tm351zip` command (from the [`innovationOUtside/nb_workflow_tools`](https://github.com/innovationOUtside/nb_workflow_tools) Python package) is used to create the downloadable zip file containing a set of specified notebooks with their output cells cleared. *We could alternatively create a downloadable bundle where the notebook cells are all freshly run using the `-r runWithErrors` switch.*
 
 Having created the zi pfile, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.
 
