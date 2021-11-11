@@ -24,9 +24,9 @@ flowchart LR
 
 ## Converting Between Notebook Text Formats Using `jupytext`
 
-As well as representing notebooks using the `.ipynb` Jupyter notebook file format, notebook *input* content (which is to say, the content of markdown and code cells) and *cell metadata*, __but *not* code cell outputs__, can also be represented by a wide range of simpler markdown and Python (.py) source file inspired text formats.
+As well as representing notebooks using the `.ipynb` Jupyter notebook file format, notebook *input* content (which is to say, the content of markdown and code cells) and *cell metadata*, __but *not* code cell outputs__, can also be represented by a wide range of simpler markdown and Python (`.py`) source file inspired text formats.
 
-For example, supported extended markdown flavours include [Jupytext markdown](https://jupytext.readthedocs.io/en/latest/formats.html#jupytext-markdown), [MyST](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown), [R Markdown (Rmd)](https://jupytext.readthedocs.io/en/latest/formats.html#r-markdown) and [Quarto](https://jupytext.readthedocs.io/en/latest/formats.html#quarto).
+For example, supported extended markdown flavours include [Jupytext markdown](https://jupytext.readthedocs.io/en/latest/formats.html#jupytext-markdown), [MyST](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown), [R Markdown (`Rmd`)](https://jupytext.readthedocs.io/en/latest/formats.html#r-markdown) and [Quarto](https://jupytext.readthedocs.io/en/latest/formats.html#quarto).
 
 Supported extended code file representations include the [`light` format](https://jupytext.readthedocs.io/en/latest/formats.html#the-light-format) and the [`percent` format](https://jupytext.readthedocs.io/en/latest/formats.html#the-percent-format).
 

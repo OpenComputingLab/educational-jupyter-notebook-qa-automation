@@ -4,7 +4,7 @@ One of the advantages of working under a `git` managed workflow is that it is de
 
 This means that it is possible for different people to work on the same document at the same time, albeit with some caveats: if an author "hands" over document to an editor by checking it into the repository and flagging it as "ready for editing", and the editor then checks it out, what happens if the author suddenly spots a change they want to make, or spots an error they can fix?
 
-In a waterflow process, once the document has been handed over, relay baton style, the author is not allowed, indeed, is not able to, make changes to the copy handed over to the editor. Even if the editor is not in a position to work on the document for a week. Or two. Or three. Or four.
+In a waterfall process, once the document has been handed over, relay baton style, the author is not allowed, indeed, is not able to, make changes to the copy handed over to the editor. Even if the editor is not in a position to work on the document for a week. Or two. Or three. Or four.
 
 Under the collaborative repository model, the author can check out the latest copy of the material, make the correction and then check it back in. It is important to note that the only thing the author actually checks back in is a "delta", essentially a change note that identifies what they want to change in the document. Along with this, they may submit a "commit message", a brief text description to summarise the change they made.
 

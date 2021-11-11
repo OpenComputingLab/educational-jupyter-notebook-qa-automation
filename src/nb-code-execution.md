@@ -20,7 +20,7 @@ A [forked version of `nbval`](https://github.com/ouseful-PR/nbval/tree/table-tes
 
 - `folium-map`: specify that the cell is a folium map output. The cell output is then ignored as per `nbval-ignore-output`;
 - `nbval-variable-output`: some cells return randomised or changeable output that cannot be easily sanitised using a regular expression. The output of cells tagged with `nbval-variable-output` are ignored as per `nbval-ignore-output`;
-- `nbval-count-lines`: where cells contain printed output that changes in content but not structure (eg the same number of lines are printed on each run), the `nbval-count-lines` will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook;
+- `nbval-count-lines`: where cells contain printed output that changes in content but not structure (for example, the same number of lines are printed on each run), the `nbval-count-lines` will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook;
 - `nbval-test-df` tag: if a cell returns a *pandas* dataframe, check that the test dataframe has a similar structure to the reference dataframe, even if the content differs. Structural tests currently include: shape test (same number of rows and columns; common column names test);
 
 ![](images/nbval_df_mismatch.png)
@@ -49,7 +49,7 @@ The initial report provides a streamed summary of cell test passes/fails at note
 
 ![](images/nbval_summary.png)
 
-Errors are then reported in more detail on a per cell basis. For example, erroring cells will ntively raise an `nbval` test error (although a cell tag can be used to ignire these).
+Errors are then reported in more detail on a per cell basis. For example, erroring cells will natively raise an `nbval` test error (although a cell tag can be used to ignore these).
 
 ![](images/nbval_error_known.png)
 

@@ -76,7 +76,7 @@ A brief discussion GitHub related workflows will also be provided as part of the
 Three main flavours of automation are identified, along with a manual command-line process where individuals can manually run commands against one or more target files:
 
 - __*editor based automation*__, whereby editor extensions are used to provide interactive, inline help, such as identifying spelling mistakes as you type;
-- __*`pre-commit` hooks*__: in a `git` workflow on the client side, `pre-commit` automation can be used to modify and update checked in files (for example, running them throuhg a formatter) or generate reports (for example, spelling error reports). In addition, `pre-commit` actions may be blocking, and prevent a commit, for example if one or more files contains spelling errors;
+- __*`pre-commit` hooks*__: in a `git` workflow on the client side, `pre-commit` automation can be used to modify and update checked in files (for example, running them through a formatter) or generate reports (for example, spelling error reports). In addition, `pre-commit` actions may be blocking, and prevent a commit, for example if one or more files contains spelling errors;
 - __*GitHub actions*__: when using an online `git` repository such as GitHub, automation in the form of GitHub Actions (or other CI tools) can be used to process files in response to a wide variety of events, including pushes, pull requests and releases. Actions may be used to update files, for example by applying a formatter, or generate blocking (action failing) or non-blocking reports, such as spell-checking or linter reports.
 
 ## Scope

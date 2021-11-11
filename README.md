@@ -1,4 +1,3 @@
-# educational-jupyter-notebook-qa-automation
-Using automation to support quality assured Jupyter notebook publishing processes
+# Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes
 
-Ebook version: https://opencomputinglab.github.io/educational-jupyter-notebook-qa-automation/
+E-book version: [*Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes*](https://opencomputinglab.github.io/educational-jupyter-notebook-qa-automation/)

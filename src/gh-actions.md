@@ -111,6 +111,8 @@ Since this particular also generated and uploaded an Action artefact – a zip f
 
 ![](images/pyspelling-action-artefacts.png)
 
+For additional spell-checking actions, see for example: [`rojopolis/spellcheck-github-actions`](https://github.com/rojopolis/spellcheck-github-actions) (a `pyspelling` based spell-checking action).
+
 ## Checking Notebook Execution Against a Particular Containerised Environment
 
 We can use the `nbval` package to check the cell outputs of one or more notebooks against an already run reference copy of each tested notebook. *This allows us to check that environment updates have not jeopardised the intended notebook execution, for example.*
@@ -430,7 +432,7 @@ When creating bundles of files for release to students, the release mechanism, a
 
 The following action provides an example of how to generate a release, triggered by a push tagged with a `release-` prefixed tag. The `tm351zip` command (from the [`innovationOUtside/nb_workflow_tools`](https://github.com/innovationOUtside/nb_workflow_tools) Python package) is used to create the downloadable zip file containing a set of specified notebooks with their output cells cleared. *We could alternatively create a downloadable bundle where the notebook cells are all freshly run using the `-r runWithErrors` switch.*
 
-Having created the zi pfile, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.
+Having created the zip file, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.
 
 The release itself is published using the third-party [`softprops/action-gh-release`](https://github.com/softprops/action-gh-release) GitHub Action.
 

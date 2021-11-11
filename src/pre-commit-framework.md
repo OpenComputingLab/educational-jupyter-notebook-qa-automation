@@ -26,7 +26,7 @@ Pre-commit workflows are established by running a `pre-commit install` command t
 
 ### Example `markdownlint` pre-commit Action
 
-We can use a simple GithHub Action to check a Markdown file, as identified using a set of declared file suffixes, using `markdownlint`.
+We can use a simple GitHub Action to check a Markdown file, as identified using a set of declared file suffixes, using `markdownlint`.
 
 ```yaml
 -   repo: https://github.com/markdownlint/markdownlint

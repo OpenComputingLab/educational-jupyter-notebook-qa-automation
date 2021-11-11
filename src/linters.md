@@ -103,7 +103,7 @@ We can also invoke the markdown linter via a `git` pre-commit hook (for more on 
 
 ![](images/markdownlint-fail.png)
 
-Using this in association with the VS Code view, we can refer to some of the hughlighted problematic lines and see that the errors were also raised in the editor view:
+Using this in association with the VS Code view, we can refer to some of the highlighted problematic lines and see that the errors were also raised in the editor view:
 
 ![](images/pre-commit-framework_md-error.png)
 
@@ -146,6 +146,7 @@ pyspelling -c ipyspell.yml -S "./*.ipynb" -n Python  > typos_py.txt
 ```
 
 *TO DO: in generating reports, it might also be useful to be able to see the typo in a short concordance context ([example](https://blog.ouseful.info/2015/12/13/n-gram-phrase-based-concordances-in-nltk/)).*
+
 ### Finding Duplicate Words
 
 Duplicate words in a document can be identified using a simple regular expression. For example, from a Linux command line:
