@@ -239,7 +239,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/nb-code-execution.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -316,8 +316,8 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">folium-map</span></code>: specify that the cell is a folium map output. The cell output is then ignored as per <code class="docutils literal notranslate"><span class="pre">nbval-ignore-output</span></code>;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nbval-variable-output</span></code>: some cells return randomised or changeable output that cannot be easily sanitised using a regular expression. The output of cells tagged with <code class="docutils literal notranslate"><span class="pre">nbval-variable-output</span></code> are ignored as per <code class="docutils literal notranslate"><span class="pre">nbval-ignore-output</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code>: where cells contain printed output that changes in content but not structure (for example, the same number of lines are printed on each run), the <code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code> will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nbval-test-df</span></code> tag: if a cell returns a <em>pandas</em> dataframe, check that the test dataframe has a similar structure to the reference dataframe, even if the content differs. Structural tests currently include: shape test (same number of rows and columns; common column names test);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code>: where cells contain printed output that changes in content but not structure (for example, the same number of lines are printed on each run), the <code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code> will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook; the content of each line is <em>not</em> used as a basis for matching;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-test-df</span></code> tag: if a cell returns a <em>pandas</em> dataframe, check that the test dataframe has a similar structure to the reference dataframe, even if the content differs. Structural tests currently include a shape test (check that data frames have the same number of rows and columns, but ignore the actual cell content) and a column names test that checks whether the column names are the same (irrespective of column order);</p></li>
 </ul>
 <p><img alt="" src="_images/nbval_df_mismatch.png" /></p>
 <ul class="simple">
@@ -335,7 +335,7 @@ regex: \d{2}:\d{2}:\d{2}
 replace: TIME-STAMP
 </pre></div>
 </div>
-<p>The sanitise file ca then be called with the <code class="docutils literal notranslate"><span class="pre">--sanitize-with</span> <span class="pre">SANITISE.cfg</span></code> switch.</p>
+<p>The sanitise file can then be called with the <code class="docutils literal notranslate"><span class="pre">--sanitize-with</span> <span class="pre">SANITISE.cfg</span></code> switch.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">nbval</span></code> notebook code checker can be run against one or more notebooks from the command line: <code class="docutils literal notranslate"><span class="pre">py.test</span> <span class="pre">--nbval</span> <span class="pre">$FILEPATH</span></code></p>
 <p>The initial report provides a streamed summary of cell test passes/fails at notebook level:</p>
 <p><img alt="" src="_images/nbval_summary.png" /></p>
@@ -343,7 +343,7 @@ replace: TIME-STAMP
 <p><img alt="" src="_images/nbval_error_known.png" /></p>
 <p>Errors we are more likely to want to catch are cell output mismatch errors that are “legitimate” and that either need fixing, or that may require the original reference notebook to be rerun.</p>
 <p><img alt="" src="_images/nbval_mismatch.png" /></p>
-<p>Ideally, notebooks should be tagged or regex mapped in such a way as to ensure that all tests pass but that as many cells are possibly are properly tested.</p>
+<p>Ideally, notebooks should be tagged or regex mapped in such a way as to ensure that all tests pass but that as many cells as possible are properly tested.</p>
 <p>This form of testing is useful when checking that notebook execution is not affected by changes to the execution environment.</p>
 </div>
 <div class="section" id="code-cell-tests-with-testbook">

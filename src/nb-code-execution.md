@@ -20,8 +20,8 @@ A [forked version of `nbval`](https://github.com/ouseful-PR/nbval/tree/table-tes
 
 - `folium-map`: specify that the cell is a folium map output. The cell output is then ignored as per `nbval-ignore-output`;
 - `nbval-variable-output`: some cells return randomised or changeable output that cannot be easily sanitised using a regular expression. The output of cells tagged with `nbval-variable-output` are ignored as per `nbval-ignore-output`;
-- `nbval-count-lines`: where cells contain printed output that changes in content but not structure (for example, the same number of lines are printed on each run), the `nbval-count-lines` will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook;
-- `nbval-test-df` tag: if a cell returns a *pandas* dataframe, check that the test dataframe has a similar structure to the reference dataframe, even if the content differs. Structural tests currently include: shape test (same number of rows and columns; common column names test);
+- `nbval-count-lines`: where cells contain printed output that changes in content but not structure (for example, the same number of lines are printed on each run), the `nbval-count-lines` will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook; the content of each line is *not* used as a basis for matching;
+- `nbval-test-df` tag: if a cell returns a *pandas* dataframe, check that the test dataframe has a similar structure to the reference dataframe, even if the content differs. Structural tests currently include a shape test (check that data frames have the same number of rows and columns, but ignore the actual cell content) and a column names test that checks whether the column names are the same (irrespective of column order);
 
 ![](images/nbval_df_mismatch.png)
 
@@ -41,7 +41,7 @@ regex: \d{2}:\d{2}:\d{2}
 replace: TIME-STAMP
 ```
 
-The sanitise file ca then be called with the `--sanitize-with SANITISE.cfg` switch.
+The sanitise file can then be called with the `--sanitize-with SANITISE.cfg` switch.
 
 The `nbval` notebook code checker can be run against one or more notebooks from the command line: `py.test --nbval $FILEPATH`
 
@@ -57,7 +57,7 @@ Errors we are more likely to want to catch are cell output mismatch errors that 
 
 ![](images/nbval_mismatch.png)
 
-Ideally, notebooks should be tagged or regex mapped in such a way as to ensure that all tests pass but that as many cells are possibly are properly tested.
+Ideally, notebooks should be tagged or regex mapped in such a way as to ensure that all tests pass but that as many cells as possible are properly tested.
 
 This form of testing is useful when checking that notebook execution is not affected by changes to the execution environment.
 
