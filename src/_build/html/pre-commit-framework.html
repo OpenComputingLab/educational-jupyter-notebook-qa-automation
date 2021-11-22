@@ -347,19 +347,32 @@
 <p><em>The first time a commit is made using a particular action, there may be some delay as the code implementing the action is downloaded from the specified action repository and then cached locally.</em></p>
 <div class="section" id="example-markdownlint-pre-commit-action">
 <h3>Example <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code> pre-commit Action<a class="headerlink" href="#example-markdownlint-pre-commit-action" title="Permalink to this headline">¶</a></h3>
-<p>We can use a simple GitHub Action to check a Markdown file, as identified using a set of declared file suffixes, using <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code>.</p>
+<p>We can use a simple GitHub Action to check a Markdown file using the <a class="reference external" href="https://github.com/igorshubovych/markdownlint-cli"><code class="docutils literal notranslate"><span class="pre">markdownlint-cli</span></code></a>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>   <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/igorshubovych/markdownlint-cli</span>
+    <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v0.30.0</span>
+    <span class="nt">hooks</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span>   <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">markdownlint</span>
+        <span class="nt">args</span><span class="p">:</span>
+          <span class="p p-Indicator">[</span>
+            <span class="s">&quot;--disable=MD013&quot;</span><span class="p p-Indicator">,</span>
+            <span class="s">&quot;--disable=MD047&quot;</span>
+          <span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Files to be ignored should be specified using <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> style paths in a <code class="docutils literal notranslate"><span class="pre">.markdownlintignore</span></code> file.</p>
+<p>Alternatively, using the Ruby <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code> package.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span>   <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/markdownlint/markdownlint</span>
     <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v0.11.0</span>
     <span class="nt">hooks</span><span class="p">:</span>
     <span class="p p-Indicator">-</span>   <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">markdownlint</span>
         <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Markdownlint</span>
         <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run markdownlint on your Markdown files</span>
-        <span class="nt">entry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdl -r ~MD013</span>
+        <span class="nt">entry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdl -r ~MD013,~MD026</span>
         <span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ruby</span>
         <span class="nt">files</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">\.(md|mdown|markdown|myst)$</span>
 </pre></div>
 </div>
-<p>Specific lint error codes can be ignored by passing them prefixed with a <code class="docutils literal notranslate"><span class="pre">~</span></code> character via the <code class="docutils literal notranslate"><span class="pre">mdl</span></code> command-line command <code class="docutils literal notranslate"><span class="pre">-r</span></code> switch.</p>
+<p>In this case, specific lint error codes can be ignored by passing them prefixed with a <code class="docutils literal notranslate"><span class="pre">~</span></code> character via the <code class="docutils literal notranslate"><span class="pre">mdl</span></code> command-line command <code class="docutils literal notranslate"><span class="pre">-r</span></code> switch.</p>
 </div>
 <div class="section" id="example-codespell-pre-commit-action">
 <h3>Example <code class="docutils literal notranslate"><span class="pre">codespell</span></code> pre-commit Action<a class="headerlink" href="#example-codespell-pre-commit-action" title="Permalink to this headline">¶</a></h3>
@@ -377,7 +390,7 @@
 </pre></div>
 </div>
 <p>Note that for this action, the commit is prevented if the spell-check fails.</p>
-<p><img alt="" src="_images/codespelling-action.png" /></p>
+<p><img alt="Example pre-commit action report showing typo detected by codespell." src="_images/codespelling-action.png" /></p>
 <p>The output report shows which files contained detected spelling errors, and what those errors were. It is then up to the user to fix those errors before trying to commit the file again.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -402,7 +415,7 @@
 </pre></div>
 </div>
 <p>Here’s an example of the report that is generated by trying to commit a notebook file that contains at least one code cell that <code class="docutils literal notranslate"><span class="pre">black</span></code> has seen fit to correct:</p>
-<p><img alt="" src="_images/nbqa-black-precommit.png" /></p>
+<p><img alt="Example of pre-commit action passing on codespell and Markdownlint actions and failing on an  action." src="_images/nbqa-black-precommit.png" /></p>
 <p>The commit is halted as the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter runs over the file that we initially committed. The file is updated as a result of the failed commit action and if we now try to commit it again, it will pass.</p>
 <p>Note that under this workflow, we take it on trust that the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter has updated the code cell(s) (on our behalf) in a way that we approve of, but aren’t necessarily able to bear witness to.</p>
 <div class="admonition danger">

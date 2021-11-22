@@ -108,9 +108,15 @@ Using this in association with the VS Code view, we can refer to some of the hig
 
 ![Example of repeated blank lines detected in Markdown file by mdformat.](images/pre-commit-framework_md-error.png)
 
-## Spell Checking Notebooks
+## Spell Checking Notebooks and Markdown Files
 
 Although there are currently no *specific* tools for spell-checking notebooks, there are various off-the-shelf tools that we can use to identify typographical errors in notebooks.
+
+Markdown files can be spell-checked using the popular [`aspell` command-line spell-checker](http://aspell.net/) using its `--mode=markdown` setting:
+
+```bash
+aspell check --mode=markdown --lang=en FILENAME.md
+```
 
 ### `codespell`
 
