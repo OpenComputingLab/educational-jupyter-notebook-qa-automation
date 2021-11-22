@@ -28,16 +28,38 @@ All done! ✨ 🍰 ✨
 
 If there are no changes suggested and made, then a `1 file left unchanged.` report is returned.
 
-Note that `nbqa` only runs against *code* cells, so any code in fenced markdown code blocks will be ignored.
+Note that by default, `nbqa` only runs against *code* cells, so any code in fenced Markdown code blocks will be ignored.
+
+## Formatting Markdown Cells in Notebooks Using `mdformat`
+
+As well as formatting code in code cells, the `nbqa` tool can be used to format Markdown in notebook Markdown cells using [`mdformat`](https://mdformat.readthedocs.io/en/latest).
+
+```bash
+nbqa mdformat FILENAME.ipynb --nbqa-md
+```
+
+The `--nbqa-diff` flag can be used to preview any suggested changes; without the flag, changes are carried out in place.
+
+Note that code in code fence blocks inside the markdown cells will not be formatted as code.
 
 ## Formatting Markdown Using `mdformat`
 
 The [`mdformat`](https://mdformat.readthedocs.io/en/latest) package can be used to format markdown content either from the command line, or via a Python code API.
 
+To format a markdown document, simply run a command of the form:
+
+```bash
+# Format file(s) in place
+mdformat FILENAME1.md FILENAME2.md
+
+# Format files in place in a directory path recursively
+mdformat myfiles/
+```
+
 To format the markdown content in a Jupyter notebook, two solutions are possible:
 
 - convert the notebook `.ipynb` document to a markdown format such as MyST using the [`jupytext`](https://jupytext.readthedocs.io/en/latest/) package, format the document using `mdformat` and then convert the updated document back to `.ipynb`;
-- create a package that will: open a notebook; iterate through the markdown cells; check the contents of each one and update it as required; save the updated file. *TO DO*
+- use `nbqa`.
 
 Here's an example workflow using `jupytext`:
 

@@ -280,6 +280,16 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formatting-markdown-cells-in-notebooks-using-mdformat">
+   Formatting Markdown Cells in Notebooks Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     mdformat
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#formatting-markdown-using-mdformat">
    Formatting Markdown Using
    <code class="docutils literal notranslate">
@@ -319,15 +329,32 @@ All done! ✨ 🍰 ✨
 </pre></div>
 </div>
 <p>If there are no changes suggested and made, then a <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">file</span> <span class="pre">left</span> <span class="pre">unchanged.</span></code> report is returned.</p>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> only runs against <em>code</em> cells, so any code in fenced markdown code blocks will be ignored.</p>
+<p>Note that by default, <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> only runs against <em>code</em> cells, so any code in fenced Markdown code blocks will be ignored.</p>
+</div>
+<div class="section" id="formatting-markdown-cells-in-notebooks-using-mdformat">
+<h2>Formatting Markdown Cells in Notebooks Using <code class="docutils literal notranslate"><span class="pre">mdformat</span></code><a class="headerlink" href="#formatting-markdown-cells-in-notebooks-using-mdformat" title="Permalink to this headline">¶</a></h2>
+<p>As well as formatting code in code cells, the <code class="docutils literal notranslate"><span class="pre">nbqa</span></code> tool can be used to format Markdown in notebook Markdown cells using <a class="reference external" href="https://mdformat.readthedocs.io/en/latest"><code class="docutils literal notranslate"><span class="pre">mdformat</span></code></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nbqa mdformat FILENAME.ipynb --nbqa-md
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--nbqa-diff</span></code> flag can be used to preview any suggested changes; without the flag, changes are carried out in place.</p>
+<p>Note that code in code fence blocks inside the markdown cells will not be formatted as code.</p>
 </div>
 <div class="section" id="formatting-markdown-using-mdformat">
 <h2>Formatting Markdown Using <code class="docutils literal notranslate"><span class="pre">mdformat</span></code><a class="headerlink" href="#formatting-markdown-using-mdformat" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://mdformat.readthedocs.io/en/latest"><code class="docutils literal notranslate"><span class="pre">mdformat</span></code></a> package can be used to format markdown content either from the command line, or via a Python code API.</p>
+<p>To format a markdown document, simply run a command of the form:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Format file(s) in place</span>
+mdformat FILENAME1.md FILENAME2.md
+
+<span class="c1"># Format files in place in a directory path recursively</span>
+mdformat myfiles/
+</pre></div>
+</div>
 <p>To format the markdown content in a Jupyter notebook, two solutions are possible:</p>
 <ul class="simple">
 <li><p>convert the notebook <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> document to a markdown format such as MyST using the <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">jupytext</span></code></a> package, format the document using <code class="docutils literal notranslate"><span class="pre">mdformat</span></code> and then convert the updated document back to <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>;</p></li>
-<li><p>create a package that will: open a notebook; iterate through the markdown cells; check the contents of each one and update it as required; save the updated file. <em>TO DO</em></p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">nbqa</span></code>.</p></li>
 </ul>
 <p>Here’s an example workflow using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pair an ipynb notebook with a MyST markdown document</span>
