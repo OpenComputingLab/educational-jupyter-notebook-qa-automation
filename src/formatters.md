@@ -16,7 +16,7 @@ For example, the following screenshot shows a difference preview of the contents
 
 `nbqa black --nbqa-diff FILENAME.ipynb`
 
-![](images/nbval_black.png)
+![Example difference output for nbqa black formatter.](images/nbval_black.png)
 
 Running the command *without* the `--nbqa-diff` flag will cause the code cell in the notebook to be updated automatically.
 
@@ -30,19 +30,7 @@ If there are no changes suggested and made, then a `1 file left unchanged.` repo
 
 Note that by default, `nbqa` only runs against *code* cells, so any code in fenced Markdown code blocks will be ignored.
 
-## Formatting Markdown Cells in Notebooks Using `mdformat`
-
-As well as formatting code in code cells, the `nbqa` tool can be used to format Markdown in notebook Markdown cells using [`mdformat`](https://mdformat.readthedocs.io/en/latest).
-
-```bash
-nbqa mdformat FILENAME.ipynb --nbqa-md
-```
-
-The `--nbqa-diff` flag can be used to preview any suggested changes; without the flag, changes are carried out in place.
-
-Note that code in code fence blocks inside the markdown cells will not be formatted as code.
-
-## Formatting Markdown Using `mdformat`
+## Formatting Markdown and Notebook Markdown Cells Using `mdformat`
 
 The [`mdformat`](https://mdformat.readthedocs.io/en/latest) package can be used to format markdown content either from the command line, or via a Python code API.
 
@@ -56,10 +44,34 @@ mdformat FILENAME1.md FILENAME2.md
 mdformat myfiles/
 ```
 
+If the [`mdformat-black`](https://github.com/hukkin/mdformat-black) package is installed, then `python` labeled fenced code blocks will be formatted using `black`.
+
+Extensions also exist to format other languages in appropriately fenced code blocks, including `bash`/`sh` ([`mdformat-beautysh`](https://github.com/hukkin/mdformat-beautysh)), `JavaScript`/`CSS`/`HTML`/`XML` ([`mdformat-web`](https://github.com/hukkin/mdformat-web)) and `json`/`toml`/`yaml` ([`mdformat-config`](https://github.com/hukkin/mdformat-config)).
+
+Extensions also exist for formatting YAML frontmatter ([https://github.com/butler54/mdformat-frontmatter](`mdformat-frontmatter`)), and formatting Markdown according to MyST ([`mdformat-myst`](https://github.com/executablebooks/mdformat-myst)) or GitHub Flavored Markdown ([`mdformat-gfm`](https://github.com/hukkin/mdformat-gfm)) standards.
+
 To format the markdown content in a Jupyter notebook, two solutions are possible:
 
-- convert the notebook `.ipynb` document to a markdown format such as MyST using the [`jupytext`](https://jupytext.readthedocs.io/en/latest/) package, format the document using `mdformat` and then convert the updated document back to `.ipynb`;
-- use `nbqa`.
+- use `nbqa`;
+- convert the notebook `.ipynb` document to a markdown format such as MyST using the [`jupytext`](https://jupytext.readthedocs.io/en/latest/) package, format the document using `mdformat` and then convert the updated document back to `.ipynb`.
+
+### Formatting Notebook Markdown Using `nbqa`
+
+As well as formatting code in code cells, the `nbqa` tool can be used to format Markdown in notebook Markdown cells using [`mdformat`](https://mdformat.readthedocs.io/en/latest).
+
+```bash
+nbqa mdformat FILENAME.ipynb --nbqa-md
+```
+
+The `--nbqa-diff` flag can be used to preview any suggested changes; without the flag, changes are carried out in place.
+
+Code in Markdown code blocks can also be formatted using `black` via the [`blacken-docs`](https://github.com/asottile/blacken-docs) package:
+
+```bash
+nbqa blacken-docs FILENAME.ipynb --nbqa-md
+```
+
+### Formatting Notebook Markdown Using `jupytext`
 
 Here's an example workflow using `jupytext`:
 
@@ -84,7 +96,7 @@ jupytext --update-metadata '{"jupytext": null}' FILENAME.ipynb
 
 Using the [`mdformat-black`](https://github.com/hukkin/mdformat-black) extension installed, `mdformat` will format `python` fenced code blocks in markdown cells (but *not* code cells).
 
-![](images/mdformat.png)
+![Example diff output from mdformat run on Jupytext paired MyST document.](images/mdformat.png)
 
 By default, line breaks are not tidied up. This allows authors to use [*semantic line breaks*](https://mdformat.readthedocs.io/en/latest/users/style.html#paragraph-word-wrapping). However, if line length formatting is required, for example to restrict the maximum number of characters allowed per line, an `mdformat` configuration option can be used to override this default (`"keep"`) behaviour:
 
@@ -97,4 +109,4 @@ wrap = "no" # possible values: {"keep", "no", INTEGER}
 
 Setting the `wrap` parameter to an integer (e.g. setting `wrap = 40`) sets the maximum markdown line length:
 
-![](images/mdformat2.png)
+![Example of mdformat wrap parameter limiting line length.](images/mdformat2.png)
