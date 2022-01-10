@@ -10,6 +10,7 @@ parts:
   - file: linters
   - file: link-checkers
   - file: nb-code-execution
+  - file: nb-cleaning
   - file: nb-quality-tools
 - caption: Editor Based Automation
   chapters:

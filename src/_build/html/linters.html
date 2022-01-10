@@ -129,6 +129,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="nb-cleaning.html">
+   Notebook Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="nb-quality-tools.html">
    Notebook Quality Tools
   </a>
@@ -467,6 +472,8 @@ markdownlint .md/FILENAME.myst
 <p>A typo can report can be created over multiple files with the output rendered to a simple report document:</p>
 <p><code class="docutils literal notranslate"><span class="pre">codespell</span> <span class="pre">.*//*.ipynb</span> <span class="pre">&gt;</span> <span class="pre">codespell.txt</span></code></p>
 <p><img alt="Example of spelling errors detected by codespell along with replacement suggestions." src="_images/codespell.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">codespell</span></code> can also be run over notebook content converted to a simple text format, such as the <code class="docutils literal notranslate"><span class="pre">light</span></code> Python file format via a <code class="docutils literal notranslate"><span class="pre">stdin/stdout</span></code> Linux pipeline:</p>
+<p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">$MY_NB_PATH</span> <span class="pre">|</span> <span class="pre">jupytext</span> <span class="pre">--from</span> <span class="pre">ipynb</span> <span class="pre">--to</span> <span class="pre">py:percent</span> <span class="pre">|</span> <span class="pre">codespell</span> <span class="pre">-</span></code></p>
 <p>Running <code class="docutils literal notranslate"><span class="pre">codespell</span></code> with the <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--write-changes</span></code> flag will apply recommended changes in-place.</p>
 <p>In principle, a very simple dictionary could be defined with specific target words and replacements identified, and then used to update a set of notebook files using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> flag. Rewrite terms should be in the form <code class="docutils literal notranslate"><span class="pre">calulated-&gt;calculated</span></code>, one per line. The name of the file containing this dictionary can be passed in via the <code class="docutils literal notranslate"><span class="pre">-D</span></code> flag (for example, <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">MYDICTIONARY.txt</span></code>).</p>
 </div>

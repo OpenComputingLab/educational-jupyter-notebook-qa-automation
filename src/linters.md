@@ -132,6 +132,10 @@ A typo can report can be created over multiple files with the output rendered to
 
 ![Example of spelling errors detected by codespell along with replacement suggestions.](images/codespell.png)
 
+`codespell` can also be run over notebook content converted to a simple text format, such as the `light` Python file format via a `stdin/stdout` Linux pipeline:
+
+`cat $MY_NB_PATH | jupytext --from ipynb --to py:percent | codespell -`
+
 Running `codespell` with the `-w` or `--write-changes` flag will apply recommended changes in-place.
 
 In principle, a very simple dictionary could be defined with specific target words and replacements identified, and then used to update a set of notebook files using the `-w` flag. Rewrite terms should be in the form `calulated->calculated`, one per line. The name of the file containing this dictionary can be passed in via the `-D` flag (for example, `-D MYDICTIONARY.txt`).
