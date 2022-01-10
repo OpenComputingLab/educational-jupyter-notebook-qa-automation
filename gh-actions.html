@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Actions &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="git and GitHub Based Workflows" href="gh-workflows.html" />
+    <link rel="prev" title="Pre-Commit" href="pre-commit-framework.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-notebooks.html">
+   Jupyter Notebook Document Formats
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Quality Support Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="formatters.html">
+   Formatters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linters.html">
+   Linters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="link-checkers.html">
+   Link Checkers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-code-execution.html">
+   Notebook Code Execution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-quality-tools.html">
+   Notebook Quality Tools
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Editor Based Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="editor-automation.html">
+   Editor Automation
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Local Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pre-commit-framework.html">
+   Pre-Commit
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Repository Automation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   GitHub Actions
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  git and GitHub Workflows
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-workflows.html">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+   and GitHub Based Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Publishing Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="publishing.html">
+   Publishing Automation Workflows
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manually-triggering-spell-checking-actions-and-generating-downloadable-action-artefacts">
+   Manually Triggering Spell-Checking Actions and Generating Downloadable Action Artefacts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#checking-notebook-execution-against-a-particular-containerised-environment">
+   Checking Notebook Execution Against a Particular Containerised Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#triggering-actions-based-on-the-presence-of-particular-modified-file-types">
+   Triggering Actions Based on the Presence of Particular Modified File Types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-commands-against-changed-files">
+   Running Commands Against Changed Files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synchronising-markdown-and-notebook-files-using-jupytext">
+   Synchronising Markdown and Notebook Files Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     jupytext
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-releases">
+   Creating Releases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-github-actions-to-process-ou-xml-documents">
+   Using GitHub Actions to Process OU-XML Documents
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="github-actions">
+<h1>GitHub Actions<a class="headerlink" href="#github-actions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://docs.github.com/en/actions"><em>GitHub Actions</em></a> are automation scripts that can be configured to run in response to triggered events in online GitHub repositories.</p>
+<p>A wide range of triggering events are available, including manual triggering, push and pull requests, releases, issue related events, and schedule based <code class="docutils literal notranslate"><span class="pre">cron</span></code> triggers.</p>
+<p>whilst actions can be constructed from scratch, a wide range of predefined, and free, third party actions are available on the <a class="reference external" href="https://github.com/marketplace?type=actions">GitHub Marketplace</a>. These can be combined with your own action scripts or commands to define an automated workflow.</p>
+<p>For example, an off-the-shelf action might be used to identify whether files of a particular type have been modified in a particular push or pull request, before deciding whether to run the rest of the action. This can be useful if you want to limit an action to only run if <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook documents have been recently modified.</p>
+<p>In this section, we will review how GitHub Actions as part of a notebook quality process, as well as part of an automated notebook release process. A variety of examples will demonstrate:</p>
+<ul class="simple">
+<li><p>how to manually trigger an action;</p></li>
+<li><p>how to define an action to run inside a pre-defined, Docker containerised environment;</p></li>
+<li><p>how to trigger actions against push event and pull requests;</p></li>
+<li><p>how to run commands only over changed files.</p></li>
+</ul>
+<p>In terms of automated behaviours, this section will cover:</p>
+<ul class="simple">
+<li><p>automated spell-checking;</p></li>
+<li><p>automated notebook testing using <code class="docutils literal notranslate"><span class="pre">nbval</span></code>;</p></li>
+<li><p>automated notebook and markdown paired document synchronisation using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code>.</p></li>
+</ul>
+<div class="section" id="manually-triggering-spell-checking-actions-and-generating-downloadable-action-artefacts">
+<h2>Manually Triggering Spell-Checking Actions and Generating Downloadable Action Artefacts<a class="headerlink" href="#manually-triggering-spell-checking-actions-and-generating-downloadable-action-artefacts" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start with a simple example of a <a class="reference external" href="https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/">manually triggered action</a>.</p>
+<p>Such an action might be used to trigger a spell checker, for example, that is run over all files, or a specified collection of files, in a repository</p>
+<p>In the following example, the action can be started from the <em>Actions</em> page of a GitHub repository by a user with appropriate permissions on the repository.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: manual spell check</p>
+<p><em>Manual action to spellcheck all files using <code class="docutils literal notranslate"><span class="pre">pyspelling</span></code>.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">spelling-full-test</span>
+
+<span class="c1"># First we define the Action trigger</span>
+<span class="nt">on</span><span class="p">:</span>
+  <span class="c1"># In this case, we define a manual trigger (workflow_dispatch)</span>
+  <span class="l l-Scalar l-Scalar-Plain">workflow_dispatch</span>
+
+<span class="c1"># Define one or more jobs to run via the action</span>
+<span class="nt">jobs</span><span class="p">:</span>
+
+  <span class="c1"># Set a job name</span>
+  <span class="nt">spelling-full-demo</span><span class="p">:</span>
+
+    <span class="c1"># Define the base os that will run the action</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="c1"># The job will include one or more steps</span>
+    <span class="nt">steps</span><span class="p">:</span>
+
+    <span class="c1"># We need to get some files to work on...</span>
+    <span class="c1"># Start by checking out the master branch of the repository</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@master</span>
+
+    <span class="c1"># The spelling checker requires some particular packages</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install spelling packages</span>
+    <span class="c1"># Run a set of shell commands to install required packages</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">sudo apt-get update &amp;&amp; sudo apt-get install -y aspell aspell-en</span>
+
+        <span class="no"># The following fork of pyspelling supports notebook md and code cell filters</span>
+        <span class="no">python3 -m pip install --upgrade https://github.com/ouseful-PR/pyspelling/archive/th-ipynb.zip</span>
+
+    <span class="c1"># Spell check the files</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">spellcheck all files</span>
+      <span class="c1"># Note that we can force the use of a particular shell if required</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">touch typos.txt</span>
+        <span class="no">touch .wordlist.txt</span>
+        <span class="no"># The spellchecker typically displays to stdout</span>
+        <span class="no"># which is visible in the action run history view</span>
+        <span class="no"># The ipyspell.yml file defines the target file paths that the</span>
+        <span class="no"># spellchecker is applied to</span>
+        <span class="no"># We can also force spellchecker output into a file</span>
+        <span class="no">pyspelling -c .ipyspell.yml | tee -a typos.txt || continue</span>
+        <span class="no"># Display the file contents</span>
+        <span class="no">cat typos.txt</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+      <span class="c1"># We could let the action fail on errors</span>
+      <span class="c1"># If we want that halting behaviour, comment out the following line</span>
+      <span class="nt">continue-on-error</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+    <span class="c1"># Saving the spellchecker output to a file then displaying it,</span>
+    <span class="c1"># rather than just displaying it,  may seem redundant</span>
+    <span class="c1"># But we can upload the generated file to the Action report page</span>
+    <span class="c1"># and make it available for download...</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Upload all typos</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v2</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">typos</span>
+        <span class="nt">path</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+         <span class="no">typos.txt</span>
+</pre></div>
+</div>
+</div>
+<p>We can follow the progress of the GitHub Action as the various jobs and steps are run:</p>
+<p><img alt="" src="_images/ga-running.png" /></p>
+<p>The Action report status page maintains a log of outputs generated as the action runs. We can use this to review the output report:</p>
+<p><img alt="" src="_images/pyspell-action-report.png" /></p>
+<p>Since this particular also generated and uploaded an Action artefact – a zip file containing the spelling report - we can access that asset and download a copy of the report to work with offline.</p>
+<p><img alt="" src="_images/pyspelling-action-artefacts.png" /></p>
+<p>For additional spell-checking actions, see for example: <a class="reference external" href="https://github.com/rojopolis/spellcheck-github-actions"><code class="docutils literal notranslate"><span class="pre">rojopolis/spellcheck-github-actions</span></code></a> (a <code class="docutils literal notranslate"><span class="pre">pyspelling</span></code> based spell-checking action).</p>
+</div>
+<div class="section" id="checking-notebook-execution-against-a-particular-containerised-environment">
+<h2>Checking Notebook Execution Against a Particular Containerised Environment<a class="headerlink" href="#checking-notebook-execution-against-a-particular-containerised-environment" title="Permalink to this headline">¶</a></h2>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">nbval</span></code> package to check the cell outputs of one or more notebooks against an already run reference copy of each tested notebook. <em>This allows us to check that environment updates have not jeopardised the intended notebook execution, for example.</em></p>
+<p>Typically, the notebooks might be designed to work within a particular environment. We could use requirements style files to specify a list of packages that need to be installed, or we can set up the action to against a particular containerised environment.</p>
+<p>The following GitHub Action definition script shows how we can test the execution of a set of notebooks against a pre-built Docker container, such as a container created to support a particular student module.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: test notebooks with nbval</p>
+<p><em>Manual action to test notebooks in a containerised environment using <code class="docutils literal notranslate"><span class="pre">nbval</span></code>.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nbval-example</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="c1"># Use a manual trigger</span>
+  <span class="l l-Scalar l-Scalar-Plain">workflow_dispatch</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+
+  <span class="nt">nbval-demo</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="c1"># Specify we want to run the tests inside a particular containerised environment</span>
+    <span class="nt">container</span><span class="p">:</span>
+      <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ouvocl/vce-tm351-monolith</span>
+
+    <span class="c1"># Define the action steps</span>
+    <span class="nt">steps</span><span class="p">:</span>
+
+    <span class="c1"># Checkout the desired branch</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@master</span>
+
+    <span class="c1"># Install any additional requirements into the environment</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install nbval (TH edition)</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">python3 -m pip install --upgrade https://github.com/ouseful-PR/nbval/archive/table-test.zip</span>
+
+    <span class="c1"># Ensure that required services are running</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Restart postgres</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">sudo service postgresql restart</span>
+
+    <span class="c1"># Explicitly start an application required for testing</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Start mongo</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no"># The environment variable is already defined in the container</span>
+        <span class="no">sudo mongod --fork --logpath /dev/stdout --dbpath ${MONGO_DB_PATH}</span>
+
+    <span class="c1"># Run an installation test notebook</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TM351 installation test</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">py.test --nbval TM351*.ipynb</span>
+      <span class="c1"># The following line means that the action will continue</span>
+      <span class="c1"># rather than fail if this step fails</span>
+      <span class="nt">continue-on-error</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</div>
+<p>The action report shows each step has completed, as well as how long each step took to complete. We can see in this case that the installation test notebook cells all passed correctly.</p>
+<p><img alt="" src="_images/gh-example-container-action.png" /></p>
+<p>If we have a test that fails, but have qualified a step with <code class="docutils literal notranslate"><span class="pre">continue-on-error:</span> <span class="pre">true</span></code>, we can review the failed tests without breaking the flow of the action:</p>
+<p><img alt="" src="_images/gh-action-errors.png" /></p>
+<p>We can further see the step generated an error code, but that was trapped by the <code class="docutils literal notranslate"><span class="pre">continue-on-error:</span> <span class="pre">true</span></code> setting and the action continued:</p>
+<p><img alt="" src="_images/gh-action-error-fail-pass.png" /></p>
+<p>If remove the <code class="docutils literal notranslate"><span class="pre">continue-on-error</span></code> setting, or set <code class="docutils literal notranslate"><span class="pre">continue-on-error:</span> <span class="pre">false</span></code> (the default), the action would have failed:</p>
+<p><img alt="" src="_images/gh-action-fail.gif" /></p>
+<p>If we check the report, we see the failure was blocking and prevented execution of the next step. However, certain other (housekeeping) steps that are defined to always run did execute.</p>
+<p><img alt="" src="_images/gh-action-fail.png" /></p>
+</div>
+<div class="section" id="triggering-actions-based-on-the-presence-of-particular-modified-file-types">
+<h2>Triggering Actions Based on the Presence of Particular Modified File Types<a class="headerlink" href="#triggering-actions-based-on-the-presence-of-particular-modified-file-types" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/dorny/paths-filter"><code class="docutils literal notranslate"><span class="pre">dorny/paths-filter</span></code></a> GitHub Action <em>“enables conditional execution of workflow steps and jobs, based on the files modified by pull request, on a feature branch, or by the recently pushed commits.”</em>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: push or pull request involving specified files</p>
+<p><em>Push or pull request action with additional filter to check file types.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nbval-partial-test</span>
+
+<span class="c1"># Trigger the action from a push or pull request</span>
+<span class="nt">on</span><span class="p">:</span>
+  <span class="nt">push</span><span class="p">:</span>
+  <span class="nt">pull_request</span><span class="p">:</span>
+    <span class="nt">types</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">opened</span><span class="p p-Indicator">,</span> <span class="nv">edited</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="c1"># Check that files of a particular type have changed</span>
+  <span class="nt">changed-filetype-filter</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="c1"># Define action steps</span>
+    <span class="nt">steps</span><span class="p">:</span>
+
+    <span class="c1"># Checkout</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+    <span class="c1"># Check that particular file types have been changed</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dorny/paths-filter@v2</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">changes</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">filters</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="nt">src</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;src/**&#39;</span>
+
+    <span class="c1"># Only run if some file in &#39;src&#39; folder was changed</span>
+    <span class="p p-Indicator">-</span> <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">steps.changes.outputs.src == &#39;true&#39;</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+    <span class="c1"># These steps will only run if notebooks changed</span>
+    <span class="l l-Scalar l-Scalar-Plain">echo &quot;At least one .ipynb doc on src/ path was changed&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>We can also use the action in association with other jobs, creating the guard in one job and then referencing it in another.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: specified file filter across jobs</p>
+<p><em>Push action with additional file filter checked across multiple jobs.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">notebook-checking</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">push</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">changes</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="c1"># Set job outputs to values from filter step</span>
+    <span class="nt">outputs</span><span class="p">:</span>
+      <span class="nt">notebooks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ steps.filter.outputs.notebooks }}</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="c1"># In a PR, we do not need to set the fetch-depth</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dorny/paths-filter@v2</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">filter</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">filters</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">notebooks:</span>
+            <span class="no">- added|modified:  &#39;**.ipynb&#39;</span>
+
+  <span class="c1"># This job will run if there were changed notebooks</span>
+  <span class="nt">job-for-notebooks</span><span class="p">:</span>
+    <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">changes</span>
+    <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ needs.changes.outputs.notebooks == &#39;true&#39; }}</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="c1">#...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="running-commands-against-changed-files">
+<h2>Running Commands Against Changed Files<a class="headerlink" href="#running-commands-against-changed-files" title="Permalink to this headline">¶</a></h2>
+<p>As well as allowing us to create a guard that checks whether files of a particular type have been modified, the <a class="reference external" href="https://github.com/dorny/paths-filter"><code class="docutils literal notranslate"><span class="pre">dorny/paths-filter</span></code></a> action can also pass the names of changed files, allowing us to act on them directly:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: run step over modified files</p>
+<p><em>Push action that captures modified filenames, with optional filter, and then runs actions over modified files.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">process-changes-md</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">push</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">changes-spellcheck</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="nt">steps</span><span class="p">:</span>
+
+    <span class="c1"># Checkout</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+    <span class="c1"># Test for markdown files</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dorny/paths-filter@v2</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">filter</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="c1"># Enable listing of files matching each filter.</span>
+        <span class="c1"># Paths to files will be available in `${FILTER_NAME}_files` output variable.</span>
+        <span class="c1"># Paths will be escaped and space-delimited.</span>
+        <span class="c1"># Output is usable as command-line argument list in Linux shell</span>
+        <span class="nt">list-files</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">shell</span>
+
+        <span class="c1"># In this example changed markdown will be spellchecked using aspell</span>
+        <span class="c1"># If we specify we are only interested in added or modified files, deleted files are ignored</span>
+        <span class="nt">filters</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">notebooks:</span>
+            <span class="no">- added|modified: &#39;**.md&#39;</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install packages if changed files</span>
+      <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ steps.filter.outputs.notebooks == &#39;true&#39; }}</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">sudo apt-get update &amp;&amp; sudo apt-get install -y aspell aspell-en</span>
+        <span class="no">pip install codespell</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Process changed files</span>
+      <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ steps.filter.outputs.notebooks == &#39;true&#39; }}</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no"># If a command accepts a list of files,</span>
+        <span class="no"># we can pass them directly</span>
+        <span class="no"># This will cause the action to error if there is a typo</span>
+        <span class="no">codespell ${{ steps.filter.outputs.notebooks_files }}</span>
+
+        <span class="no"># Alternatively, we might iterate over files one at a time</span>
+        <span class="no"># If we had comma separated files, we could specify separator</span>
+        <span class="no">#IFS=&quot;,&quot;</span>
+        <span class="no"># Generate an array of the modified file names</span>
+        <span class="no">read -a added_modified_files &lt;&lt;&lt; &quot;${{ steps.filter.outputs.notebooks_files }}&quot;</span>
+        <span class="no"># Then iterate over each filename</span>
+        <span class="no">for added_modified_file in &quot;${added_modified_files[@]}&quot;; do</span>
+          <span class="no"># The || continue statement will ensure that</span>
+          <span class="no"># even with errors, the action continues</span>
+          <span class="no">codespell &quot;$added_modified_file&quot; || continue</span>
+        <span class="no">done</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="synchronising-markdown-and-notebook-files-using-jupytext">
+<h2>Synchronising Markdown and Notebook Files Using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code><a class="headerlink" href="#synchronising-markdown-and-notebook-files-using-jupytext" title="Permalink to this headline">¶</a></h2>
+<p>An editor making amends directly to a markdown text document that is intended to be paired with <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook file may well make such changes in an arbitrary text editing environment. Since such an editor is likely to be operating outside the context of a Jupyter server process running the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> server extension, it is quite likely that the text and <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> versions will be out of synch. <em>(The use of GitHub pre-commit actions could help keep files in synch at the commit level for editors working under local git version control.)</em></p>
+<p>We can define an action that will attempt to synchronise changed markdown files if they form part of a push or pull request. Specifically, if a markdown file is added or deleted, <em>and</em> if it contains <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> pairing metadata, we can ensure that any other paired documents are synchronised. (If a changed markdown document is <em>not</em> recognised by <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> as a paired document, it will not be synchronised.)</p>
+<p>Using the <a class="reference external" href="https://github.com/stefanzweifel/git-auto-commit-action"><code class="docutils literal notranslate"><span class="pre">stefanzweifel/git-auto-commit-action</span></code></a>, we can then automatically commit any paired notebook files that that are updated as a result of the synchronisation.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: jupytext synch and auto-commit</p>
+<p><em>Push action to synchronise changed Mardown files using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> and commit updated notebooks.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupytext-changes</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">push</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">sync-jupytext</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="nt">steps</span><span class="p">:</span>
+
+    <span class="c1"># Checkout</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+    <span class="c1"># Test for markdown</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dorny/paths-filter@v2</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">filter</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="c1"># Enable listing of files matching each filter.</span>
+        <span class="c1"># Paths to files will be available in `${FILTER_NAME}_files` output variable.</span>
+        <span class="c1"># Paths will be escaped and space-delimited.</span>
+        <span class="c1"># Output is usable as command-line argument list in Linux shell</span>
+        <span class="nt">list-files</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">shell</span>
+
+        <span class="c1"># In this example changed markdown will be spellchecked using aspell</span>
+        <span class="c1"># If we specify we are only interested in added or modified files, deleted files are ignored</span>
+        <span class="nt">filters</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+            <span class="no">notebooks:</span>
+                <span class="no">- added|modified: &#39;**.md&#39;</span>
+        <span class="c1"># Should we also identify deleted md files</span>
+        <span class="c1"># and then try to identify (and delete) .ipynb docs otherwise paired to them?</span>
+        <span class="c1"># For example, remove .ipynb file on same path ($FILEPATH is a file with .md suffix)</span>
+        <span class="c1"># rm ${FILEPATH%.md}.ipynb</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install Packages if changed files</span>
+      <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ steps.filter.outputs.notebooks == &#39;true&#39; }}</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">pip install jupytext</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Synch changed files</span>
+      <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ steps.filter.outputs.notebooks == &#39;true&#39; }}</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no"># If a command accepts a list of files,</span>
+        <span class="no"># we can pass them directly</span>
+        <span class="no"># This will only synch files if the md doc include jupytext metadata</span>
+        <span class="no"># and has one or more paired docs defined</span>
+        <span class="no"># The timestamp on the synched ipynb file will be set to the</span>
+        <span class="no"># same time as the changed markdown file</span>
+        <span class="no">jupytext --use-source-timestamp  --sync ${{ steps.filter.outputs.notebooks_files }}</span>
+
+    <span class="c1"># Auto commit any updated notebook files</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stefanzweifel/git-auto-commit-action@v4</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="c1"># This would be more useful if the git hash were referenced?</span>
+        <span class="nt">commit_message</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Jupytext synch - modified, paired .md files</span>
+</pre></div>
+</div>
+</div>
+<p>Note that as it currently stands, the action <em>will not</em> update notebook output cells, which means that if the content of any code cells in the markdown document are modified, the notebook cell outputs may no longer represent a true output from the modified code cells.</p>
+<p>It would be possible to run the <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> action with an <code class="docutils literal notranslate"><span class="pre">--execute</span></code> switch, although the step would need to be run in an environmental context configured to supporting the execution of the notebook(s).</p>
+</div>
+<div class="section" id="creating-releases">
+<h2>Creating Releases<a class="headerlink" href="#creating-releases" title="Permalink to this headline">¶</a></h2>
+<p>When a <em>release</em> is created, the state of the repository at a particular point in time is tagged as a release and referenced via the releases page. This provides a convenient way of publishing snapshots of the repository contents at a very specific version of the files.</p>
+<p>In addition, releases can also be annotated with downloadable file bundles that can be accessed from the release note on the releases page.</p>
+<p>When creating bundles of files for release to students, the release mechanism, and the ability to publish downloadable file bundles via the release note on a GitHub repository’s release page, provides a convenient way of publishing such an artefact.</p>
+<p>The following action provides an example of how to generate a release, triggered by a push tagged with a <code class="docutils literal notranslate"><span class="pre">release-</span></code> prefixed tag. The <code class="docutils literal notranslate"><span class="pre">tm351zip</span></code> command (from the <a class="reference external" href="https://github.com/innovationOUtside/nb_workflow_tools"><code class="docutils literal notranslate"><span class="pre">innovationOUtside/nb_workflow_tools</span></code></a> Python package) is used to create the downloadable zip file containing a set of specified notebooks with their output cells cleared. <em>We could alternatively create a downloadable bundle where the notebook cells are all freshly run using the <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">runWithErrors</span></code> switch.</em></p>
+<p>Having created the zip file, save a listing of the zip file contents as a file that we can then use as the body of the release post announcement.</p>
+<p>The release itself is published using the third-party <a class="reference external" href="https://github.com/softprops/action-gh-release"><code class="docutils literal notranslate"><span class="pre">softprops/action-gh-release</span></code></a> GitHub Action.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: release tagged push to trigger release with testing</p>
+<p><em>Manual action or push action with release tag that triggers a release action.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">example-release</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="nt">push</span><span class="p">:</span>
+    <span class="c1"># Sequence of patterns matched against refs/tags</span>
+    <span class="nt">tags</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;release-*&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">workflow_dispatch</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">release-demo</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="nt">env</span><span class="p">:</span>
+      <span class="c1"># Grab a copy of the auto generated release note</span>
+
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@master</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Package files</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no"># Package all files we want in the release</span>
+        <span class="no"># We also ensure notebook outputs are cleared</span>
+        <span class="no">tm351zip -r clearOutput -a notebooks/*.ipynb release.zip</span>
+
+        <span class="no"># Add a listing of the zip file to the release note</span>
+        <span class="no">echo &quot;Released files:&quot; &gt; release-files.txt</span>
+        <span class="no">tm351zipview release.zip &gt;&gt; release-files.txt</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create Release</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">create_release</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">softprops/action-gh-release@v1</span>
+      <span class="c1"># The commit must be tagged for a release to happen</span>
+      <span class="c1"># Tags can be added via Github Desktop app</span>
+      <span class="c1"># https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags#creating-a-tag</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">tag_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.ref }}</span>
+        <span class="nt">release_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Release ${{ github.ref }}</span>
+        <span class="c1"># Use the release note file that includes the zipped file listing</span>
+        <span class="c1"># as the body of the release post announcement</span>
+        <span class="nt">body_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">release-files.txt</span>
+        <span class="nt">files</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">release.zip</span>
+</pre></div>
+</div>
+</div>
+<p>The bundled files can then be downloaded from the releases page (<em>file listing not included in the following release note</em>:</p>
+<p><img alt="" src="_images/release-files.png" /></p>
+<p>As well as simply generating a release, we could also run tests <em>prior</em> to the release to check that we are not releasing a broken set of notebooks, as demonstrated in the following action.</p>
+<p>The action is triggered using a GitHub release form. The form body is used to specify the paths to files (comma separated, no spaces) that should be included in the release (originally referenced in the action as <code class="docutils literal notranslate"><span class="pre">github.event.release.body</span></code>).</p>
+<p><img alt="" src="_images/release-action-form.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action needs improving: currently, we create a release using the release form, and then <em>another</em> release is generated containing the bundled files. Ideally, the tests and the file bundling should be part of the the original release creation process in the form of a “pre-release” action?</p>
+</div>
+<p>Notebooks along the specified path are tested and then zipped for release. A release note itemising the contents of the zip file is then generated and issued as part of the release.</p>
+<p><img alt="" src="_images/release-notes.png" /></p>
+<div class="dropdown admonition">
+<p class="admonition-title">Show GitHub Action: release tagged push to trigger release with testing</p>
+<p><em>Release action, push action release tag, or manual action that triggers a release after successful tests and a pre-release notebook preparation process.</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">example-test-release</span>
+
+<span class="nt">on</span><span class="p">:</span>
+ <span class="nt">name</span><span class="p">:</span> <span class="nt">example-test-release</span><span class="p">:</span>
+  <span class="nt">release</span><span class="p">:</span>
+    <span class="nt">types</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">created</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">test-release-demo</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+    <span class="c1"># Specify the environment we are going to test out notebooks against</span>
+    <span class="nt">container</span><span class="p">:</span>
+      <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ouvocl/vce-tm351-monolith</span>
+    <span class="nt">env</span><span class="p">:</span>
+      <span class="nt">RELEASE_PATHS</span><span class="p">:</span> <span class="s">&quot;${{</span><span class="nv"> </span><span class="s">github.event.release.body</span><span class="nv"> </span><span class="s">}}&quot;</span>
+      <span class="nt">RELEASE_NAME</span><span class="p">:</span> <span class="s">&quot;${{</span><span class="nv"> </span><span class="s">github.event.release.name</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@master</span>
+
+    <span class="c1"># Install test dependencies</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install nbval (TH edition) and workflow tools</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">python3 -m pip install --upgrade https://github.com//ouseful-PR/nbval/archive/table-test.zip</span>
+        <span class="no">python3 -m pip install https://github.com/innovationOUtside/nb_workflow_tools/archive/master.zip</span>
+
+    <span class="c1"># Ensure test environment services are running</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Restart postgres</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">sudo service postgresql restart</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Start mongo</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">sudo mongod --fork --logpath /dev/stdout --dbpath ${MONGO_DB_PATH}</span>
+
+    <span class="c1"># Run tests over files to be released</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Test files in release path</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">IFS=&quot;,&quot; read -a file_paths &lt;&lt;&lt; &quot;${{ github.event.release.body }}&quot;</span>
+        <span class="no">ls</span>
+        <span class="no"># Test all directories</span>
+        <span class="no">for file_path in &quot;${file_paths[@]}&quot;; do</span>
+          <span class="no">pwd</span>
+          <span class="no">py.test  --nbval &quot;$file_path&quot; || continue</span>
+        <span class="no">done</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+      <span class="c1"># Uncomment the following to ignore errors and continue running the Action</span>
+      <span class="c1">#continue-on-error: true</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create zipped files</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">IFS=&quot;,&quot; read -a file_paths &lt;&lt;&lt; &quot;${{ github.event.release.body }}&quot;</span>
+        <span class="no">for file_path in &quot;${file_paths[@]}&quot;; do</span>
+          <span class="no">tm351zip -r clearOutput -a &quot;$file_path&quot; release.zip</span>
+        <span class="no">done</span>
+        <span class="no">echo &quot;Release paths:&quot; &gt; release-files.txt</span>
+        <span class="no">echo &quot;${RELEASE_PATHS}&quot; &gt; release-files.txt</span>
+        <span class="no">tm351zipview release.zip &gt;&gt; release-files.txt</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create Release</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">create_release</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">softprops/action-gh-release@v1</span>
+      <span class="c1"># The commit must be tagged for a release to happen</span>
+      <span class="c1"># Tags can be added via Github Desktop app</span>
+      <span class="c1"># https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags#creating-a-tag</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">tag_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.ref }}-files</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.event.release.name }} files</span>
+        <span class="c1">#body: &quot;Release files/directories: ${RELEASE_NOTE}&quot;</span>
+        <span class="nt">body_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">release-files.txt</span>
+        <span class="nt">files</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">release.zip</span>
+</pre></div>
+</div>
+</div>
+<p>Inspection of the action log shows the directories under inspection for the tests and file bundling:</p>
+<p><img alt="" src="_images/release-action-steps.png" /></p>
+<p>We can also inspect the test outputs (not shown) and a report identifying directories as they are added to the zip file:</p>
+<p><img alt="" src="_images/release-action-steps2.png" /></p>
+<p>The release note displays a listing of the files inside the zip file.</p>
+<p><img alt="" src="_images/release-notes.png" /></p>
+</div>
+<div class="section" id="using-github-actions-to-process-ou-xml-documents">
+<h2>Using GitHub Actions to Process OU-XML Documents<a class="headerlink" href="#using-github-actions-to-process-ou-xml-documents" title="Permalink to this headline">¶</a></h2>
+<p>As well as processing notebooks and text documents, we can use GitHub Actions to automate quality checks against OU-XML source documents.</p>
+<p>The process makes use of a crude, informal document conversion utility provided by the <a class="reference external" href="https://github.com/innovationOUtside/open-ouxml-tools"><code class="docutils literal notranslate"><span class="pre">innovationOUtside/open-ouxml-tools</span></code></a> package that attempts to convert OU-XML documents to MyST flavoured extended markdown that can be converted to notebooks using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code>.</p>
+<p><em>Currently, there is no return conversion path <strong>from</strong> MyST Markdown <strong>to</strong> OU-XML.</em></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>A proposal for an official bidirectional OU-XML2Markdown <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> converter was submitted to the OU Test and Learn workstream but abandoned due to an inability to treat the proposal as a JFDI activity.</em></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pre-commit-framework.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Pre-Commit</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="gh-workflows.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><code class="docutils literal notranslate"><span class="pre">git</span></code> and GitHub Based Workflows</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

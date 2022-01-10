@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notebook Code Execution &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notebook Quality Tools" href="nb-quality-tools.html" />
+    <link rel="prev" title="Link Checkers" href="link-checkers.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-notebooks.html">
+   Jupyter Notebook Document Formats
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Quality Support Tools
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="formatters.html">
+   Formatters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linters.html">
+   Linters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="link-checkers.html">
+   Link Checkers
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Notebook Code Execution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-quality-tools.html">
+   Notebook Quality Tools
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Editor Based Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="editor-automation.html">
+   Editor Automation
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Local Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pre-commit-framework.html">
+   Pre-Commit
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Repository Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-actions.html">
+   GitHub Actions
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  git and GitHub Workflows
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-workflows.html">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+   and GitHub Based Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Publishing Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="publishing.html">
+   Publishing Automation Workflows
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-nbval-notebook-code-testing-framework">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nbval
+    </span>
+   </code>
+   Notebook Code Testing Framework
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-cell-tests-with-testbook">
+   Code Cell Tests With
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     testbook
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="notebook-code-execution">
+<h1>Notebook Code Execution<a class="headerlink" href="#notebook-code-execution" title="Permalink to this headline">¶</a></h1>
+<p>In certain publication workflows, there may be a need to ensure that code execution integrity in notebooks is preserved as and when a code execution environment is updated.</p>
+<p>For example, the code execution environment might have operating system package updates, or Python package updates, even if the notebooks are not the driving force behind the updates. In such cases, it is important to be able to test the notebooks to ensure that the package updates have not broken the notebooks, or started to raise warnings within them (such as deprecation warnings, for example).</p>
+<p>This sort of testing is supported by the <code class="docutils literal notranslate"><span class="pre">nbval</span></code> package.</p>
+<p>A second class of tests provided by the <code class="docutils literal notranslate"><span class="pre">testbook</span></code> package corresponds more closely to functional unit testing. In this case, a test file lists test that can then be run against functions defined in one or more other notebooks. This sort of testing is useful if notebook code is updated and the functional / behavioural integrity of functions defined by the code needs to be preserved.</p>
+<div class="section" id="the-nbval-notebook-code-testing-framework">
+<h2>The <code class="docutils literal notranslate"><span class="pre">nbval</span></code> Notebook Code Testing Framework<a class="headerlink" href="#the-nbval-notebook-code-testing-framework" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://nbval.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">nbval</span></code></a> Python package provides an extension to the widely used <a class="reference external" href="https://docs.pytest.org/"><code class="docutils literal notranslate"><span class="pre">pytest</span></code></a> framework that allows notebook code cell execution to be tested against a set of reference code cell outputs.</p>
+<p>A notebook is saved with all cells run and used as a reference notebook. When an update is made to the code execution environment, <code class="docutils literal notranslate"><span class="pre">nbval</span></code> can be used to re-run all notebook cells and compare them to the original cell outputs.</p>
+<p>In the <a class="reference external" href="https://github.com/computationalmodelling/nbval">original <code class="docutils literal notranslate"><span class="pre">nbval</span></code> package</a>, cell tags can be used to ignore certain cells outputs (<code class="docutils literal notranslate"><span class="pre">nbval-ignore-output</span></code>), identify cells that raise errors (<code class="docutils literal notranslate"><span class="pre">nbval-raises-exception</span></code> / <code class="docutils literal notranslate"><span class="pre">raises-exception</span></code>), or omit the running of the cell altogether (<code class="docutils literal notranslate"><span class="pre">nbval-skip</span></code>).</p>
+<p>A <a class="reference external" href="https://github.com/ouseful-PR/nbval/tree/table-test">forked version of <code class="docutils literal notranslate"><span class="pre">nbval</span></code></a> provides a range of additional cell tags that recognises the following additional tags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">folium-map</span></code>: specify that the cell is a folium map output. The cell output is then ignored as per <code class="docutils literal notranslate"><span class="pre">nbval-ignore-output</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-variable-output</span></code>: some cells return randomised or changeable output that cannot be easily sanitised using a regular expression. The output of cells tagged with <code class="docutils literal notranslate"><span class="pre">nbval-variable-output</span></code> are ignored as per <code class="docutils literal notranslate"><span class="pre">nbval-ignore-output</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code>: where cells contain printed output that changes in content but not structure (for example, the same number of lines are printed on each run), the <code class="docutils literal notranslate"><span class="pre">nbval-count-lines</span></code> will check that the same number of lines are printed by a cell in the test notebook as in the reference notebook; the content of each line is <em>not</em> used as a basis for matching;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-test-df</span></code> tag: if a cell returns a <em>pandas</em> dataframe, check that the test dataframe has a similar structure to the reference dataframe, even if the content differs. Structural tests currently include a shape test (check that data frames have the same number of rows and columns, but ignore the actual cell content) and a column names test that checks whether the column names are the same (irrespective of column order);</p></li>
+</ul>
+<p><img alt="" src="_images/nbval_df_mismatch.png" /></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-test-listlen</span></code> tag: perform a structural comparison of the list length of a Python list output;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbval-test-dictkeys</span></code> tag: perform a structural comparison of the sorted keys of a Python dictionary output.</p></li>
+</ul>
+<p>Regular expression mapping can also be used to map particular outputs. For example, if a cell were to return a timestamp as part of an output message, this would typically be guaranteed to fail (the test generated timestamp would differ from the reference timestamp). However, a regular expression mapping could be used to map the reference time stamp to a <code class="docutils literal notranslate"><span class="pre">REFERENCE_TIME</span></code> string label, for example, which would allow the cell outputs to otherwise match.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%%writefile SANITISE.cfg
+[regex1]
+regex: \d{1,2}/\d{1,2}/\d{2,4}
+replace: DATE-STAMP
+
+[regex2]
+regex: \d{2}:\d{2}:\d{2}
+replace: TIME-STAMP
+</pre></div>
+</div>
+<p>The sanitise file can then be called with the <code class="docutils literal notranslate"><span class="pre">--sanitize-with</span> <span class="pre">SANITISE.cfg</span></code> switch.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbval</span></code> notebook code checker can be run against one or more notebooks from the command line: <code class="docutils literal notranslate"><span class="pre">py.test</span> <span class="pre">--nbval</span> <span class="pre">$FILEPATH</span></code></p>
+<p>The initial report provides a streamed summary of cell test passes/fails at notebook level:</p>
+<p><img alt="" src="_images/nbval_summary.png" /></p>
+<p>Errors are then reported in more detail on a per cell basis. For example, erroring cells will natively raise an <code class="docutils literal notranslate"><span class="pre">nbval</span></code> test error (although a cell tag can be used to ignore these).</p>
+<p><img alt="" src="_images/nbval_error_known.png" /></p>
+<p>Errors we are more likely to want to catch are cell output mismatch errors that are “legitimate” and that either need fixing, or that may require the original reference notebook to be rerun.</p>
+<p><img alt="" src="_images/nbval_mismatch.png" /></p>
+<p>Ideally, notebooks should be tagged or regex mapped in such a way as to ensure that all tests pass but that as many cells as possible are properly tested.</p>
+<p>This form of testing is useful when checking that notebook execution is not affected by changes to the execution environment.</p>
+</div>
+<div class="section" id="code-cell-tests-with-testbook">
+<h2>Code Cell Tests With <code class="docutils literal notranslate"><span class="pre">testbook</span></code><a class="headerlink" href="#code-cell-tests-with-testbook" title="Permalink to this headline">¶</a></h2>
+<p>Another approach to cell tests comes in the form of <a class="reference external" href="https://github.com/nteract/testbook"><code class="docutils literal notranslate"><span class="pre">testbook</span></code></a>. This is perhaps more akin to traditional unit testing, in the sense that one or more unit tests are written in one notebook and then applied to functions or variables defined by the execution of code in a notebook under test.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">testbook</span> <span class="kn">import</span> <span class="n">testbook</span>
+
+<span class="nd">@testbook</span><span class="p">(</span><span class="s1">&#39;/path/to/notebook.ipynb&#39;</span><span class="p">,</span> <span class="n">execute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_func</span><span class="p">(</span><span class="n">tb</span><span class="p">):</span>
+   <span class="n">func</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;func&quot;</span><span class="p">)</span>
+
+   <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">execute</span></code> parameter can be used to assert whether all notebook cells should be executed before a test is run, whether one more specific cells should be executed, or whether a range of contiguous cells should be executed.</p>
+<p>This form of testing is useful for ensuring that the behavioural integrity of functions or cells defined in notebook are not affected by updates to the code.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="link-checkers.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Link Checkers</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="nb-quality-tools.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Notebook Quality Tools</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

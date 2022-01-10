@@ -1,0 +1,574 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linters &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Link Checkers" href="link-checkers.html" />
+    <link rel="prev" title="Formatters" href="formatters.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-notebooks.html">
+   Jupyter Notebook Document Formats
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Quality Support Tools
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="formatters.html">
+   Formatters
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Linters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="link-checkers.html">
+   Link Checkers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-code-execution.html">
+   Notebook Code Execution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-cleaning.html">
+   Notebook Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-quality-tools.html">
+   Notebook Quality Tools
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Editor Based Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="editor-automation.html">
+   Editor Automation
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Local Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pre-commit-framework.html">
+   Pre-Commit
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Repository Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-actions.html">
+   GitHub Actions
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  git and GitHub Workflows
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-workflows.html">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+   and GitHub Based Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Publishing Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="publishing.html">
+   Publishing Automation Workflows
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linting-notebook-code-with-nbqa">
+   Linting Notebook Code With
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nbqa
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linting-docstrings-with-pydocstyle">
+     Linting docstrings With
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pydocstyle
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-code-analysis-using-pylint">
+     Static Code Analysis Using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pylint
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-code-analysis-using-flake8">
+     Static Code Analysis Using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       flake8
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linting-markdown-using-markdownlint">
+   Linting Markdown Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     markdownlint
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spell-checking-notebooks-and-markdown-files">
+   Spell Checking Notebooks and Markdown Files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#codespell">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       codespell
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyspelling">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pyspelling
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-duplicate-words">
+     Finding Duplicate Words
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="linters">
+<h1>Linters<a class="headerlink" href="#linters" title="Permalink to this headline">¶</a></h1>
+<p><em>Linters</em> are quality tools that can check code or text for “correctness”. For example, a code linter might perform a static analysis of programming code to check that the code syntax is correct. Other, more advanced linters, may also try to identify simple bugs or contravention of coding guidelines in a code fragment. In text documents, tools such as spell-checkers might be thought of as providing a “linting” style service.</p>
+<p>Linters will typically make recommendations about suggested changes, with an option for the user then to accept the change. Some tools may be configurable to automatically apply changes, although there is an element of risk here as the changes may change the intended sense of a piece of text or the intended behaviour of a piece of code.</p>
+<p>There may also be an element of choice in the way the linter reports suggested changes to the user. For example, a separate report may be generated that lists the files within which issues were found, along with the line numbers of locations of the identified errors, and a statement of the error and potential correction.</p>
+<p>In other cases, the warning may be inserted into the original document at the point at which the error occurs. For example, in a Jupyter notebook, a linting error might reasonably be added as a warning style output from a code cell that contains the error.</p>
+<p>In a live editing environment, the warning might appear as a warning flag with a pop-up that describes the error.</p>
+<div class="section" id="linting-notebook-code-with-nbqa">
+<h2>Linting Notebook Code With <code class="docutils literal notranslate"><span class="pre">nbqa</span></code><a class="headerlink" href="#linting-notebook-code-with-nbqa" title="Permalink to this headline">¶</a></h2>
+<p>Code in notebook code cells can be linted using various tools including <code class="docutils literal notranslate"><span class="pre">pydocstyle</span></code> (for check docstrings), <code class="docutils literal notranslate"><span class="pre">pylint</span></code> and <code class="docutils literal notranslate"><span class="pre">flake8</span></code>.</p>
+<div class="section" id="linting-docstrings-with-pydocstyle">
+<h3>Linting docstrings With <code class="docutils literal notranslate"><span class="pre">pydocstyle</span></code><a class="headerlink" href="#linting-docstrings-with-pydocstyle" title="Permalink to this headline">¶</a></h3>
+<p>Linting of docstring syntax (Python function documentation strings) is based on the <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/"><em>PEP 257 Docstring Conventions</em></a>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa pydocstyle --nbqa-diff FILENAME.ipynb
+FILENAME.ipynb:cell_1:0 at module level:
+        D100: Missing docstring in public module
+FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
+        D400: First line should end with a period (not &#39;g&#39;)
+FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
+        D401: First line should be in imperative mood; try rephrasing (found &#39;simple&#39;)
+FILENAME.ipynb:cell_1:8 in public function `myfun_code`:
+        D403: First word of the first line should be properly capitalized (&#39;Simple&#39;, not &#39;simple&#39;)
+</pre></div>
+</div>
+<p>Currently, a <code class="docutils literal notranslate"><span class="pre">D100</span></code> error will always be returned against a 0 indexed cell. Creating a <code class="docutils literal notranslate"><span class="pre">.pydocstyle</span></code> settings file provides a means of ignoring this error.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[pydocstyle]
+ignore = D100
+</pre></div>
+</div>
+</div>
+<div class="section" id="static-code-analysis-using-pylint">
+<h3>Static Code Analysis Using <code class="docutils literal notranslate"><span class="pre">pylint</span></code><a class="headerlink" href="#static-code-analysis-using-pylint" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">pylint</span></code> package will perform static code analysis against all code cells and return error reports identifying errors and the cells in which they occur.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa pylint --disable=C0114,C0103 FILENAME.ipynb
+
+************* Module FILENAME
+FILENAME.ipynb:cell_1:4:0: E0611: No name &#39;pi&#39; in module &#39;math&#39; (no-name-in-module)
+FILENAME.ipynb:cell_1:11:4: W0612: Unused variable &#39;more_code&#39; (unused-variable)
+FILENAME.ipynb:cell_1:1:0: W0611: Unused pandas imported as pd (unused-import)
+FILENAME.ipynb:cell_1:2:0: W0611: Unused import time (unused-import)
+FILENAME.ipynb:cell_1:4:0: W0611: Unused pi imported from math (unused-import)
+FILENAME.ipynb:cell_1:2:0: C0411: standard import &quot;import time&quot; should be placed before &quot;import pandas as pd&quot; (wrong-import-order)
+FILENAME.ipynb:cell_1:4:0: C0411: standard import &quot;from math import pi&quot; should be placed before &quot;import pandas as pd&quot; (wrong-import-order)
+</pre></div>
+</div>
+</div>
+<div class="section" id="static-code-analysis-using-flake8">
+<h3>Static Code Analysis Using <code class="docutils literal notranslate"><span class="pre">flake8</span></code><a class="headerlink" href="#static-code-analysis-using-flake8" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">flake8</span></code> package is a widely extended tool for running all manner of code linting tests. When plugins are installed, they are automatically enabled when <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is run from the command line, either natively, or via <code class="docutils literal notranslate"><span class="pre">nbqa</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nbqa flake8 --extend-ignore=D100 FILENAME.ipynb
+
+FILENAME.ipynb:cell_1:1:1: F401 &#39;pandas as pd&#39; imported but unused
+FILENAME.ipynb:cell_1:2:1: F401 &#39;time&#39; imported but unused
+FILENAME.ipynb:cell_1:4:1: F401 &#39;math.pi&#39; imported but unused
+FILENAME.ipynb:cell_1:8:1: D400 First line should end with a period
+FILENAME.ipynb:cell_1:8:1: D401 First line should be in imperative mood; try rephrasing
+FILENAME.ipynb:cell_1:8:1: D403 First word of the first line should be properly capitalized
+FILENAME.ipynb:cell_1:16:5: F841 local variable &#39;more_code&#39; is assigned to but never used
+</pre></div>
+</div>
+<p>Useful extensions include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JBKahn/flake8-print"><code class="docutils literal notranslate"><span class="pre">flake8-print</span></code></a>: check for <code class="docutils literal notranslate"><span class="pre">print</span></code> statements;</p></li>
+<li><p><a class="reference external" href="https://github.com/adamchainz/flake8-comprehensions"><code class="docutils literal notranslate"><span class="pre">flake8-comprehensions</span></code></a>: help simplify, and identify unnecessary, list / set / dict comprehensions;</p></li>
+<li><p><a class="reference external" href="https://github.com/PyCQA/flake8-bugbear"><code class="docutils literal notranslate"><span class="pre">flake8-bugbear</span></code></a>: attempt to identify simple bugs.</p></li>
+</ul>
+<p>The <a class="reference external" href="https://github.com/johnfraney/flake8-markdown"><code class="docutils literal notranslate"><span class="pre">flake8-markdown</span></code></a> package can be used to apply <code class="docutils literal notranslate"><span class="pre">flake8</span></code> linting to code inside fenced code blocks in markdown documents. One way of applying this form of linting is to convert a notebook to a markdown format using Jupytext and then run <code class="docutils literal notranslate"><span class="pre">flake8</span></code> over the markdown file using a command of the form <code class="docutils literal notranslate"><span class="pre">flake8-markdown</span> <span class="pre">FILENAME.md</span></code>.</p>
+</div>
+</div>
+<div class="section" id="linting-markdown-using-markdownlint">
+<h2>Linting Markdown Using <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code><a class="headerlink" href="#linting-markdown-using-markdownlint" title="Permalink to this headline">¶</a></h2>
+<p>Formatters such as <code class="docutils literal notranslate"><span class="pre">mdformat</span></code> can be used to automatically format markdown documents in an opinionated way. Issues can then be identified in the form of differences between the formatted version of a markdown file and its original version.</p>
+<p>If a more specific linting function is required, then a package such as the Ruby <a class="reference external" href="https://github.com/markdownlint/markdownlint"><code class="docutils literal notranslate"><span class="pre">markdownlint/markdownlint</span></code></a> package or the more comprehensive Node.js <a class="reference external" href="https://github.com/DavidAnson/markdownlint">DavidAnson/markdownlint</a>/<a class="reference external" href="https://github.com/igorshubovych/markdownlint-cli"><code class="docutils literal notranslate"><span class="pre">markdownlint-cli)</span></code></a> package to generate an issues report over one or more markdown files according a generous selection of <a class="reference external" href="https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md">markdown linting rules</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Example using DavidAnson/markdownlint via markdownlint-cli
+markdownlint .md/FILENAME.myst
+
+.md/FILENAME.myst:53: MD009 Trailing spaces
+.md/FILENAME.myst:58: MD009 Trailing spaces
+.md/FILENAME.myst:45: MD012 Multiple consecutive blank lines
+.md/FILENAME.myst:49: MD023 Headers must start at the beginning of the line
+.md/FILENAME.myst:52: MD046 Code block style
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code> functionality is also available via the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint"><code class="docutils literal notranslate"><span class="pre">DavidAnson.vscode-markdownlint</span></code></a> VS Code extension. This provides live, inline alerts of markdown linting errors, as show in the screenshot below.</p>
+<p><img alt="Example of VS Code tooltip showing mdformat error message." src="_images/vscode-md-tooltip-error.png" /></p>
+<p>We can also invoke the markdown linter via a <code class="docutils literal notranslate"><span class="pre">git</span></code> pre-commit hook (for more on this, see the <em>Pre-Commit Framework</em> section).</p>
+<p><img alt="Example mdformat report generated by pre-commit action." src="_images/markdownlint-fail.png" /></p>
+<p>Using this in association with the VS Code view, we can refer to some of the highlighted problematic lines and see that the errors were also raised in the editor view:</p>
+<p><img alt="Example of repeated blank lines detected in Markdown file by mdformat." src="_images/pre-commit-framework_md-error.png" /></p>
+</div>
+<div class="section" id="spell-checking-notebooks-and-markdown-files">
+<h2>Spell Checking Notebooks and Markdown Files<a class="headerlink" href="#spell-checking-notebooks-and-markdown-files" title="Permalink to this headline">¶</a></h2>
+<p>Although there are currently no <em>specific</em> tools for spell-checking notebooks, there are various off-the-shelf tools that we can use to identify typographical errors in notebooks.</p>
+<p>Markdown files can be spell-checked using the popular <a class="reference external" href="http://aspell.net/"><code class="docutils literal notranslate"><span class="pre">aspell</span></code> command-line spell-checker</a> using its <code class="docutils literal notranslate"><span class="pre">--mode=markdown</span></code> setting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aspell check --mode<span class="o">=</span>markdown --lang<span class="o">=</span>en FILENAME.md
+</pre></div>
+</div>
+<div class="section" id="codespell">
+<h3><code class="docutils literal notranslate"><span class="pre">codespell</span></code><a class="headerlink" href="#codespell" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://github.com/codespell-project/codespell"><code class="docutils literal notranslate"><span class="pre">codespell</span></code></a> package provides a simple tool for checking texts against dictionary terms as well as other common typographical errors found in programming code. (The original / default dictionary can be found <a class="reference external" href="https://raw.githubusercontent.com/codespell-project/codespell/master/codespell_lib/data/dictionary.txt">here</a>.)</p>
+<p>An updated dictionary can be easily created and used as the basis of the spellcheck. A simple “ignored words” text file can also be used to ignore particular words (<code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">FILENAME.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">--ignore-words=FILENAME.txt</span></code>).</p>
+<p>Files can be explicitly excluded from testing using the <code class="docutils literal notranslate"><span class="pre">-x</span></code> command line switch.</p>
+<p>A typo can report can be created over multiple files with the output rendered to a simple report document:</p>
+<p><code class="docutils literal notranslate"><span class="pre">codespell</span> <span class="pre">.*//*.ipynb</span> <span class="pre">&gt;</span> <span class="pre">codespell.txt</span></code></p>
+<p><img alt="Example of spelling errors detected by codespell along with replacement suggestions." src="_images/codespell.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">codespell</span></code> can also be run over notebook content converted to a simple text format, such as the <code class="docutils literal notranslate"><span class="pre">light</span></code> Python file format via a <code class="docutils literal notranslate"><span class="pre">stdin/stdout</span></code> Linux pipeline:</p>
+<p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">$MY_NB_PATH</span> <span class="pre">|</span> <span class="pre">jupytext</span> <span class="pre">--from</span> <span class="pre">ipynb</span> <span class="pre">--to</span> <span class="pre">py:percent</span> <span class="pre">|</span> <span class="pre">codespell</span> <span class="pre">-</span></code></p>
+<p>Running <code class="docutils literal notranslate"><span class="pre">codespell</span></code> with the <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--write-changes</span></code> flag will apply recommended changes in-place.</p>
+<p>In principle, a very simple dictionary could be defined with specific target words and replacements identified, and then used to update a set of notebook files using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> flag. Rewrite terms should be in the form <code class="docutils literal notranslate"><span class="pre">calulated-&gt;calculated</span></code>, one per line. The name of the file containing this dictionary can be passed in via the <code class="docutils literal notranslate"><span class="pre">-D</span></code> flag (for example, <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">MYDICTIONARY.txt</span></code>).</p>
+</div>
+<div class="section" id="pyspelling">
+<h3><code class="docutils literal notranslate"><span class="pre">pyspelling</span></code><a class="headerlink" href="#pyspelling" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://facelessuser.github.io/pyspelling/"><code class="docutils literal notranslate"><span class="pre">pyspelling</span></code></a> package is an extensible package for checking for typographical errors using the <em>Aspell</em> or <em>Hunspell</em> Linux applications across a range of file types. A <a class="reference external" href="https://github.com/ouseful-PR/pyspelling">fork</a> of the package adds a simplification to allow for independent checking of markdown and Python code cells in notebooks.</p>
+<p>Spellchecking in Python files uses a <a class="reference external" href="https://facelessuser.github.io/pyspelling/filters/python/">Python filter</a> that checks words in comments, docstrings and strings.</p>
+<p>A <a class="reference external" href="https://facelessuser.github.io/pyspelling/filters/markdown/">Markdown filter</a> will spellcheck Markdown texts. A range of additional <a class="reference external" href="https://python-markdown.github.io/extensions/#officially-supported-extensions">extension filters supported by <code class="docutils literal notranslate"><span class="pre">python-markdown</span></code></a> can be used to refine the Markdown pipeline.</p>
+<p>Reports for Markdown and Python cells can be generated separately by specifying the appropriate (forked) <code class="docutils literal notranslate"><span class="pre">pyspelling</span></code> filter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyspelling -c ipyspell.yml -S <span class="s2">&quot;./*.ipynb&quot;</span> -n Markdown  &gt; typos_md.txt
+
+pyspelling -c ipyspell.yml -S <span class="s2">&quot;./*.ipynb&quot;</span> -n Python  &gt; typos_py.txt
+</pre></div>
+</div>
+<p><em>TO DO: in generating reports, it might also be useful to be able to see the typo in a short concordance context (<a class="reference external" href="https://blog.ouseful.info/2015/12/13/n-gram-phrase-based-concordances-in-nltk/">example</a>).</em></p>
+</div>
+<div class="section" id="finding-duplicate-words">
+<h3>Finding Duplicate Words<a class="headerlink" href="#finding-duplicate-words" title="Permalink to this headline">¶</a></h3>
+<p>Duplicate words in a document can be identified using a simple regular expression. For example, from a Linux command line:</p>
+<p><code class="docutils literal notranslate"><span class="pre">egrep</span> <span class="pre">-o</span>&#160; <span class="pre">&quot;\b(\w+)\s+\1\b&quot;</span> <span class="pre">*/.md/*.md</span></code></p>
+<p><em>TO DO: tools to support finding duplicate sentences in either a single document, or across documents (<a class="reference external" href="https://blog.ouseful.info/2015/12/13/finding-common-phrases-or-sentences-across-different-documents/">example</a>).</em></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="formatters.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Formatters</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="link-checkers.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Link Checkers</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

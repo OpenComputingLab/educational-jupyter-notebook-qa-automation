@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>git and GitHub Based Workflows &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Publishing Automation Workflows" href="publishing.html" />
+    <link rel="prev" title="GitHub Actions" href="gh-actions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-notebooks.html">
+   Jupyter Notebook Document Formats
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Quality Support Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="formatters.html">
+   Formatters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linters.html">
+   Linters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="link-checkers.html">
+   Link Checkers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-code-execution.html">
+   Notebook Code Execution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-quality-tools.html">
+   Notebook Quality Tools
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Editor Based Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="editor-automation.html">
+   Editor Automation
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Local Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pre-commit-framework.html">
+   Pre-Commit
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Repository Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-actions.html">
+   GitHub Actions
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  git and GitHub Workflows
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+   and GitHub Based Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Publishing Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="publishing.html">
+   Publishing Automation Workflows
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fixing-merge-conflicts">
+   Fixing Merge Conflicts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-s-the-boss">
+   Who’s the Boss?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partial-adoption-considered-harmful">
+   Partial Adoption Considered Harmful
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="git-and-github-based-workflows">
+<h1><code class="docutils literal notranslate"><span class="pre">git</span></code> and GitHub Based Workflows<a class="headerlink" href="#git-and-github-based-workflows" title="Permalink to this headline">¶</a></h1>
+<p>One of the advantages of working under a <code class="docutils literal notranslate"><span class="pre">git</span></code> managed workflow is that it is designed to support <em>collaborative</em> working using local copies of documents that can be compared and referenced back to a central <code class="docutils literal notranslate"><span class="pre">main</span></code> copy of the document (this was original referred to as the <code class="docutils literal notranslate"><span class="pre">master</span></code> version, but the default language has moved on).</p>
+<p>This means that it is possible for different people to work on the same document at the same time, albeit with some caveats: if an author “hands” over document to an editor by checking it into the repository and flagging it as “ready for editing”, and the editor then checks it out, what happens if the author suddenly spots a change they want to make, or spots an error they can fix?</p>
+<p>In a waterfall process, once the document has been handed over, relay baton style, the author is not allowed, indeed, is not able to, make changes to the copy handed over to the editor. Even if the editor is not in a position to work on the document for a week. Or two. Or three. Or four.</p>
+<p>Under the collaborative repository model, the author can check out the latest copy of the material, make the correction and then check it back in. It is important to note that the only thing the author actually checks back in is a “delta”, essentially a change note that identifies what they want to change in the document. Along with this, they may submit a “commit message”, a brief text description to summarise the change they made.</p>
+<p>The editor can merge in any changes made to the central repository into their own working copy at any time: the commit messages summarise the change, and the actual change can be reviewed by the editor.</p>
+<p>This way of working allows the author to continue to make changes to the material, even as the editor works on their copy.</p>
+<p>This is fine as the author makes changes to material that the editor has not yet started editing. But what happens if the author submits a change to material the editor has already reviewed?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No disrespect or offence is intended in the following discussion. The roles of <code class="docutils literal notranslate"><span class="pre">author</span></code> and <code class="docutils literal notranslate"><span class="pre">editor</span></code> are, if anything, caricatures of two extreme positions being ridiculed to make a particular point.</p>
+</div>
+<p>Consider the following two cases:</p>
+<ul class="simple">
+<li><p>the author changes material the editor <em>has not</em> changed in their own local copy;</p></li>
+<li><p>the author changes material the editor <em>has</em> changed in their own local copy.</p></li>
+</ul>
+<p>In the first case, we then need to ask: <em>does the change have forward or backward echoes?</em> If the author spotted a typo missed by the editor, and fixed it, there are probably no side effects arising from the change. But if the author makes a claim (“in the previous section, we saw…”), then the editor may need to do some work (e.g. checking that claim). It might also be that the author sets up a situation that the editor needs to check for consistency around in later sections which might already have been edited.</p>
+<p>In the second case, where the author has made a change to text that the editor has also changed, it might be that the author made the same change, in which case it can be accepted by the editor and their change is essentially negated.</p>
+<p>On the other hand, the author may have made a change that conflicts with the editor’s change. We might now have a heated debate about whether the author should be “allowed” to make changes to “their” material before they have had the benefit of seeing <em>all</em> the editor’s suggested changes to the original copy (even though the author may already have ripped up a large part of that material in disgust). Or we might argue that the editor should be working with the author’s current best attempt at the material and should set to work either accepting the author’s amendment, or factoring it in to the editor’s suggested change.</p>
+<div class="section" id="fixing-merge-conflicts">
+<h2>Fixing Merge Conflicts<a class="headerlink" href="#fixing-merge-conflicts" title="Permalink to this headline">¶</a></h2>
+<p>At this point, it is worth noting that there is likely to be a “training” issue here. Fixing conflicts can be a faff. But it’s simplified using support tools such as the VS Code or Atom editors.</p>
+<p>For example, suppose we have a warning about a merge conflict that has arisen because the editor has committed a change to their local working copy that conflicts with a change the author has pushed to the central repository and that the editor is trying to merge in to bring their materials up to date with the author’s latest committed version.</p>
+<p><img alt="" src="_images/GitHub_Desktop_conflict.png" /></p>
+<p><em>The default editor can be set in the GitHub Desktop App from the application <code class="docutils literal notranslate"><span class="pre">Preferences</span></code> menu.</em></p>
+<p>Opening the conflicted elements in the browser shows the editor’s locally committed version and the author’s conflicting update. The editor can use the menu bar controls wrapping the highlighted conflict to accept one or other (or both) of the changes. Alternatively, the editor can directly edit one of the suggests and then accept that (now edited) suggestion.</p>
+<p><img alt="" src="_images/GitHub_Desktop_conflict2.png" /></p>
+<p>Accepting one of the changes then resolves the conflict:</p>
+<p><img alt="" src="_images/GitHub_Desktop_conflict3.png" /></p>
+</div>
+<div class="section" id="who-s-the-boss">
+<h2>Who’s the Boss?<a class="headerlink" href="#who-s-the-boss" title="Permalink to this headline">¶</a></h2>
+<p>To a certain extent, who controls the files in the central repository might be thought of as having the upper hand. If the author keeps committing changes to the main repository, and the editor is working on their own local copies of the files, they might soon start to resent a continual stream of changes being uploaded by the author to the central repository that the editor then has to reconcile with their own updates that the author may not be aware of.</p>
+<p>But there is nothing to stop the editor creating their own <em>branch</em> on the central repository and committing changes to it as they make them. It is quite possible for the author to keep themselves up to date with changes being made by the editor by merging the editor’s changes into the author’s own working copy:</p>
+<p><img alt="" src="_images/GitHub_Desktop_merge.png" /></p>
+<p>What this means is that the author and the editor can continually share updates on a regular basis, rather than have to schedule large waterfall style handovers where large amounts of change are communicated at once.</p>
+<p>In addition, the author and the editor can also review each other’s work in progress <em>without</em> having to directly merge in changes into their own branch: they can simply switch to the other’s branch and review the commit notices and changes made.</p>
+<p>Whilst this may have the feeling of one person peering over the shoulder of the other, it does mean that one person can say early on <em>“ah, I see you have an issue with X; that repeats throughout; shall we discuss it now and come to a resolution and either I can fix it by this particular means, or you can continue to make that sort of change”</em>.</p>
+</div>
+<div class="section" id="partial-adoption-considered-harmful">
+<h2>Partial Adoption Considered Harmful<a class="headerlink" href="#partial-adoption-considered-harmful" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">git</span></code> workflow supports collaborative working. However, if <code class="docutils literal notranslate"><span class="pre">git</span></code> tools are used in a naive way to “support” traditional waterfall style ways of working, <em>bad things</em> can happen.</p>
+<p>For example, suppose that an editor is not working in a <code class="docutils literal notranslate"><span class="pre">git</span></code> controlled workflow. They <em>download</em> a “handover” bundle of files from a GitHub repository and work on them locally. In the meantime, other collaborators on the repository are spotting and fixing issues as they come across them.</p>
+<p>The editor works and works and works and works and then uploads all their amended files to the main branch of the repository, obliterating all the changes that the other collaborators have been feeding in even as the editor worked in blissful solitude. <strong>This would not be a good outcome.</strong></p>
+<p>Or suppose that the editor and the author both struggle with the idea of collaborative editing: the author just keeps uploading changes as they occur to them to the main branch of the repository without any meaningful commit messages. The editor puts all their changed files into a branch in a single commit and then makes a pull request (PR, for short) onto the main branch.</p>
+<p>This PR raises hundreds of merge conflict messages. So who will fix them? Whose problem is it anyway?</p>
+<p>At this point, it’s worth recalling that dealing with merge conflicts can be fiddly. So if there is a training issue, who should be the one trained to address the merge conflicts?</p>
+<p>In a <em>Track Changes</em> Microsoft Word workflow, we might expect the author to be the one reconciling the conflicts, for example as they merge changes from critical readers as well as an editor into their own working reference document, for example.</p>
+<p>But if we follow the semantics of the PR, a pull <em>request</em>, it is presumably down to the editor to ensure that their changes are well-behaved and respectful of the content in the main repository that the editor is <em>requesting</em> the merging of changes into. Which means that updates from main should really be merged into the PR by the owner of the PR (which is to say, the editor) <em>before</em> the PR is accepted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In part, this raises the question of who the owner of the main branch is and who is allowed to accept changes to it.</p>
+<p>In the above example, I have given the author primacy of control, with the editor working in a supporting role to them. At the end of the day, the author is the one who needs to defend or justify their words, and who is responsible for them.</p>
+<p>However, a more pertinent question might be: what is the most acceptable way to manage change, <em>and who decides</em>? In a waterfall process, the linear process with discrete handovers introduces delays and waste (e.g. in the sense of lean production): for large amounts of time, work that could be being done is prevented from being done whilst waiting for other irrelevant work to be completed.</p>
+</div>
+<p>In this case, it is perhaps in the interest of the editor to try to keep up to date with changes at some early step in the process, for example, regularly merging in changes from main even as they do their editing.</p>
+<p>This also allows the author to contribute improvements and corrections to the material even as the editor works on them.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="gh-actions.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">GitHub Actions</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="publishing.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Publishing Automation Workflows</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

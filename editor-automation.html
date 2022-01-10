@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor Automation &#8212; Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pre-Commit" href="pre-commit-framework.html" />
+    <link rel="prev" title="Notebook Quality Tools" href="nb-quality-tools.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Using Automation To Support Quality Assured Jupyter Notebook Publishing Processes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-notebooks.html">
+   Jupyter Notebook Document Formats
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Quality Support Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="formatters.html">
+   Formatters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linters.html">
+   Linters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="link-checkers.html">
+   Link Checkers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-code-execution.html">
+   Notebook Code Execution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb-quality-tools.html">
+   Notebook Quality Tools
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Editor Based Automation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Editor Automation
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Local Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pre-commit-framework.html">
+   Pre-Commit
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Repository Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-actions.html">
+   GitHub Actions
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  git and GitHub Workflows
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gh-workflows.html">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+   and GitHub Based Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Publishing Automation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="publishing.html">
+   Publishing Automation Workflows
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spellchecking-markdown-text">
+   Spellchecking Markdown Text
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formatting-code">
+   Formatting Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linting-markdown-and-code">
+   Linting Markdown and Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generated-diagram-previews">
+   Generated Diagram Previews
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="editor-automation">
+<h1>Editor Automation<a class="headerlink" href="#editor-automation" title="Permalink to this headline">¶</a></h1>
+<p>Although this may not typically be classed as “automation”, it is worth considering how editor tools or extensions can be used to provided “live” automation support doing notebook production or maintenance activity. Live support is available for spellchecking and linting Markdown text, formatting and linting code, and previewing generated content, for example.</p>
+<div class="section" id="spellchecking-markdown-text">
+<h2>Spellchecking Markdown Text<a class="headerlink" href="#spellchecking-markdown-text" title="Permalink to this headline">¶</a></h2>
+<p>In the classic notebook environment, the <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html">spellchecker extension</a> provides live highlighting of spelling errors identified using the <a class="reference external" href="https://github.com/cfinke/Typo.js"><code class="docutils literal notranslate"><span class="pre">typo.js</span></code></a> package.</p>
+<p><img alt="" src="_images/nb_extension_spelling.png" /></p>
+<p>A complementary <a class="reference external" href="https://github.com/jupyterlab-contrib/spellchecker">JupyterLab spellchecker</a> that also makes use of <code class="docutils literal notranslate"><span class="pre">typo.js</span></code> is also available.</p>
+<p>In a VS Code environment, spelling errors can be highlighted as you type using extensions such as <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex"><code class="docutils literal notranslate"><span class="pre">valentjn.vscode-ltex</span></code></a> grammar/spell checking extension.</p>
+<p><img alt="" src="_images/vscode-spellcheck.png" /></p>
+</div>
+<div class="section" id="formatting-code">
+<h2>Formatting Code<a class="headerlink" href="#formatting-code" title="Permalink to this headline">¶</a></h2>
+<p>Code formatting is available in classic notebooks via the <a class="reference external" href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tree/master/src/jupyter_contrib_nbextensions/nbextensions/code_prettify"><code class="docutils literal notranslate"><span class="pre">code_prettify</span></code></a> extension which provides toolbar buttons for updating the style of a selected code cell, or all code cells in a notebook, using <code class="docutils literal notranslate"><span class="pre">yapf</span></code> or <code class="docutils literal notranslate"><span class="pre">autopep8</span></code>.</p>
+<p><img alt="" src="_images/code-prettify-demo-py.gif" /></p>
+<p>The same extension can be extended to support <code class="docutils literal notranslate"><span class="pre">black</span></code> formatting.</p>
+<p>For a corresponding JupyterLab extension, see <a class="reference external" href="https://github.com/ryantam626/jupyterlab_code_formatter"><code class="docutils literal notranslate"><span class="pre">ryantam626/jupyterlab_code_formatter</span></code></a>.</p>
+<p>In the VS Code editor, the Python extension <a class="reference external" href="https://code.visualstudio.com/docs/python/editing#_formatting">supports code formatting</a> using <code class="docutils literal notranslate"><span class="pre">autopep8</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code> or <code class="docutils literal notranslate"><span class="pre">yapf</span></code>.</p>
+</div>
+<div class="section" id="linting-markdown-and-code">
+<h2>Linting Markdown and Code<a class="headerlink" href="#linting-markdown-and-code" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/mattijn/pycodestyle_magic"><code class="docutils literal notranslate"><span class="pre">mattijn/pycodestyle_magic</span></code></a> classic notebook extension can be configured to apply <code class="docutils literal notranslate"><span class="pre">flake8</span></code> style linting to the contents of code cells when they are run.</p>
+<p><img alt="" src="_images/pycodestyle-nb.png" /></p>
+<p>Contraventions of style rules are highlighted as code cell stream output. The linting is enabled in a notebook using IPython line magic.</p>
+<p>In the VS Code editor, the Python extension <a class="reference external" href="https://code.visualstudio.com/docs/python/linting">natively supports linting</a> using <code class="docutils literal notranslate"><span class="pre">pylint</span></code>.</p>
+<p>The VS Code editor also supports the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint"><code class="docutils literal notranslate"><span class="pre">DavidAnson.vscode-markdownlint</span></code> extension</a> which highlights rule contraventions with the editor.</p>
+<p><img alt="" src="_images/vscode-md-tooltip-error.png" /></p>
+</div>
+<div class="section" id="generated-diagram-previews">
+<h2>Generated Diagram Previews<a class="headerlink" href="#generated-diagram-previews" title="Permalink to this headline">¶</a></h2>
+<p>In publishing workflows based around Sphinx, such as Jupyter Book, several extensions are available that can generate diagrams from a simple Markdown friendly script.</p>
+<p>For example, the <a class="reference external" href="https://github.com/mgaitan/sphinxcontrib-mermaid"><code class="docutils literal notranslate"><span class="pre">mgaitan/sphinxcontrib-mermaid</span></code></a> and the <a class="reference external" href="https://github.com/bavovanachte/sphinx-wavedrom"><code class="docutils literal notranslate"><span class="pre">bavovanachte/sphinx-wavedrom</span></code></a> contributed Sphinx extensions are capable of rendering <a class="reference external" href="https://mermaid-js.github.io/mermaid/#/">Mermaid</a> and <a class="reference external" href="https://wavedrom.com/tutorial.html">wavedrom</a> scripted diagrams respectively from scripts wrapped in MyST styled code fenced blocks.</p>
+<p><img alt="" src="_images/mermaid_fence.png" /></p>
+<p>With a slight change to the syntax when labeling the code fenced block, the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced"><code class="docutils literal notranslate"><span class="pre">shd101wyy.markdown-preview-enhanced</span></code></a> can preview the rendered diagram in the VS Code Markdown preview window.</p>
+<p><img alt="" src="_images/diagram_preview_vscode.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An <a class="reference external" href="https://github.com/shd101wyy/markdown-preview-enhanced/issues/1626">issue</a> has been raised to see whether the MyST style label could be supported by the extension.</p>
+</div>
+<p>It is also possible to <a class="reference external" href="https://blog.ouseful.info/2021/09/30/a-simple-pattern-for-embedding-third-party-javascript-generated-graphics-in-jupyter-notebools/">create some simple block cell magics</a> that can be used render diagrams from appropriate diagram script in a classic Jupyter notebook.</p>
+<p><img alt="" src="_images/mermaid_cell_magic.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While a transformation script does not currently exist to support this, it should be easy enough to create a transformer that will map between magicked diagram generating code cells and appropriately labeled code fenced blocks to allow for generating and previewing diagrams in a Jupyter notebook user interface and then rendering via a Sphinx publication workflow, or editing and previewing the diagrams via a Markdown source file in VS Code and then generating a corresponding notebook file that utilises block cell magics.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="nb-quality-tools.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Notebook Quality Tools</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="pre-commit-framework.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Pre-Commit</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
