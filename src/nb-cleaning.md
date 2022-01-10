@@ -8,8 +8,8 @@ Various tools exist that can be used to clean notebooks, including:
 
 - [`nbconvert`](https://nbconvert.readthedocs.io/en/latest/index.html) : the official `nbconvert` tool can be used to convert notebook documents to other document types. The tool can also be run with a cell pre-processor to rewrite a notebook with cell outputs cleared: `jupyter nbconvert NOTEBOOK.ipynb --to notebook --ClearOutputPreprocessor.enabled=True --output NOTEBOOK`
 - [`choldgraf/nbclean`](https://github.com/choldgraf/nbclean): a Python package for scripting the cleaning of notebooks, including clearing cell outputs , removing cells based on tags and cell content and removing text within a cell between delimited start and end strings.
-- [`srstevenson/nb-clean`](https://github.com/srstevenson/nb-clean): a command line utility, and Github filters, for removing cell execution counts, cell outputs, and (optionally) empty cells and cell metadata;
-- [`innovationOUtside/nb_workflow_tools`](https://github.com/innovationOUtside/nb_workflow_tools): various command-line utilities for working with notebooks, including the ability to create compressed (zipped) archive files with automatically cleaned notebooks.
+- [`srstevenson/nb-clean`](https://github.com/srstevenson/nb-clean): a command line utility, and Github filters, for removing cell execution counts, cell outputs, and (optionally) empty cells and cell metadata; `nb-clean` also includes a utility `nb-clean check`, for checking whether a notebook is clean or not.
+- [`innovationOUtside/nb_workflow_tools`](https://github.com/innovationOUtside/nb_workflow_tools): various command-line utilities for working with notebooks, including the ability to create compressed (zipped) archive files with automatically cleaned notebooks and a (slow running) command for cleaning notebooks.
 
 Alternatively, a tool such as `jupytext` can be used to convert a notebooks to a simple text format that preserves input cell content and metadata but omits any cell output data.
 
