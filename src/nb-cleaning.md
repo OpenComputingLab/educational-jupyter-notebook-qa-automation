@@ -11,6 +11,8 @@ Various tools exist that can be used to clean notebooks, including:
 - [`srstevenson/nb-clean`](https://github.com/srstevenson/nb-clean): a command line utility, and Github filters, for removing cell execution counts, cell outputs, and (optionally) empty cells and cell metadata;
 - [`innovationOUtside/nb_workflow_tools`](https://github.com/innovationOUtside/nb_workflow_tools): various command-line utilities for working with notebooks, including the ability to create compressed (zipped) archive files with automatically cleaned notebooks.
 
+Alternatively, a tool such as `jupytext` can be used to convert a notebooks to a simple text format that preserves input cell content and metadata but omits any cell output data.
+
 ## Clearing All Notebooks in a Directory
 
 The above packages provide several different methods for clearing multiple notebooks. For example:
